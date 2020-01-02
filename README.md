@@ -1,7 +1,9 @@
-# momo_v2
+# internet_banking
 
 ## Project setup
 ```
+install yarn 
+https://yarnpkg.com/en/docs/install#windows-stable
 yarn install
 ```
 
