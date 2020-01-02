@@ -1,0 +1,12 @@
+{
+  "message": "hello i18n !!",
+  "signin": "Đăng nhập",
+  "userName": "Tên đăng nhập",
+  "password": "Mật khẩu",
+  "signup": "Đăng kí",
+  "payment": "Thanh toán",
+  "rePassword": "Nhập lại mật khẩu",
+  "phone": "Số điện thoại",
+  "email": "Email"
+
+}

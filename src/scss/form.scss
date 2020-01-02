@@ -1,0 +1,23 @@
+form {
+    .validation-errors,
+    .validation-message {
+        display: block;
+        font-size: 10px;
+        margin-bottom: 1rem;
+        color: $red;
+        
+        i {
+            color: $red;
+            width: 13px;
+            height: 12px;
+        }
+    }
+
+    .validation-message {
+        margin-top: .25rem;
+    }
+
+    .validation-errors {
+        margin-top: .5rem;
+    }
+}
