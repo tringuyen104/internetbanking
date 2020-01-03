@@ -3,18 +3,18 @@
 if (!(Test-Path -Path "$PSScriptRoot\~"))
 {
     New-Item -Path "$PSScriptRoot\~" -ItemType "directory" -Force | Out-Null
-}
+} 
 
 $download = [pscustomobject]@{
     name="Yarn"; 
     uri="https://yarnpkg.com/latest.msi"; 
-    output="$PSScriptRoot\~\yarn.msi"
+    output="$PSScriptRoot\yarn.msi"
 }
 
 $installs =  @( [pscustomobject] @{
     name="Yarn"; 
     path="msiexec.exe"; 
-    args="/i " + $download.output + "/passive /norestart"
+    args="/i " + $download.output + " /passive /norestart"
 })
 
 # User TLS 1.2
@@ -42,10 +42,10 @@ $installs | ForEach-Object -Process {
                 Start-Process -Wait -FilePath $_.path -PassThru | Out-Null
             }
             New-Item -Path "$PSScriptRoot\~\status\installed.$($_.name)" -ItemType "file" -Force | Out-Null
-        } 
+        }
     }
 }
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+#Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-choco install yarn --yes
+#choco install yarn --yes
