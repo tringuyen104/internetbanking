@@ -4,8 +4,15 @@
 ```
 install yarn 
 https://yarnpkg.com/en/docs/install#windows-stable
-yarn install
+or file InstallYarn.ps1
 ```
+## After install yarn
+---
+run  
+yarn global add @vue/cli
+and
+yarn install
+---
 
 ### Compiles and hot-reloads for development
 ```
