@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUserSecret)
 
+i18n.locale = 'vn'
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.component('font-awesome-icon', FontAwesomeIcon)
