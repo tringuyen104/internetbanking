@@ -5,7 +5,7 @@
         <h1>{{ $t("signin") }}</h1>
       </div>
       <div class="form-login">
-        <form action id="loginForm">
+        <form action id="loginForm" @submit.prevent="validateForm">
           <div class="d-flex margin-top">
             <router-link to="login" class="btn-face m-b-20">
               <i class="fab fa-facebook-f fa-2x"></i>
@@ -19,7 +19,9 @@
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
-            <b-input id="userName" class="mb-2 mr-sm-2 mb-sm-0" size="lg"></b-input>
+            <b-input id="userName" v-model="login.userName" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
+            <form-field-errors :validation-errors="errors" :field="'userName'" />
+            <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
           <div class="margin-top">
             <span class="text-style-1">{{ $t('password') }}</span>
@@ -45,6 +47,23 @@
     </div>
   </div>
 </template>
+<script>
+import FormFieldErrors from '../Errors/FormFieldError.vue'
+export default {
+  data () {
+    return { login: {} }
+  },
+  components: { FormFieldErrors },
+  methods: {
+    validateForm () {
+      this.$validator.validateAll()
+      if (!this.errors.any()) {
+        console.log('error')
+      }
+    }
+  }
+}
+</script>
 <style lang="scss">
 .content {
   border: solid;
@@ -66,9 +85,10 @@
   margin-top: 30px;
 }
 
-.btn-face:hover, .btn-google:hover {
-    color: chartreuse;
-    text-decoration: none;
+.btn-face:hover,
+.btn-google:hover {
+  color: chartreuse;
+  text-decoration: none;
 }
 
 .btn-face {
@@ -85,7 +105,7 @@
   font-size: 16px;
   color: #555555;
   line-height: 1.5;
-  display:flex;
+  display: flex;
 }
 
 .btn-face,

@@ -9,10 +9,10 @@
           <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
-              <i class="fas fa-user fa-lg"></i>
+                <i class="fas fa-user fa-lg"></i>
               </span>
             </div>
-            <input name class="form-control"  type="text"  v-bind:placeholder="$t('signin')"/>
+            <input name class="form-control" type="text" v-bind:placeholder="$t('signin')" />
           </div>
           <!-- <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -29,7 +29,7 @@
               </span>
             </div>
             <input name class="form-control" v-bind:placeholder="$t('phone')" type="text" />
-          </div> -->
+          </div>-->
           <!-- form-group end.// -->
           <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -37,8 +37,9 @@
                 <i class="fas fa-lock fa-lg"></i>
               </span>
             </div>
-            <input id="password" class="form-control" v-bind:placeholder="$t('password')" type="password" v-validate="'required'"/>
-            <form-field-validation :validation-errors="errors" :field="'password'"></form-field-validation>
+            <input id="password" class="form-control" v-bind:placeholder="$t('password')" type="password"
+              v-validate="'required'" />
+            <form-field-error :validation-errors="errors" :field="'password'"></form-field-error>
           </div>
           <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -54,17 +55,26 @@
         </form>
       </div>
       <div class="margin-top">
-           <p class="text-center">
-            Have an account?
-            <router-link to="login">{{ $t('signin') }}</router-link>
-          </p>
+        <p class="text-center">
+          Have an account?
+          <router-link to="login">{{ $t('signin') }}</router-link>
+        </p>
       </div>
     </div>
   </div>
 </template>
 <script>
-import FormFieldValidation from '../Errors/FormFieldError.vue'
-export default { components: { FormFieldValidation } }
+// import FormFieldError from '../Errors/FormFieldError.vue'
+export default {
+  // components: { FormFieldError },
+  created () {
+    // this.$root.$i18n.locale = 'es'
+    // this.app.i18n = new VueI18n({
+    //   locale: 'es',
+    //   fallbackLocale: 'es'
+    // })
+  }
+}
 </script>
 <style lang="scss">
 </style>

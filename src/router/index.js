@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import HeaderBar from '../views/HeaderBar.vue'
 import Login from '../components/User/Login.vue'
 import Register from '../components/Form/Register.vue'
+import ListCard from '../components/User/ListCard.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,14 +30,22 @@ const routes = [
     component: HeaderBar
   },
   {
-    path: '/login',
+    path: '/dang-nhap',
     name: 'login',
     component: Login
   },
   {
-    path: '/register',
+    path: '/dang-ki',
     name: 'register',
     component: Register
+  },
+  {
+    path: '/danh-sach-tai-khoan',
+    name: 'listCard',
+    components: {
+      headerbar: HeaderBar,
+      default: ListCard
+    }
   }
 
 ]
