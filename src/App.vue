@@ -13,6 +13,7 @@ export default {}
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import 'src/scss/color.scss';
 @import 'src/scss/style.scss';
+@import 'src/scss/form.scss';
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
