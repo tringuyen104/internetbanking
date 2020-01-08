@@ -32,7 +32,10 @@ const routes = [
   {
     path: '/dang-nhap',
     name: 'login',
-    component: Login
+    components: {
+      headerbar: HeaderBar,
+      default: Login
+    }
   },
   {
     path: '/dang-ki',
@@ -41,7 +44,7 @@ const routes = [
   },
   {
     path: '/danh-sach-tai-khoan',
-    name: 'listCard',
+    name: 'cards',
     components: {
       headerbar: HeaderBar,
       default: ListCard

@@ -6,14 +6,14 @@
       </div>
       <div class="form-login">
         <form action id="loginForm" @submit.prevent="validateForm">
-          <div class="d-flex margin-top">
+          <!-- <div class="d-flex margin-top">
             <router-link to="login" class="btn-face m-b-20">
               <i class="fab fa-facebook-f fa-2x"></i>
             </router-link>
             <router-link to="login" class="btn-google m-b-20">
               <i class="fab fa-google fa-2x"></i>
             </router-link>
-          </div>
+          </div> -->
 
           <div class="margin-top">
             <span class="text-style-1">{{ $t('userName') }}</span>
@@ -72,7 +72,7 @@ export default {
   margin: auto;
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 50px;
   background-color: #e9ecefc2;
 }

@@ -47,7 +47,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 }
 
 .nav-position{
-  position: fixed;
+  // position: absolute;
   width: 100%;
   z-index: 100;
 }

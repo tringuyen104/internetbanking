@@ -1,19 +1,34 @@
 <template>
-  <div class="col-lg-3 col-md-5 col-sm-5 panel-card">
+  <div class="col-lg-6 col-md-6 col-sm-12 panel-card">
     <div class="card card-font">
-      <div class="card-number">{{ cardNumber }}</div>
-      <div class="card-amount">{{ cardAmount }}</div>
+      <div class="d-flex flex-column">
+        <div class="p-2 card-title">
+          <h2>{{ type }}</h2>
+        </div>
+        <div class="p-2">
+          <div class="card-number">{{ $t('cardOwner') }}</div>
+          <div class="card-amount">{{ cardNumber }}</div>
+        </div>
+        <div class="p-2">
+          <div class="card-number">{{ $t('amount') }}</div>
+          <div class="card-amount">{{ amount }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   props: {
+    type: {
+      required: true,
+      type: String
+    },
     cardNumber: {
       required: true,
       type: String
     },
-    cardAmount: {
+    amount: {
       required: true,
       type: String
     }
@@ -22,18 +37,21 @@ export default {
 </script>
 <style lang="scss">
 .card {
-    font: 16px/1.5 'Helvetica Neue', Helvetica, sans-serif;
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 425px;
-    height: 270px;
-    text-align: left;
-    padding: 30px;
-    margin-bottom: 50px;
-    color: #fff;
-    border-radius: 20px;
-    box-sizing: border-box;
-    background: url(data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABA…v4d/Xm/Lfrnjf4P//aAAgBAgMBPxD/ABDf94L/AMVf/9oACAEDAwE/EP8Az5if4En/ALXf/9k=) no-repeat 0 0 #141819;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, sans-serif;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 425px;
+  text-align: left;
+  padding: 30px;
+  margin-bottom: 50px;
+  color:#e9ecef;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.card-title {
+  border-bottom: solid rgba(104, 129, 126, 0.667)
 }
 </style>

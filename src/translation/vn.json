@@ -7,6 +7,9 @@
   "payment": "Thanh toán",
   "rePassword": "Nhập lại mật khẩu",
   "phone": "Số điện thoại",
-  "email": "Email"
+  "email": "Email",
+  "lstCard": "Danh sách tài khoản",
+  "cardOwner": "Chủ tài khoản",
+  "amount": "Số dư"
 
 }
