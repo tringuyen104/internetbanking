@@ -10,6 +10,10 @@
   "email": "Email",
   "lstCard": "Danh sách tài khoản",
   "cardOwner": "Chủ tài khoản",
-  "amount": "Số dư"
-
+  "amount": "Số dư",
+  "createuser": "Tạo tài khoản",
+  "recharge": "Nạp tiền",
+  "exchangehistory": "Lịch sử giao dịch",
+  "logout": "Đăng xuất",
+  "realname": "Họ tên"
 }

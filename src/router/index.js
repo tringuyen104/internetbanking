@@ -5,6 +5,7 @@ import HeaderBar from '../views/HeaderBar.vue'
 import Login from '../components/User/Login.vue'
 import Register from '../components/Form/Register.vue'
 import ListCard from '../components/User/ListCard.vue'
+import CreateUser from '../components/Employee/CreateUser.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -48,6 +49,14 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ListCard
+    }
+  },
+  {
+    path: '/tao-tai-khoan',
+    name: 'createuser',
+    components: {
+      headerbar: HeaderBar,
+      default: CreateUser
     }
   }
 
