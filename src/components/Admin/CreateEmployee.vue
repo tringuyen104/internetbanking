@@ -23,6 +23,10 @@
       <label for="inputAddress2">{{ $t('phone') }}</label>
       <input type="text" class="form-control" id="phone" placeholder="0388008800" />
     </div>
+    <div class="form-group">
+      <label for="inputAddress">{{ $t('address') }}</label>
+      <input type="text" class="form-control" id="address" placeholder="123 Nguyễn Văn Cừ, Q.5, Tp.HCM" />
+    </div>
     <div class="float-right">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
