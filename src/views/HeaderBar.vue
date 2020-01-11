@@ -9,9 +9,13 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
-            <b-nav-item :to="{name: 'createuser'}">{{ $t('createuser') }}</b-nav-item>
-            <b-nav-item :to="{name: 'recharge'}">{{ $t('recharge') }}</b-nav-item>
-            <b-nav-item :to="{name: 'exchangehistory'}">{{ $t('exchangehistory') }}</b-nav-item>
+            <b-nav-item :to="{name: 'forcontrol'}">{{ $t('forcontrol') }}</b-nav-item>
+            <b-nav-item-dropdown :text="$t('manageemployee') " right>
+              <!-- <b-dropdown-item :to="{name: 'cards'}">{{ $t('lstCard') }}</b-dropdown-item> -->
+              <b-dropdown-item>{{ $t('createemployee') }}</b-dropdown-item>
+              <b-dropdown-item>{{ $t('deleteemployee') }}</b-dropdown-item>
+              <b-dropdown-item>{{ $t('editemployee') }}</b-dropdown-item>
+            </b-nav-item-dropdown>
             <b-nav-item :to="{name: 'login'}">{{ $t('logout') }}</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
