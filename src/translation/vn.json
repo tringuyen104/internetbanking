@@ -15,5 +15,7 @@
   "recharge": "Nạp tiền",
   "exchangehistory": "Lịch sử giao dịch",
   "logout": "Đăng xuất",
-  "realname": "Họ tên"
+  "realname": "Họ tên",
+  "userinfo": "Thông tin tài khoản",
+  "amountofmoney": "Số tiền gửi"
 }
