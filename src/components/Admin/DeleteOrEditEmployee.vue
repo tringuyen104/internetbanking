@@ -1,13 +1,10 @@
 <template>
   <form class="form-label">
-    <h2 class="form-title">{{ $t('createemployee') }}</h2>
+    <h2 class="form-title">{{ $t('deltoreditemployee') }}</h2>
     <div class="form-row">
-      <div class="form-group col-md-10">
-        <label for="inputEmail4">{{ $t('userName') }}</label>
+      <div class="input-group mb-3">
         <input type="email" class="form-control" id="userName" placeholder="Tên đăng nhập" />
-        <div class="float-right">
-          <button type="submit" class="btn btn-primary">Search</button>
-        </div>
+        <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
       </div>
     </div>
     <div class="form-group">
@@ -32,8 +29,10 @@
         readonly
       />
     </div>
-    <div class="float-right">
-      <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="float-right handle-btn">
+      <button type="submit" class="btn btn-primary">{{ $t('cancel') }}</button>
+      <button type="submit" class="btn btn-primary">{{ $t('delete') }}</button>
+      <button type="submit" class="btn btn-primary">{{ $t('edit') }}</button>
     </div>
   </form>
 </template>
@@ -48,5 +47,10 @@
 .form-title {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.handle-btn {
+  button {
+    margin-left: 5px;
+  }
 }
 </style>

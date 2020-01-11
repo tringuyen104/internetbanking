@@ -9,8 +9,7 @@ import CreateUser from '../components/Employee/CreateUser.vue'
 import Recharge from '../components/Employee/Recharge.vue'
 import ExchangeHistory from '../components/Employee/ExchangeHistory.vue'
 import CreateEmployee from '../components/Admin/CreateEmployee.vue'
-import EditEmployeeinfo from '../components/Admin/EditEmployeeinfo.vue'
-import DeleteEmployee from '../components/Admin/DeleteEmployee.vue'
+import DeleteOrEditEmployee from '../components/Admin/DeleteOrEditEmployee.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -89,19 +88,11 @@ const routes = [
     }
   },
   {
-    path: '/xoa-nhan-vien',
-    name: 'deleteemployee',
+    path: '/xoa-sua-nhan-vien',
+    name: 'deleteoreditemployee',
     components: {
       headerbar: HeaderBar,
-      default: DeleteEmployee
-    }
-  },
-  {
-    path: '/sua-thong-tin-nhan-vien',
-    name: 'editemployeeinfo',
-    components: {
-      headerbar: HeaderBar,
-      default: EditEmployeeinfo
+      default: DeleteOrEditEmployee
     }
   }
 ]

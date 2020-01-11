@@ -21,7 +21,10 @@
   "amountofmoney": "Số tiền gửi",
   "manageemployee": "Quản lí nhân viên",
   "createemployee": "Thêm nhân viên",
-  "deleteemployee": "Xóa nhân viên",
-  "editemployee": "Sửa thông tin nhân viên",
-  "forcontrol": "Đối soát"
+  "deltoreditemployee": "Xóa/ Sửa nhân viên",
+  "forcontrol": "Đối soát",
+  "cancel": "Hủy",
+  "delete": "Xóa",
+  "edit": "Sửa",
+  "search": "Tìm"
 }
