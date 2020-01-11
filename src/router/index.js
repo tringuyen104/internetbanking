@@ -8,6 +8,7 @@ import ListCard from '../components/User/ListCard.vue'
 import CreateUser from '../components/Employee/CreateUser.vue'
 import Recharge from '../components/Employee/Recharge.vue'
 import ExchangeHistory from '../components/Employee/ExchangeHistory.vue'
+import CreateEmployee from '../components/Admin/CreateEmployee.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -75,6 +76,14 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ExchangeHistory
+    }
+  },
+  {
+    path: '/them-nhan-vien',
+    name: 'createemployee',
+    components: {
+      headerbar: HeaderBar,
+      default: CreateEmployee
     }
   }
 ]

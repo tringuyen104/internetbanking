@@ -12,9 +12,9 @@
             <b-nav-item :to="{name: 'forcontrol'}">{{ $t('forcontrol') }}</b-nav-item>
             <b-nav-item-dropdown :text="$t('manageemployee') " right>
               <!-- <b-dropdown-item :to="{name: 'cards'}">{{ $t('lstCard') }}</b-dropdown-item> -->
-              <b-dropdown-item>{{ $t('createemployee') }}</b-dropdown-item>
-              <b-dropdown-item>{{ $t('deleteemployee') }}</b-dropdown-item>
-              <b-dropdown-item>{{ $t('editemployee') }}</b-dropdown-item>
+              <b-dropdown-item :to="{name: 'createemployee'}">{{ $t('createemployee') }}</b-dropdown-item>
+              <b-dropdown-item :to="{name: 'deleteemployee'}">{{ $t('deleteemployee') }}</b-dropdown-item>
+              <b-dropdown-item :to="{name: 'editemployee'}">{{ $t('editemployee') }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item :to="{name: 'login'}">{{ $t('logout') }}</b-nav-item>
           </b-navbar-nav>
