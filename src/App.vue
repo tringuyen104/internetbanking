@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <router-view name="headerbar"></router-view>
-    <main class="padding-nav">
-      <router-view />
+    <!-- <main class="padding-nav col-sm-9">
+    </main> -->
+    <main id="content">
+       <router-view />
     </main>
   </div>
 </template>
@@ -11,11 +13,11 @@ export default {}
 </script>
 <style lang="scss">
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
-@import 'src/scss/color.scss';
-@import 'src/scss/style.scss';
-@import 'src/scss/form.scss';
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+@import "src/scss/color.scss";
+@import "src/scss/style.scss";
+@import "src/scss/form.scss";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-vue/src/index.scss";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid"; // fas
 @import "~@fortawesome/fontawesome-free/scss/regular"; // far
@@ -28,12 +30,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   color: #2c3e50;
 }
 
-.padding-nav {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-#nav {
+#content {
   padding: 30px;
 
   a {
@@ -46,22 +43,22 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   }
 }
 
-.nav-position{
-  // position: absolute;
-  width: 100%;
-  z-index: 100;
-}
+// .nav-position {
+//   // position: absolute;
+//   width: 100%;
+//   z-index: 100;
+// }
 
-@media (max-width: 576px) {
-  .padding-nav {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+// @media (max-width: 576px) {
+//   .padding-nav {
+//     padding-left: 0px;
+//     padding-right: 0px;
+//   }
 
-  .element {
-    padding: 10px !important;
-  }
-}
+//   .element {
+//     padding: 10px !important;
+//   }
+// }
 // Small devices (landscape phones, 576px and up)
 // @media (min-width: 576px) {
 //   .padding-nav {
@@ -72,5 +69,4 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 // Medium devices (tablets, 768px and up)
 //@media (min-width: 768px) {  }
-
 </style>

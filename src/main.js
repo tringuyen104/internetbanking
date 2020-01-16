@@ -2,12 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import './validation/vee-validate'
-import './config/library-css'
+import './plugins/library-css'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
+import ButtonFrom from './components/ButtonForm.vue'
 
 i18n.locale = 'vn'
+
+Vue.component('button-form', ButtonFrom)
 
 window.app = new Vue({
   router,

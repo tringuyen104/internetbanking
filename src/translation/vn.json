@@ -10,6 +10,24 @@
   "email": "Email",
   "lstCard": "Danh sách tài khoản",
   "cardOwner": "Chủ tài khoản",
-  "amount": "Số dư"
+  "overbalance": "Số dư",
+  "accountDestination": "Tài khoản thanh toán nguồn",
+  "amount": "Số tiền",
+  "content": "Nội dung",
+  "payments": "Hình thức thanh toán",
+  "transfers": "Chuyển tiền",
+  "cancel": "Hủy",
+  "recipientAccount": "Tài khoản người nhận",
+  "accountNumber": "Số tài khoản",
+  "name": "Họ tên",
+  "bank": "Ngân hàng",
+  "inSide": "Trong ngân hàng",
+  "outSide": "Ngoài ngân hàng",
+  "cardNumber": "Số tài khoản",
+  "cardType": "Loại tài khoản",
+  "debtReminder": "Nhắc nợ",
+  "createDebtReminder": "Tạo nhắc nợ",
+  "creator": "Người tạo",
+  "money": "Số tiền"
 
 }

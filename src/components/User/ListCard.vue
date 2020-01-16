@@ -10,7 +10,7 @@ import Card from '../Form/Card.vue'
 export default { components: { Card } }
 </script>
 <style lang="scss">
-#lstCard {
-    margin-top: 40px;
-}
+// #lstCard {
+//     margin-top: 40px;
+// }
 </style>

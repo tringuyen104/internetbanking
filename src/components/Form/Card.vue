@@ -1,16 +1,20 @@
 <template>
-  <div class="col-lg-6 col-md-6 col-sm-12 panel-card">
+  <div class="col-lg-4 col-md-6 col-sm-12 panel-card">
     <div class="card card-font">
       <div class="d-flex flex-column">
         <div class="p-2 card-title">
-          <h2>{{ type }}</h2>
+          <h4>{{ cardNumber }}</h4>
         </div>
         <div class="p-2">
-          <div class="card-number">{{ $t('cardOwner') }}</div>
-          <div class="card-amount">{{ cardNumber }}</div>
+          <div class="card-number">
+            <h5>{{ $t("cardType") }}</h5>
+          </div>
+          <div class="card-amount">{{ type }}</div>
         </div>
         <div class="p-2">
-          <div class="card-number">{{ $t('amount') }}</div>
+          <div class="card-number">
+            <h5>{{ $t("overbalance") }}</h5>
+          </div>
           <div class="card-amount">{{ amount }}</div>
         </div>
       </div>
@@ -41,17 +45,37 @@ export default {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 425px;
+  width: 400px;
   text-align: left;
-  padding: 30px;
+  padding: 10px;
   margin-bottom: 50px;
-  color:#e9ecef;
+  color: #e9ecef;
   border-radius: 20px;
   box-sizing: border-box;
-  color: #000;
+  // background-image: url(https://image.ibb.co/bVnMrc/g3095.png),
+  //   linear-gradient(
+  //     to right bottom,
+  //     #fd696b,
+  //     #fa616e,
+  //     #f65871,
+  //     #f15075,
+  //     #ec4879
+  //   );
+  background-image: url(https://image.ibb.co/bVnMrc/g3095.png),
+    linear-gradient(
+      to right bottom,
+      #c9e0df,
+      #67b9bd,
+      #6ec7ae,
+      #61e1cf,
+      #bedecf
+    );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .card-title {
-  border-bottom: solid rgba(104, 129, 126, 0.667)
+  border-bottom: solid rgba(104, 129, 126, 0.667);
 }
 </style>

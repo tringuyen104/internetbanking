@@ -15,7 +15,7 @@
             </router-link>
           </div> -->
 
-          <div class="margin-top">
+          <div class="margin-top-30">
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
@@ -23,13 +23,13 @@
             <form-field-errors :validation-errors="errors" :field="'userName'" />
             <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
-          <div class="margin-top">
+          <div class="margin-top-30">
             <span class="text-style-1">{{ $t('password') }}</span>
           </div>
           <div>
             <b-input id="password" class="mb-2 mr-sm-2 mb-sm-0" size="lg"></b-input>
           </div>
-          <div id="btn-form">
+          <div id="btn-form" class="margin-top-30">
             <b-button
               id="btnLogin"
               block
@@ -41,7 +41,7 @@
           </div>
         </form>
       </div>
-      <div class="margin-top">
+      <div class="margin-top-30">
         <router-link to="register">{{ $t('signup') }}</router-link>
       </div>
     </div>
@@ -77,13 +77,9 @@ export default {
   background-color: #e9ecefc2;
 }
 
-.element {
-  padding: 30px;
-}
-
-.margin-top {
-  margin-top: 30px;
-}
+// .element {
+//   padding: 30px;
+// }
 
 .btn-face:hover,
 .btn-google:hover {

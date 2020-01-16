@@ -2,9 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import HeaderBar from '../views/HeaderBar.vue'
+import SideBar from '../views/SideNav.vue'
 import Login from '../components/User/Login.vue'
 import Register from '../components/Form/Register.vue'
 import ListCard from '../components/User/ListCard.vue'
+import BankingTransfers from '../components/Banking/BankingTransfers.vue'
+import CreateDebtReminder from '../components/User/CreateDebtReminder.vue'
+import DebtReminderUnPay from '../components/User/DebtReminderUnPay.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,6 +35,11 @@ const routes = [
     component: HeaderBar
   },
   {
+    path: '/sidebar',
+    name: 'sidebar',
+    component: SideBar
+  },
+  {
     path: '/dang-nhap',
     name: 'login',
     components: {
@@ -48,6 +58,30 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ListCard
+    }
+  },
+  {
+    path: '/chuyen-tien-cung-ngan-hang',
+    name: 'bankingTransfers',
+    components: {
+      headerbar: HeaderBar,
+      default: BankingTransfers
+    }
+  },
+  {
+    path: '/tao-nhac-no',
+    name: 'createDebtReminder',
+    components: {
+      headerbar: HeaderBar,
+      default: CreateDebtReminder
+    }
+  },
+  {
+    path: '/nhac-no-chua-thanh-toan',
+    name: 'debtReminderUnPay',
+    components: {
+      headerbar: HeaderBar,
+      default: DebtReminderUnPay
     }
   }
 
