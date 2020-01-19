@@ -3,7 +3,7 @@
     <router-view name="headerbar"></router-view>
     <!-- <main class="padding-nav col-sm-9">
     </main> -->
-    <main id="content">
+    <main id="mainContent">
        <router-view />
     </main>
   </div>
@@ -30,7 +30,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   color: #2c3e50;
 }
 
-#content {
+#mainContent {
   padding: 30px;
 
   a {

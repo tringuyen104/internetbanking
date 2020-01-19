@@ -1,6 +1,6 @@
 <template>
   <div class="col-lg-3 col-md-4 col-sm-6">
-    <b-alert show :variant="typeAlert" >
+    <b-alert show :variant="typeAlert" dismissible>
       <div class="d-flex d-row">
         <i class="fas fa-user fa-lg col-sm-2 p-1"></i>
         <span class="p-1 color-span-debt">{{ data.creator }}</span>

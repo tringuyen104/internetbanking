@@ -28,6 +28,14 @@
   "debtReminder": "Nhắc nợ",
   "createDebtReminder": "Tạo nhắc nợ",
   "creator": "Người tạo",
-  "money": "Số tiền"
+  "money": "Số tiền",
+  "confirm": "Xác nhận",
+  "inputOTP": "Nhập OTP",
+  "OTP": "OTP",
+  "debtReminderManager": "Quản lý nhắc nợ",
+  "debtReminderUnpay": "Nhắc nợ chưa thanh toán",
+  "lstDebtReminder": "Danh sách nhắc nợ",
+  "remove": "Xóa",
+  "removeDebt": "Hủy nhắc nợ"
 
 }

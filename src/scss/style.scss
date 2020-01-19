@@ -2,6 +2,7 @@
 //     height: 100vh; /* For 100% screen height */
 //     width:  100%; /* For 100% screen width */
 // }
+$em05: 0.5em;
 
 .margin-top-30 {
     margin-top: 30px;
@@ -9,4 +10,30 @@
 
 .color-span-debt {
     color: $redSpan;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.border-less {
+    td, th {
+        border: none;
+    }
+}
+
+.red-color {
+    color: $red;
+}
+
+.border-table {
+    border: 0.1em solid #c4c9ce;
+}
+
+.green-color {
+    color: $green;
+}
+
+.margin-left-05em {
+    margin-left: $em05;
 }

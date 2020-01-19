@@ -11,6 +11,9 @@
             <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{
               $t("createDebtReminder")
             }}</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'debtReminderManager' }">{{
+              $t("debtReminderManager")
+            }}</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-navbar-nav>
             <b-nav-item-dropdown :text="$t('transfers')" right>

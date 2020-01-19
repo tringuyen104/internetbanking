@@ -3,13 +3,32 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const DebtReminder = {
+  namespace: true,
   state: {
+    unPayData: [],
+    lstDebtData: []
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    updateUnpayData (state, data) {
+      state.unPayData = data
+    },
+    updateLstDebtData (state, data) {
+      state.lstDebtData = data
+    }
   }
+}
+
+export const store = new Vuex.Store({
+  modules: {
+    'debtReminder': DebtReminder
+  }
+  // state: {
+  // },
+  // mutations: {
+  // },
+  // actions: {
+  // },
+  // modules: {
+  // }
 })

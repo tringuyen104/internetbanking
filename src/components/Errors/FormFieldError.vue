@@ -1,5 +1,5 @@
 <template>
-  <div class="validation-message" v-show="validationErrors.has(field)">
+  <div class="validation-message" v-show="validationErrors.has(field)" style="color:red;">
     <i class="fas fa-exclamation" focusable="false"></i>&nbsp;
     <span>{{ errorMessage }}</span>
   </div>
