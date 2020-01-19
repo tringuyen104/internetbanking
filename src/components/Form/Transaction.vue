@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table :items="data" :fields="fields" striped responsive="sm">
+    <b-table :items="items" :fields="fields" striped responsive="sm">
       <template v-slot:cell(created)="data">
         <span>{{ $moment(data.item.created).format("MM/DD/YYYY") }}</span>
       </template>
@@ -10,14 +10,10 @@
 
 <script>
 export default {
-  props: {
-    fields: {
-      type: Array,
-      required: true
-    },
-    data: {
-      type: Array,
-      required: true
+  data () {
+    return {
+      items: [],
+      fields: []
     }
   }
 }

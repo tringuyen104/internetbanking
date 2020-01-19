@@ -9,7 +9,8 @@ import ListCard from '../components/User/ListCard.vue'
 import BankingTransfers from '../components/Banking/BankingTransfers.vue'
 import CreateDebtReminder from '../components/DebtReminder/DebtReminderCreate.vue'
 import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
-import DebtReminderManager from '../components/DebtReminder/DebtReminderManager.vue'
+import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
+import TransactionManagement from '../components/User/TransactionManagement.vue'
 
 Vue.use(VueRouter)
 
@@ -87,10 +88,18 @@ const routes = [
   },
   {
     path: '/quan-ly-nhac-no',
-    name: 'debtReminderManager',
+    name: 'debtReminderManagement',
     components: {
       headerbar: HeaderBar,
-      default: DebtReminderManager
+      default: DebtReminderManagement
+    }
+  },
+  {
+    path: '/quan-ly-giao-dich',
+    name: 'transactionManagement',
+    components: {
+      headerbar: HeaderBar,
+      default: TransactionManagement
     }
   }
 

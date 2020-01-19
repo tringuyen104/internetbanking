@@ -32,10 +32,14 @@
   "confirm": "Xác nhận",
   "inputOTP": "Nhập OTP",
   "OTP": "OTP",
-  "debtReminderManager": "Quản lý nhắc nợ",
+  "debtReminderManagement": "Quản lý nhắc nợ",
   "debtReminderUnpay": "Nhắc nợ chưa thanh toán",
   "lstDebtReminder": "Danh sách nhắc nợ",
   "remove": "Xóa",
-  "removeDebt": "Hủy nhắc nợ"
+  "removeDebt": "Hủy nhắc nợ",
+  "transaction": "Giao dịch",
+  "reciveMoney": "Nhận Tiền",
+  "transfersMoney": "Chuyển Tiền",
+  "paymentDebtReminder": "Thanh toán nhắc nợ"
 
 }

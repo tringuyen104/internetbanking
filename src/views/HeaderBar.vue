@@ -7,27 +7,26 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
+          <b-nav-item :to="{ name: 'transactionManagement' }">{{ $t("transaction") }}</b-nav-item>
           <b-nav-item-dropdown :text="$t('debtReminder')" right>
             <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{
               $t("createDebtReminder")
             }}</b-dropdown-item>
-            <b-dropdown-item :to="{ name: 'debtReminderManager' }">{{
-              $t("debtReminderManager")
+            <b-dropdown-item :to="{ name: 'debtReminderManagement' }">{{
+              $t("debtReminderManagement")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-navbar-nav>
-            <b-nav-item-dropdown :text="$t('transfers')" right>
-              <b-dropdown-item :to="{ name: 'bankingTransfers' }">{{
-                $t("inSide")
-              }}</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown :text="$t('payment')" right>
-              <b-dropdown-item :to="{ name: 'cards' }">{{
-                $t("lstCard")
-              }}</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item :to="{ name: 'login' }">{{ $t("signin") }}</b-nav-item>
-          </b-navbar-nav>
+          <b-nav-item-dropdown :text="$t('transfers')" right>
+            <b-dropdown-item :to="{ name: 'bankingTransfers' }">{{
+              $t("inSide")
+            }}</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown :text="$t('payment')" right>
+            <b-dropdown-item :to="{ name: 'cards' }">{{
+              $t("lstCard")
+            }}</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item :to="{ name: 'login' }">{{ $t("signin") }}</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

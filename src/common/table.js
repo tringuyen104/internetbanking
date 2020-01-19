@@ -29,7 +29,7 @@ export const table = {
           }
         ],
         transaction: {
-          reciver: [
+          recive: [
             {
               key: 'creator',
               label: 'Người chuyển',

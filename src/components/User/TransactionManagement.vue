@@ -1,19 +1,22 @@
 <template>
   <div class="col-lg-6 col-md-12 col-sm-12 margin-auto">
     <b-tabs content-class="mt-3">
-      <b-tab :title="$t('debtReminderUnpay')" active><unpay/></b-tab>
-      <b-tab :title="$t('lstDebtReminder')"><debt-reminder-list/></b-tab>
+      <b-tab :title="$t('reciveMoney')" active><recive-money/></b-tab>
+      <b-tab :title="$t('transfersMoney')"><transfers-money/></b-tab>
+      <b-tab :title="$t('paymentDebtReminder')"><payment-debt-reminder /></b-tab>
     </b-tabs>
   </div>
 </template>
 <script>
-import Unpay from './DebtReminderUnPay.vue'
-import DebtReminderList from './DebtReminderList.vue'
+import ReciveMoney from '../Transaction/ReciveMoney.vue'
+import TransfersMoney from '../Transaction/TransfersMoney.vue'
+import PaymentDebtReminder from '../Transaction/PaymentDebtReminder.vue'
 
 export default {
   components: {
-    Unpay,
-    DebtReminderList
+    ReciveMoney,
+    TransfersMoney,
+    PaymentDebtReminder
   }
 }
 </script>
