@@ -8,17 +8,22 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-navbar-nav>
+          <!-- <b-navbar-nav>
             <b-nav-item :to="{name: 'createuser'}">{{ $t('createuser') }}</b-nav-item>
             <b-nav-item :to="{name: 'recharge'}">{{ $t('recharge') }}</b-nav-item>
             <b-nav-item :to="{name: 'exchangehistory'}">{{ $t('exchangehistory') }}</b-nav-item>
             <b-nav-item :to="{name: 'login'}">{{ $t('logout') }}</b-nav-item>
-          </b-navbar-nav>
+          </b-navbar-nav> -->
+          <HeaderEmployee></HeaderEmployee>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
+<script>
+import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
+export default { components: { HeaderEmployee } }
+</script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text&display=swap");
 .logo-font {

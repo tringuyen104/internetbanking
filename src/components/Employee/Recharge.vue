@@ -1,37 +1,30 @@
 <template>
   <form class="form-label">
     <h2 class="form-title">{{ $t('recharge') }}</h2>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">{{ $t('userinfo') }}</label>
-        <input
-          type="email"
-          class="form-control"
-          id="userinfo"
-          placeholder="Nhập tên đăng nhập hoặc số tài khoản"
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">{{ $t('amountofmoney') }}</label>
-        <input
-          type="password"
-          class="form-control"
-          id="amountofmoney"
-          placeholder="1.000.000"
-        />
-      </div>
+    <div class="input-group">
+      <input
+        type="email"
+        class="form-control"
+        id="userinfo"
+        placeholder="Nhập tên đăng nhập hoặc số tài khoản"
+      />
+      <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress"></label>
+      <input type="password" class="form-control" id="amountofmoney" :placeholder="$t('insertmoney')" />
     </div>
     <div class="form-group">
       <label for="inputAddress">{{ $t('realname') }}</label>
-      <input type="text" class="form-control" id="realname" placeholder="Nguyễn Văn A" readonly />
+      <input type="text" class="form-control" id="realname" :placeholder="$t('examname')" readonly />
     </div>
     <div class="form-group">
       <label for="inputAddress2">{{ $t('email') }}</label>
-      <input type="text" class="form-control" id="email" placeholder="a@gmail.com" readonly />
+      <input type="text" class="form-control" id="email" :placeholder="$t('exammail')" readonly />
     </div>
     <div class="form-group">
       <label for="inputAddress2">{{ $t('phone') }}</label>
-      <input type="text" class="form-control" id="phone" placeholder="0388008800" readonly />
+      <input type="text" class="form-control" id="phone" :placeholder="$t('examphone')" readonly />
     </div>
     <div class="float-right">
       <button type="submit" class="btn btn-primary">Submit</button>

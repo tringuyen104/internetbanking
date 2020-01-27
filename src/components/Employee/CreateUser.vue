@@ -11,7 +11,7 @@
         <input type="password" class="form-control" id="password" placeholder="Mật khẩu" readonly />
       </div>
     </div>
-    <div class="form-group">s
+    <!-- <div class="form-group">
       <label for="inputAddress">{{ $t('realname') }}</label>
       <input type="text" class="form-control" id="realname" placeholder="Nguyễn Văn A" />
     </div>
@@ -25,9 +25,14 @@
     </div>
     <div class="float-right">
       <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+    </div> -->
+    <user-info></user-info>
   </form>
 </template>
+<script>
+import UserInfo from './../Form/UserInfo.vue'
+export default { components: { UserInfo } }
+</script>
 <style lang="scss">
 .padding-nav {
   padding-left: 25%;
