@@ -10,6 +10,10 @@ import Recharge from '../components/Employee/Recharge.vue'
 import ExchangeHistory from '../components/Employee/ExchangeHistory.vue'
 import CreateEmployee from '../components/Admin/CreateEmployee.vue'
 import DeleteOrEditEmployee from '../components/Admin/DeleteOrEditEmployee.vue'
+import InsertUserInfo from '../components/Form/InsertUserInfo.vue'
+import DisplayUserInfo from '../components/Form/DisplayUserInfo.vue'
+import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
+import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -93,6 +97,36 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: DeleteOrEditEmployee
+    }
+  },
+  {
+    path: '/nhap-thong-tin-tai-khoan',
+    name: 'insertuserinfo',
+    components: {
+      default: InsertUserInfo
+    }
+  },
+  {
+    path: '/hien-thong-tin-tai-khoan',
+    name: 'displayuserinfo',
+    components: {
+      default: DisplayUserInfo
+    }
+  },
+  {
+    path: '/header-employee',
+    name: 'headeremployee',
+    components: {
+      headerbar: HeaderBar,
+      default: HeaderEmployee
+    }
+  },
+  {
+    path: '/header-admin',
+    name: 'headeradmin',
+    components: {
+      headerbar: HeaderBar,
+      default: HeaderAdmin
     }
   }
 ]

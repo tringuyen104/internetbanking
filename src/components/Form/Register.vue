@@ -47,7 +47,7 @@
                 <i class="fas fa-lock fa-lg"></i>
               </span>
             </div>
-            <input class="form-control" v-bind:placeholder="$t('rePassword')" type="password" />
+            <input class="form-control" :placeholder="$t('rePassword')" type="password" />
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">{{ $t('signup') }}</button>

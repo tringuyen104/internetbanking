@@ -7,28 +7,7 @@
         <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
       </div>
     </div>
-    <div class="form-group">
-      <label for="inputAddress">{{ $t('realname') }}</label>
-      <input type="text" class="form-control" id="realname" placeholder="Nguyễn Văn A" readonly />
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">{{ $t('email') }}</label>
-      <input type="text" class="form-control" id="email" placeholder="a@gmail.com" readonly />
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">{{ $t('phone') }}</label>
-      <input type="text" class="form-control" id="phone" placeholder="0388008800" readonly />
-    </div>
-    <div class="form-group">
-      <label for="inputAddress">{{ $t('address') }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="address"
-        placeholder="123 Nguyễn Văn Cừ, Q.5, Tp.HCM"
-        readonly
-      />
-    </div>
+    <DisplayUserInfo></DisplayUserInfo>
     <div class="float-right handle-btn">
       <button type="submit" class="btn btn-primary">{{ $t('cancel') }}</button>
       <button type="submit" class="btn btn-primary">{{ $t('delete') }}</button>
@@ -36,6 +15,10 @@
     </div>
   </form>
 </template>
+<script>
+import DisplayUserInfo from './../Form/DisplayUserInfo.vue'
+export default { components: { DisplayUserInfo } }
+</script>
 <style lang="scss">
 .padding-nav {
   padding-left: 25%;

@@ -17,7 +17,7 @@
   "logout": "Đăng xuất",
   "realname": "Họ tên",
   "address": "Địa chỉ",
-  "userinfo": "Thông tin tài khoản",
+  "InsertUserInfo": "Thông tin tài khoản",
   "amountofmoney": "Số tiền gửi",
   "manageemployee": "Quản lí nhân viên",
   "createemployee": "Thêm nhân viên",
@@ -26,5 +26,10 @@
   "cancel": "Hủy",
   "delete": "Xóa",
   "edit": "Sửa",
-  "search": "Tìm"
+  "search": "Tìm",
+  "examname": "Nguyễn Văn A",
+  "examphone": "0388008800",
+  "examaddress": "123 Nguyễn Văn Cừ, Q.5, Tp.HCM",
+  "exammail": "a@gmail.com",
+  "insertmoney": "Nhập số tiền gửi"
 }
