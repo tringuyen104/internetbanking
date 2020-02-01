@@ -5,15 +5,20 @@ import './validation/vee-validate'
 import './plugins/library-css'
 import router from './router'
 import { store } from './store'
-import { helper } from './common/helper.js'
-import { table } from './common/table.js'
+import { restFullAPi } from './common/axios'
+import { helper } from './common/helper'
+import { table } from './common/table'
+import { cookie } from './mixins/BrowserCookie'
 import i18n from './i18n'
 import ButtonFrom from './components/ButtonForm.vue'
 
 i18n.locale = 'vn'
 Vue.component('button-form', ButtonFrom)
+Vue.use(cookie)
 Vue.use(helper)
 Vue.use(table)
+Vue.use(restFullAPi)
+
 window.app = new Vue({
   router,
   store,

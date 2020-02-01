@@ -25,13 +25,9 @@
         @click="comfirm"
         >{{ $t("confirm") }}</b-button
       >
-      <b-button
-        class="mt-3 col-md-6"
-        variant="light"
-        block
-        @click="cancel"
-        >{{ $t("cancel") }}</b-button
-      >
+      <b-button class="mt-3 col-md-6" variant="light" block @click="cancel">{{
+        $t("cancel")
+      }}</b-button>
     </div>
   </b-modal>
 </template>
@@ -58,24 +54,27 @@ export default {
   },
   methods: {
     comfirm () {
-      this.$validator.validateAll()
-      if (!this.errors.any()) {
-        let data = [{
-          isActive: true,
-          age: 40,
-          id: 1,
-          creator: 'Dickerson',
-          money: '12.000.000',
-          created: new Date()
-        }]
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          let data = [
+            {
+              isActive: true,
+              age: 40,
+              id: 1,
+              creator: 'Dickerson',
+              money: '12.000.000',
+              created: new Date()
+            }
+          ]
 
-        this.$store.commit('updateLstDebtData', data)
-        this.$refs['modalConfirm'].hide()
-        // console.log(this.errors.any())
-      } else {
-        console.log('None error')
-        // this.$refs['my-modal'].hide()
-      }
+          this.$store.commit('updateLstDebtData', data)
+          this.$refs['modalConfirm'].hide()
+        } else {
+          console.log('none')
+        }
+      }).catch(errors => {
+        console.log('errors')
+      })
     },
     cancel () {
       this.$bvModal.hide('modal-confirm')

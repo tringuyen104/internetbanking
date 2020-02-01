@@ -7,6 +7,7 @@ import Login from '../components/User/Login.vue'
 import Register from '../components/Form/Register.vue'
 import ListCard from '../components/User/ListCard.vue'
 import BankingTransfers from '../components/Banking/BankingTransfers.vue'
+import BankingTransfersOutside from '../components/Banking/BankingTransfersOutside.vue'
 import CreateDebtReminder from '../components/DebtReminder/DebtReminderCreate.vue'
 import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
 import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
@@ -62,6 +63,7 @@ const routes = [
       default: ListCard
     }
   },
+  // banking start
   {
     path: '/chuyen-tien-cung-ngan-hang',
     name: 'bankingTransfers',
@@ -70,6 +72,17 @@ const routes = [
       default: BankingTransfers
     }
   },
+  {
+    path: '/chuyen-tien-khac-ngan-hang',
+    name: 'bankingTransfersOutside',
+    components: {
+      headerbar: HeaderBar,
+      default: BankingTransfersOutside
+    }
+  },
+
+  // banking end
+  // debtreminder start
   {
     path: '/tao-nhac-no',
     name: 'createDebtReminder',
@@ -94,6 +107,8 @@ const routes = [
       default: DebtReminderManagement
     }
   },
+  // debtreminder end
+  // transaction start
   {
     path: '/quan-ly-giao-dich',
     name: 'transactionManagement',

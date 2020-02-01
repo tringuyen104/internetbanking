@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item :to="{ name: 'transactionManagement' }">{{ $t("transaction") }}</b-nav-item>
+          <b-nav-item :to="{ name: 'transactionManagement' }">{{ $t("lstTransaction") }}</b-nav-item>
           <b-nav-item-dropdown :text="$t('debtReminder')" right>
             <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{
               $t("createDebtReminder")
@@ -19,6 +19,9 @@
           <b-nav-item-dropdown :text="$t('transfers')" right>
             <b-dropdown-item :to="{ name: 'bankingTransfers' }">{{
               $t("inSide")
+            }}</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'bankingTransfersOutside' }">{{
+              $t("outSide")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown :text="$t('payment')" right>

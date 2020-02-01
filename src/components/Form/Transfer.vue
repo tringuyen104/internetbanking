@@ -1,6 +1,6 @@
 <template>
   <div class="col-lg-6" id="transfersForm">
-    <OTP/>
+    <OTP :transfersData="transfersData" :idPopup="idPopup"/>
     <form @submit.prevent="transfers">
       <div class="form-group">
         <label for="account">{{ $t("accountDestination") }}</label>
@@ -59,17 +59,17 @@ export default {
   components: {
     OTP: OTP
   },
-  props: {
-    isInside: {
-      type: Boolean,
-      required: true
+  data () {
+    return {
+      isInside: false,
+      idPopup: 'transfers',
+      transfersData: {}
     }
   },
   methods: {
     transfers () {
       console.log('Run')
-      this.$emit('showModal')
-      this.$bvModal.show('modal-otp')
+      this.$bvModal.show(this.idPopup)
     }
   }
 }

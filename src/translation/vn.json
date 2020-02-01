@@ -38,6 +38,7 @@
   "remove": "Xóa",
   "removeDebt": "Hủy nhắc nợ",
   "transaction": "Giao dịch",
+  "lstTransaction": "Liệt kê giao dịch",
   "reciveMoney": "Nhận Tiền",
   "transfersMoney": "Chuyển Tiền",
   "paymentDebtReminder": "Thanh toán nhắc nợ"
