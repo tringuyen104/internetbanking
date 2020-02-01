@@ -32,7 +32,6 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 #mainContent {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: $blue;
@@ -41,6 +40,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
       color: $green;
     }
   }
+
 }
 
 // .nav-position {
