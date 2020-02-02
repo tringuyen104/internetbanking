@@ -29,6 +29,7 @@
           <div>
             <b-input id="password" class="mb-2 mr-sm-2 mb-sm-0" size="lg"></b-input>
           </div>
+          <div class="g-recaptcha margin-top-30" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div>
           <div id="btn-form" class="margin-top-30">
             <b-button
               id="btnLogin"
@@ -41,9 +42,9 @@
           </div>
         </form>
       </div>
-      <div class="margin-top-30">
+      <!-- <div class="margin-top-30">
         <router-link to="register">{{ $t('signup') }}</router-link>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -57,9 +58,11 @@ export default {
   methods: {
     validateForm () {
       this.$validator.validateAll()
-      if (!this.errors.any()) {
-        console.log('error')
-      }
+      return !this.errors.any()
+    },
+    onLoadVerifyReCapcha () {
+      console.log('recapcha')
+      console.log(this.validateForm())
     }
   }
 }
@@ -77,9 +80,9 @@ export default {
   background-color: #e9ecefc2;
 }
 
-// .element {
-//   padding: 30px;
-// }
+#reCapcha {
+  display: inline-table;
+}
 
 .btn-face:hover,
 .btn-google:hover {
