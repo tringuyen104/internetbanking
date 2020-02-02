@@ -6,14 +6,6 @@
       </div>
       <div class="form-login">
         <form action id="loginForm" @submit.prevent="validateForm">
-          <!-- <div class="d-flex margin-top">
-            <router-link to="login" class="btn-face m-b-20">
-              <i class="fab fa-facebook-f fa-2x"></i>
-            </router-link>
-            <router-link to="login" class="btn-google m-b-20">
-              <i class="fab fa-google fa-2x"></i>
-            </router-link>
-          </div> -->
 
           <div class="margin-top-30">
             <span class="text-style-1">{{ $t('userName') }}</span>
@@ -27,9 +19,19 @@
             <span class="text-style-1">{{ $t('password') }}</span>
           </div>
           <div>
-            <b-input id="password" class="mb-2 mr-sm-2 mb-sm-0" size="lg"></b-input>
+            <b-input type="password" id="password" v-model="login.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
+            <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
-          <div class="g-recaptcha margin-top-30" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div>
+          <div class="margin-top-30">
+            <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div> -->
+            <vue-recaptcha
+                id="reCapcha"
+                ref="recaptcha"
+                @verify="onCaptchaVerified"
+                @expired="onCaptchaExpired"
+                sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs">
+            </vue-recaptcha>
+          </div>
           <div id="btn-form" class="margin-top-30">
             <b-button
               id="btnLogin"
@@ -50,19 +52,59 @@
 </template>
 <script>
 import FormFieldErrors from '../Errors/FormFieldError.vue'
+import VueRecaptcha from 'vue-recaptcha'
 export default {
   data () {
-    return { login: {} }
+    return {
+      login: {},
+      reCapchaToken: ''
+    }
   },
-  components: { FormFieldErrors },
+  components: { FormFieldErrors, VueRecaptcha },
   methods: {
     validateForm () {
-      this.$validator.validateAll()
-      return !this.errors.any()
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          console.log('true')
+          if (this.reCapchaToken === '') {
+            alert('Please include recapcha')
+          }
+        } else { console.log('false') }
+      })
+      // return !this.errors.any()
     },
-    onLoadVerifyReCapcha () {
-      console.log('recapcha')
-      console.log(this.validateForm())
+    onCaptchaVerified (recaptchaToken) {
+      this.$set(this, 'reCapchaToken', recaptchaToken)
+      // const self = this
+      // self.status = 'submitting'
+      // self.$refs.recaptcha.reset()
+      // axios.post('https://vue-recaptcha-demo.herokuapp.com/signup', {
+      //   email: self.email,
+      //   password: self.password,
+      //   recaptchaToken: recaptchaToken
+      // }).then((response) => {
+      //   self.sucessfulServerResponse = response.data.message
+      // }).catch((err) => {
+      //   self.serverError = getErrorMessage(err)
+
+      //   // helper to get a displayable message to the user
+      //   function getErrorMessage (err) {
+      //     let responseBody
+      //     responseBody = err.response
+      //     if (!responseBody) {
+      //       responseBody = err
+      //     } else {
+      //       responseBody = err.response.data || responseBody
+      //     }
+      //     return responseBody.message || JSON.stringify(responseBody)
+      //   }
+      // }).then(() => {
+      //   self.status = ''
+      // })
+    },
+    onCaptchaExpired () {
+      this.$set(this, 'reCapchaToken', '')
+      this.$refs.recaptcha.reset()
     }
   }
 }
