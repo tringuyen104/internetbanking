@@ -34,7 +34,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   padding: 30px;
   a {
     font-weight: bold;
-    color: $blue;
+    // color: $blue;
 
     &.router-link-exact-active {
       color: $green;

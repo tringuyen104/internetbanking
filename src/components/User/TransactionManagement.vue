@@ -5,6 +5,7 @@
       <b-tab :title="$t('transfersMoney')"><transfers-money/></b-tab>
       <b-tab :title="$t('paymentDebtReminder')"><payment-debt-reminder /></b-tab>
     </b-tabs>
+    <h6 class="red-color d-flex">{{ $t('last30DaysTransaction') }}</h6>
   </div>
 </template>
 <script>

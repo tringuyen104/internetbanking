@@ -41,6 +41,7 @@
   "lstTransaction": "Liệt kê giao dịch",
   "reciveMoney": "Nhận Tiền",
   "transfersMoney": "Chuyển Tiền",
-  "paymentDebtReminder": "Thanh toán nhắc nợ"
+  "paymentDebtReminder": "Thanh toán nhắc nợ",
+  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất"
 
 }

@@ -5,6 +5,7 @@ export default {
   data () {
     return {
       fields: this.$table.fields.transaction.recive,
+      idTable: 'table-recive-money',
       items: [{
         isActive: true,
         age: 40,

@@ -5,6 +5,7 @@ export default {
   data () {
     return {
       fields: this.$table.fields.transaction.forward,
+      idTable: 'table-transfers-money',
       items: [{
         isActive: true,
         age: 40,
