@@ -12,6 +12,7 @@ import CreateDebtReminder from '../components/DebtReminder/DebtReminderCreate.vu
 import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
 import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
 import TransactionManagement from '../components/User/TransactionManagement.vue'
+import NotFound from '../components/Errors/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -115,6 +116,16 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: TransactionManagement
+    }
+  },
+  // end transaction
+  // start not found
+  {
+    path: '*',
+    name: 'notFound',
+    components: {
+      headerbar: HeaderBar,
+      default: NotFound
     }
   }
 
