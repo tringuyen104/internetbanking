@@ -1832,7 +1832,7 @@ bootstrap-vue@^2.1.0:
     portal-vue "^2.1.6"
     vue-functional-data-merge "^3.1.0"
 
-"bootstrap@>=4.3.1 <5.0.0", bootstrap@^4.4.1:
+"bootstrap@>=4.3.1 <5.0.0", bootstrap@^4.0.0-beta.2, bootstrap@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
   integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
@@ -4657,6 +4657,11 @@ human-signals@^1.1.1:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
+i@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/i/-/i-0.3.6.tgz#d96c92732076f072711b6b10fd7d4f65ad8ee23d"
+  integrity sha1-2WyScyB28HJxG2sQ/X1PZa2O4j0=
+
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -5217,6 +5222,11 @@ jmespath@0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
   integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
+
+"jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -5908,7 +5918,14 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.19.2:
+moment-timezone@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.4.1.tgz#81f598c3ad5e22cdad796b67ecd8d88d0f5baa06"
+  integrity sha1-gfWYw61eIs2teWtn7NjYjQ9bqgY=
+  dependencies:
+    moment ">= 2.6.0"
+
+"moment@>= 2.6.0", moment@^2.10, moment@^2.19.2, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -6727,6 +6744,16 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+pc-bootstrap4-datetimepicker@^4.17.50:
+  version "4.17.50"
+  resolved "https://registry.yarnpkg.com/pc-bootstrap4-datetimepicker/-/pc-bootstrap4-datetimepicker-4.17.50.tgz#6c609a0cc5021e968c11901b44c50eff86cdd8ca"
+  integrity sha512-76y2McdmiGWdgwPUim72/otNcDUva05B/VoyJVgIRv2dd+g4GO9gPfvvPvCH4LXyKNvtAzKHQSTSyC+4PKq/FQ==
+  dependencies:
+    bootstrap "^4.0.0-beta.2"
+    jquery "^1.8.3 || ^2.0 || ^3.0"
+    moment "^2.10"
+    moment-timezone "^0.4.0"
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -9033,6 +9060,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-bootstrap-datetimepicker@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/vue-bootstrap-datetimepicker/-/vue-bootstrap-datetimepicker-5.0.1.tgz#ea127ba9341a7d35b57942602cafc51226119a45"
+  integrity sha512-jao7sWXHgKzjbOio97u7kEfB/FJMWJ5rhsc4q8iNTOLCULfSJ5m3AZ2qZh62dNcMA4/uuTW6m6tONYIith/2XQ==
+  dependencies:
+    pc-bootstrap4-datetimepicker "^4.17.50"
 
 vue-cli-plugin-i18n@^0.6.0:
   version "0.6.0"
