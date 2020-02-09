@@ -31,21 +31,21 @@
       <b-tab :title="$t('reciveMoney')" active>
         <recive-money />
       </b-tab>
-      <!-- <b-tab :title="$t('transfersMoney')">
+      <b-tab :title="$t('transfersMoney')">
         <transfers-money />
       </b-tab>
       <b-tab :title="$t('paymentDebtReminder')">
         <payment-debt-reminder />
-      </b-tab> -->
+      </b-tab>
     </b-tabs>
     <h6 class="red-color d-flex">{{ $t('last30DaysTransaction') }}</h6>
   </div>
  </form>
 </template>
 <script>
-// import PaymentDebtReminder from '../Form/Transaction/PaymentDebtReminder.vue'
+import PaymentDebtReminder from '../Form/Transaction/PaymentDebtReminder.vue'
 import ReciveMoney from '../Form/Transaction/ReciveMoney.vue'
-// import TransfersMoney from '../Form/Transaction/TransfersMoney.vue'
+import TransfersMoney from '../Form/Transaction/TransfersMoney.vue'
 import datePicker from 'vue-bootstrap-datetimepicker'
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css'
 
@@ -62,8 +62,8 @@ export default {
   },
   components: {
     ReciveMoney,
-    // TransfersMoney,
-    // PaymentDebtReminder,
+    TransfersMoney,
+    PaymentDebtReminder,
     datePicker
   },
   methods: {
