@@ -18,6 +18,7 @@ import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtRemin
 import ReciveMoney from '../components/Form/Transaction/ReciveMoney.vue'
 import Transaction from '../components/Form/Transaction/Transaction.vue'
 import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
+import ChangePass from '../components/Form/ChangePass.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -159,10 +160,18 @@ const routes = [
   },
   {
     path: '/transfersMoney',
-    name: 'TransfersMoney',
+    name: 'transfersMoney',
     components: {
       headerbar: HeaderBar,
       default: TransfersMoney
+    }
+  },
+  {
+    path: '/doi-mat-khau',
+    name: 'changePass',
+    components: {
+      headerbar: HeaderBar,
+      default: ChangePass
     }
   }
 ]

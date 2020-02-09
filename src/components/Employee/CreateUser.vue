@@ -1,7 +1,7 @@
 <template>
   <form class="form-label">
     <h2 class="form-title">{{ $t('createuser') }}</h2>
-    <InsertUserInfo></InsertUserInfo>
+    <InsertUserInfo />
   </form>
 </template>
 <script>

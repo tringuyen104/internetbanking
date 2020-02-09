@@ -44,5 +44,9 @@
   "allbank": "Tất cả",
   "bank1": "Ngân hàng 1",
   "bank2": "Ngân hàng 2",
-  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất"
+  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất",
+  "changePass": "Đổi mật khẩu",
+  "oldPass": "Nhập mật khẩu cũ",
+  "newPass": "Nhập mật khẩu mới",
+  "confirmPass": "Nhập mật khẩu mới lần nữa"
 }
