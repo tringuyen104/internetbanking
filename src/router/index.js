@@ -18,6 +18,8 @@ import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtRemin
 import ReciveMoney from '../components/Form/Transaction/ReciveMoney.vue'
 import Transaction from '../components/Form/Transaction/Transaction.vue'
 import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
+import TransactionManagement from '../components/Form/Transaction/TransactionManagement.vue'
+import CrossCheck from '../components/Admin/CrossCheck.vue'
 import ChangePass from '../components/Form/ChangePass.vue'
 Vue.use(VueRouter)
 
@@ -164,6 +166,22 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: TransfersMoney
+    }
+  },
+  {
+    path: '/transactionManagement',
+    name: 'transactionManagement',
+    components: {
+      headerbar: HeaderBar,
+      default: TransactionManagement
+    }
+  },
+  {
+    path: '/crossCheck',
+    name: 'crossCheck',
+    components: {
+      headerbar: HeaderBar,
+      default: CrossCheck
     }
   },
   {
