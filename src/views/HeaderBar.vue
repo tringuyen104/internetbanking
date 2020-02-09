@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <div v-if="true == false">
+          <div v-if="true">
             <HeaderEmployee></HeaderEmployee>
           </div>
           <div v-else>

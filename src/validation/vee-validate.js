@@ -9,7 +9,8 @@ import VeeValidate, { Validator } from 'vee-validate'
 // https://baianat.github.io/vee-validate/configuration.html
 const validationOptions = {
   aria: true, // Generate aria attributes
-  classes: true // Use the built-in validation classes on elements
+  classes: true, // Use the built-in validation classes on elements
+  fieldsBagName: 'formFields' // using boostrap table vue
 }
 
 // Ready to go

@@ -18,7 +18,6 @@ export default {
   },
   created () {
     this.$set(this, 'items', this.$helper.sortAsc(this.items, 'created'))
-    console.log(this.fields)
   }
 }
 </script>
