@@ -31,5 +31,18 @@
   "examphone": "0388008800",
   "examaddress": "123 Nguyễn Văn Cừ, Q.5, Tp.HCM",
   "exammail": "a@gmail.com",
-  "insertmoney": "Nhập số tiền gửi"
+  "insertmoney": "Nhập số tiền gửi",
+  "insertnameoraccnumber": "Nhập tên đăng nhập hoặc số tài khoản",
+  "selectdate": "Chọn ngày",
+  "fromdate": "Từ ngày",
+  "todate": "Tới ngày",
+  "reciveMoney": "Nhận Tiền",
+  "transfersMoney": "Chuyển Tiền",
+  "paymentDebtReminder": "Thanh toán nhắc nợ",
+  "transaction": "Lịch sử giao dịch",
+  "bank":"Ngân hàng",
+  "allbank": "Tất cả",
+  "bank1": "Ngân hàng 1",
+  "bank2": "Ngân hàng 2",
+  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất"
 }

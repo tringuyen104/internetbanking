@@ -6,7 +6,7 @@
         type="email"
         class="form-control"
         id="InsertUserInfo"
-        placeholder="Nhập tên đăng nhập hoặc số tài khoản"
+        :placeholder="$t('insertnameoraccnumber')"
       />
       <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
     </div>
@@ -14,23 +14,16 @@
       <label for="inputAddress"></label>
       <input type="password" class="form-control" id="amountofmoney" :placeholder="$t('insertmoney')" />
     </div>
-    <div class="form-group">
-      <label for="inputAddress">{{ $t('realname') }}</label>
-      <input type="text" class="form-control" id="realname" :placeholder="$t('examname')" readonly />
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">{{ $t('email') }}</label>
-      <input type="text" class="form-control" id="email" :placeholder="$t('exammail')" readonly />
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">{{ $t('phone') }}</label>
-      <input type="text" class="form-control" id="phone" :placeholder="$t('examphone')" readonly />
-    </div>
+    <DisplayUserInfo></DisplayUserInfo>
     <div class="float-right">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </template>
+<script>
+import DisplayUserInfo from './../Form/DisplayUserInfo.vue'
+export default { components: { DisplayUserInfo } }
+</script>
 <style lang="scss">
 .padding-nav {
   padding-left: 25%;

@@ -8,19 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <!-- <b-navbar-nav>
-            <b-nav-item :to="{name: 'forcontrol'}">{{ $t('forcontrol') }}</b-nav-item>
-            <b-nav-item-dropdown :text="$t('manageemployee') " right>
-              <b-dropdown-item :to="{name: 'createemployee'}">{{ $t('createemployee') }}</b-dropdown-item>
-              <b-dropdown-item :to="{name: 'deleteoreditemployee'}">{{ $t('deltoreditemployee') }}</b-dropdown-item>
-          </b-nav-item-dropdown>-->
-          <!-- <b-navbar-nav>
-            <b-nav-item :to="{name: 'createuser'}">{{ $t('createuser') }}</b-nav-item>
-            <b-nav-item :to="{name: 'recharge'}">{{ $t('recharge') }}</b-nav-item>
-            <b-nav-item :to="{name: 'exchangehistory'}">{{ $t('exchangehistory') }}</b-nav-item>
-            <b-nav-item :to="{name: 'login'}">{{ $t('logout') }}</b-nav-item>
-          </b-navbar-nav>-->
-          <div v-if="true != true">
+          <div v-if="true == true">
             <HeaderEmployee></HeaderEmployee>
           </div>
           <div v-else>

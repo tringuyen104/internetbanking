@@ -14,6 +14,10 @@ import InsertUserInfo from '../components/Form/InsertUserInfo.vue'
 import DisplayUserInfo from '../components/Form/DisplayUserInfo.vue'
 import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
 import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
+import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtReminder.vue'
+import ReciveMoney from '../components/Form/Transaction/ReciveMoney.vue'
+import Transaction from '../components/Form/Transaction/Transaction.vue'
+import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -127,6 +131,38 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: HeaderAdmin
+    }
+  },
+  {
+    path: '/PaymentDebtReminder',
+    name: 'paymentDebtReminder',
+    components: {
+      headerbar: HeaderBar,
+      default: PaymentDebtReminder
+    }
+  },
+  {
+    path: '/ReciveMoney',
+    name: 'reciveMoney',
+    components: {
+      headerbar: HeaderBar,
+      default: ReciveMoney
+    }
+  },
+  {
+    path: '/Transaction',
+    name: 'transaction',
+    components: {
+      headerbar: HeaderBar,
+      default: Transaction
+    }
+  },
+  {
+    path: '/transfersMoney',
+    name: 'TransfersMoney',
+    components: {
+      headerbar: HeaderBar,
+      default: TransfersMoney
     }
   }
 ]

@@ -6,6 +6,11 @@ import './config/library-css'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
+import { table } from './common/table'
+import { helper } from './common/helper'
+
+Vue.use(table)
+Vue.use(helper)
 
 i18n.locale = 'vn'
 
