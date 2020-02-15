@@ -29,8 +29,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.submitbtn {
-  padding-top: 4%;
-}
-</style>
