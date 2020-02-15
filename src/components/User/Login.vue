@@ -1,11 +1,8 @@
-<template>
-  <div>
-    <login></login>
-  </div>
-</template>
 <script>
 import Login from '../Form/Login.vue'
-export default { components: { Login } }
+export default {
+  extends: Login
+}
 </script>
 <style lang="scss">
 

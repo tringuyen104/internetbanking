@@ -53,7 +53,9 @@
 <script>
 import FormFieldErrors from '../Errors/FormFieldError.vue'
 import VueRecaptcha from 'vue-recaptcha'
+import UserApi from '../../mixins/User/UserApi'
 export default {
+  mixins: [UserApi],
   data () {
     return {
       login: {},
@@ -65,11 +67,16 @@ export default {
     validateForm () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          console.log('true')
           if (this.reCapchaToken === '') {
             alert('Please include recapcha')
+            return
           }
-        } else { console.log('false') }
+          this.test('https://hcmus-lthd-19-api.azurewebsites.net').then(response => {
+            console.log('success')
+          }, err => {
+            console.log(err)
+          })
+        }
       })
       // return !this.errors.any()
     },

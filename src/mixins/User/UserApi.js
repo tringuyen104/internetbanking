@@ -1,16 +1,31 @@
-import urlApi from 'urlApi'
+import urlApi from '../url'
 export default {
-  mixins: [urlApi],
   methods: {
-    login (user) {
-      var deferred = Promise.defer()
+    userLogin (user) {
+      var deferred = this.$Jquery.Deferred()
       if (!user) { deferred.resolve('Check username and password') }
 
-      this.$axios.postNoneToken(this.login).then(reponse => {
+      this.$api.postNoneToken(urlApi.login).then(reponse => {
         console.log(reponse)
+        deferred.resolve(reponse)
       }, error => {
         console.log(error)
+        deferred.reject(error)
       })
+      return deferred
+    },
+    test (url) {
+      var deferred = this.$Jquery.Deferred()
+      // if (!user) { deferred.resolve('Check username and password') }
+
+      this.$api.getNoneToken(url).then(reponse => {
+        console.log(reponse)
+        deferred.resolve(reponse)
+      }, error => {
+        console.log(error)
+        deferred.reject(error)
+      })
+      return deferred
     }
   }
 }

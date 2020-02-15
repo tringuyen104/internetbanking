@@ -4,6 +4,11 @@ import { helper } from '../common/helper'
 import { table } from '../common/table'
 import { cookie } from '../mixins/BrowserCookie'
 
+Vue.use({
+  install: function (Vue, options) {
+    Vue.prototype.$Jquery = require('jquery') // you'll have this.$jQuery anywhere in your vue project
+  }
+})
 Vue.use(cookie)
 Vue.use(helper)
 Vue.use(table)
