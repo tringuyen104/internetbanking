@@ -16,6 +16,9 @@ export const restFullAPi = {
         return axios.post(url, data, {
           headers: this.config
         })
+      },
+      postNoneToken (url, data) {
+        return axios.post(url, data)
       }
     }
   }

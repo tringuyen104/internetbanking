@@ -62,7 +62,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ListCard
-    }
+    },
+    meta: { requiredLogin: true }
   },
   // banking start
   {
@@ -71,7 +72,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: BankingTransfers
-    }
+    },
+    meta: { requiredLogin: true }
   },
   {
     path: '/chuyen-tien-khac-ngan-hang',
@@ -79,7 +81,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: BankingTransfersOutside
-    }
+    },
+    meta: { requiredLogin: true }
   },
 
   // banking end
@@ -90,7 +93,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: CreateDebtReminder
-    }
+    },
+    meta: { requiredLogin: true }
   },
   {
     path: '/nhac-no-chua-thanh-toan',
@@ -98,7 +102,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: DebtReminderUnPay
-    }
+    },
+    meta: { requiredLogin: true }
   },
   {
     path: '/quan-ly-nhac-no',
@@ -106,7 +111,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: DebtReminderManagement
-    }
+    },
+    meta: { requiredLogin: true }
   },
   // debtreminder end
   // transaction start
@@ -116,7 +122,8 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: TransactionManagement
-    }
+    },
+    meta: { requiredLogin: true }
   },
   // end transaction
   // start not found
@@ -137,4 +144,29 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const authorize = to.meta
+  const currentUser = { isLogin: true }// authenticationService.currentUserValue
+
+  if (Object.entries(authorize).length !== 0 && authorize.constructor === Object) {
+    if (!currentUser) {
+      // not logged in so redirect to login page with the return url
+      // return next({ path: '/login', query: { returnUrl: to.path } })
+      return next({ name: 'login' })
+    }
+
+    // check if route is restricted by role
+    // if (authorize.length && !authorize.includes(currentUser.role)) {
+    //   // role not authorised so redirect to home page
+    //   return next({ path: '/' })
+    // }
+    if (authorize.length && !authorize.includes(currentUser.role)) {
+      // role not authorised so redirect to home page
+      return next({ path: '/' })
+    }
+  }
+
+  next()
+})
 export default router

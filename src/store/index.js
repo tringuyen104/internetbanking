@@ -19,9 +19,26 @@ const DebtReminder = {
   }
 }
 
+const Login = {
+  namespace: true,
+  state: {
+    isLogin: false,
+    currentUser: {}
+  },
+  mutations: {
+    updateCurrentUser (state, data) {
+      state.currentUser = data
+    },
+    updateIsLogin (state, data) {
+      state.isLogin = data
+    }
+  }
+}
+
 export const store = new Vuex.Store({
   modules: {
-    'debtReminder': DebtReminder
+    'debtReminder': DebtReminder,
+    'login': Login
   }
   // state: {
   // },
