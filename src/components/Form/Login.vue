@@ -1,6 +1,6 @@
 <template>
-  <div class="element">
-    <div class="content d-flex flex-column col-sm-12 col-md-8 col-lg-5">
+  <div class="element login">
+    <div class="content d-flex flex-column col-sm-12 col-md-8 col-lg-6">
       <div id="title">
         <h1>{{ $t("signin") }}</h1>
       </div>
@@ -22,7 +22,7 @@
             <b-input type="password" id="password" v-model="login.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
             <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
-          <div class="margin-top-30">
+          <div class="margin-top-30 capCha-Block">
             <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div> -->
             <vue-recaptcha
                 id="reCapcha"
@@ -115,8 +115,8 @@ export default {
   border-color: #c4c9ce;
   border-radius: 30px;
   margin: auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 38px;
+  padding-right: 38px;
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: #e9ecefc2;
@@ -126,6 +126,13 @@ export default {
   display: inline-table;
 }
 
+.capCha-Block{
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.login {
+  margin-top: 2rem;
+}
 .btn-face:hover,
 .btn-google:hover {
   color: chartreuse;
