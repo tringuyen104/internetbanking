@@ -1,4 +1,5 @@
 let axios = require('axios')
+var querystring = require('querystring')
 
 export const restFullAPi = {
   install (Vue, options) {
@@ -7,21 +8,33 @@ export const restFullAPi = {
       config: {
         'Authentication': this.token
       },
+      // configHeader: {
+      //   'Access-Control-Allow-Origin': '*',
+      //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      // },
       get (url) {
         return axios.get(url, {
           headers: this.config
         })
       },
-      getNoneToken (url) {
+      getNoneHeader (url) {
         return axios.get(url)
       },
-      post (url, data) {
+      post (url, data, headers) {
+        if (!headers) { return this.postNoneHeader(url, data) } else { return this.postWithHeader(url, data, headers) }
+      },
+      postNoneHeader (url, data) {
         return axios.post(url, data, {
           headers: this.config
         })
       },
-      postNoneToken (url, data) {
-        return axios.post(url, data)
+      postWithHeader (url, data, headers) {
+        return axios.post(url, data, {
+          headers: headers
+        })
+      },
+      postWithFromData (url, data) {
+        return axios.post(url, querystring.stringify(data))
       }
     }
   }

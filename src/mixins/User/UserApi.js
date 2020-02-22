@@ -1,11 +1,11 @@
 import urlApi from '../url'
 export default {
   methods: {
-    userLogin (user) {
+    login (user) {
       var deferred = this.$Jquery.Deferred()
       if (!user) { deferred.resolve('Check username and password') }
 
-      this.$api.postNoneToken(urlApi.login).then(reponse => {
+      this.$api.postWithFromData(urlApi.login, user).then(reponse => {
         console.log(reponse)
         deferred.resolve(reponse)
       }, error => {
@@ -18,7 +18,7 @@ export default {
       var deferred = this.$Jquery.Deferred()
       // if (!user) { deferred.resolve('Check username and password') }
 
-      this.$api.getNoneToken(url).then(reponse => {
+      this.$api.getNoneHeader(url).then(reponse => {
         console.log(reponse)
         deferred.resolve(reponse)
       }, error => {

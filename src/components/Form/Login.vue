@@ -11,7 +11,7 @@
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
-            <b-input id="userName" v-model="login.userName" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
+            <b-input id="userName" v-model="user.username" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
             <form-field-errors :validation-errors="errors" :field="'userName'" />
             <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
@@ -19,7 +19,7 @@
             <span class="text-style-1">{{ $t('password') }}</span>
           </div>
           <div>
-            <b-input type="password" id="password" v-model="login.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
+            <b-input type="password" id="password" v-model="user.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
             <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30">
@@ -44,9 +44,9 @@
           </div>
         </form>
       </div>
-      <!-- <div class="margin-top-30">
-        <router-link to="register">{{ $t('signup') }}</router-link>
-      </div> -->
+      <div class="margin-top-30">
+        <router-link :to="{name: 'register'}">{{ $t('signup') }}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
   mixins: [UserApi],
   data () {
     return {
-      login: {},
+      user: {},
       reCapchaToken: ''
     }
   },
@@ -71,14 +71,19 @@ export default {
             alert('Please include recapcha')
             return
           }
-          this.test('https://hcmus-lthd-19-api.azurewebsites.net').then(response => {
-            console.log('success')
-          }, err => {
-            console.log(err)
-          })
+          this.loginUser()
         }
       })
       // return !this.errors.any()
+    },
+    loginUser () {
+      var t = '1234'
+      console.log(t)
+      this.login(this.user).then(response => {
+        console.log(response)
+      }, error => {
+        console.log(error)
+      })
     },
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)
