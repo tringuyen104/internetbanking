@@ -44,8 +44,11 @@
           </div>
         </form>
       </div>
-      <div class="margin-top-30">
+      <!-- <div class="margin-top-30">
         <router-link :to="{name: 'register'}">{{ $t('signup') }}</router-link>
+      </div> -->
+      <div class="margin-top-30">
+        <router-link :to="{name: 'forgetpassword'}">{{ $t('forgetPassword') }}</router-link>
       </div>
     </div>
   </div>

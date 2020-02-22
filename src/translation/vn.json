@@ -42,6 +42,10 @@
   "reciveMoney": "Nhận Tiền",
   "transfersMoney": "Chuyển Tiền",
   "paymentDebtReminder": "Thanh toán nhắc nợ",
-  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất"
-
+  "last30DaysTransaction": "Giao dịch 30 ngày gần nhất",
+  "forgetPassword": "Quên mật khẩu",
+  "submit": "Gửi",
+  "inputEmail": "Nhập email",
+  "next": "Tiếp tục",
+  "changePassword": "Đổi mật khẩu"
 }

@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import HeaderBar from '../views/HeaderBar.vue'
 import SideBar from '../views/SideNav.vue'
 import Login from '../components/User/Login.vue'
-import Register from '../components/Form/Register.vue'
+import ChangePassword from '../components/Form/ChangePassword.vue'
 import ListCard from '../components/User/ListCard.vue'
 import BankingTransfers from '../components/Banking/BankingTransfers.vue'
 import BankingTransfersOutside from '../components/Banking/BankingTransfersOutside.vue'
@@ -13,6 +13,7 @@ import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
 import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
 import TransactionManagement from '../components/User/TransactionManagement.vue'
 import NotFound from '../components/Errors/NotFound.vue'
+import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
 
 Vue.use(VueRouter)
 
@@ -52,9 +53,9 @@ const routes = [
     }
   },
   {
-    path: '/dang-ki',
-    name: 'register',
-    component: Register
+    path: '/doi-mat-khau/:email',
+    name: 'changePassword',
+    component: ChangePassword
   },
   {
     path: '/danh-sach-tai-khoan',
@@ -134,8 +135,15 @@ const routes = [
       headerbar: HeaderBar,
       default: NotFound
     }
+  },
+  {
+    path: '/quen-mat-khau',
+    name: 'forgetpassword',
+    components: {
+      headerbar: HeaderBar,
+      default: ForgetPassword
+    }
   }
-
 ]
 
 const router = new VueRouter({
