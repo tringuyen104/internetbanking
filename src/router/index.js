@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { store } from '../store/index'
 import Home from '../views/Home.vue'
 import HeaderBar from '../views/HeaderBar.vue'
 import SideBar from '../views/SideNav.vue'
@@ -14,7 +15,6 @@ import DebtReminderManagement from '../components/DebtReminder/DebtReminderManag
 import TransactionManagement from '../components/User/TransactionManagement.vue'
 import NotFound from '../components/Errors/NotFound.vue'
 import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -155,25 +155,27 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const authorize = to.meta
-  const currentUser = { isLogin: true }// authenticationService.currentUserValue
+  const isLogin = store.state.login.isLogin
+  // const currentUser = { isLogin: isLogin }
 
   if (Object.entries(authorize).length !== 0 && authorize.constructor === Object) {
-    if (!currentUser) {
+    if (!isLogin) {
       // not logged in so redirect to login page with the return url
       // return next({ path: '/login', query: { returnUrl: to.path } })
       return next({ name: 'login' })
     }
-
     // check if route is restricted by role
     // if (authorize.length && !authorize.includes(currentUser.role)) {
     //   // role not authorised so redirect to home page
     //   return next({ path: '/' })
     // }
-    if (authorize.length && !authorize.includes(currentUser.role)) {
-      // role not authorised so redirect to home page
-      return next({ path: '/' })
-    }
+    // if (authorize.length && !authorize.includes(currentUser.role)) {
+    //   // role not authorised so redirect to home page
+    //   return next({ path: '/' })
+    // }
   }
+
+  if (isLogin && to.name === 'login') { return next({ name: 'home' }) }
 
   next()
 })

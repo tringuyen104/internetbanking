@@ -57,8 +57,10 @@
 import FormFieldErrors from '../Errors/FormFieldError.vue'
 import VueRecaptcha from 'vue-recaptcha'
 import UserApi from '../../mixins/User/UserApi'
+import BrowserStorage from '../../mixins/BrowserStorage'
+import bcrypt from 'bcryptjs'
 export default {
-  mixins: [UserApi],
+  mixins: [UserApi, BrowserStorage],
   data () {
     return {
       user: {},
@@ -80,13 +82,19 @@ export default {
       // return !this.errors.any()
     },
     loginUser () {
-      var t = '1234'
-      console.log(t)
-      this.login(this.user).then(response => {
-        console.log(response)
-      }, error => {
-        console.log(error)
+      this.login(this.user).then(res => {
+        this.setItemInSessionStorage('token', res.data.token)
+        this.setItemInSessionStorage('currentUser', this.hashLogin())
+        this.$store.commit('updateLogin', true)
+        this.$router.replace({ name: 'home' })
+      }, err => {
+        console.log(err)
       })
+    },
+    hashLogin () {
+      var salt = bcrypt.genSaltSync(10)
+      var hash = bcrypt.hashSync('isLogin', salt)
+      return hash
     },
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)

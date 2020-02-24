@@ -1,5 +1,5 @@
 export default {
-  method: {
+  methods: {
     setItemInLocalStorage (key, value) {
       this.setItemInStorage(window.localStorage, key, value)
     },
@@ -12,16 +12,16 @@ export default {
     getItemInSessionStorage (key, value) {
       this.getItemFromStorage(window.sessionStorage, key, value)
     },
-    removeItemInLocalStorage (key, value) {
+    removeItemInLocalStorage (key) {
       this.removeItemFromStorage(window.localStorage, key)
     },
-    removeItemInSessionStorage (key, value) {
+    removeItemInSessionStorage (key) {
       this.removeItemFromStorage(window.sessionStorage, key)
     },
-    checkExistItemInLocalStorage (key, value) {
+    checkExistItemInLocalStorage (key) {
       this.checkExistItemInStorage(window.localStorage, key)
     },
-    checkExistItemInSessionStorage (key, value) {
+    checkExistItemInSessionStorage (key) {
       this.checkExistItemInStorage(window.sessionStorage, key)
     },
     getItemFromStorage (storage, key, defaultValue) {

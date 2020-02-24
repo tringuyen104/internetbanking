@@ -1,6 +1,7 @@
 {
   "message": "hello i18n !!",
   "signin": "Đăng nhập",
+  "signOut": "Đăng xuất",
   "userName": "Tên đăng nhập",
   "password": "Mật khẩu",
   "signup": "Đăng kí",

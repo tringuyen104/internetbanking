@@ -8,13 +8,15 @@ import router from './router'
 import { store } from './store'
 import i18n from './i18n'
 import ButtonFrom from './components/ButtonForm.vue'
+import { sync } from 'vuex-router-sync'
 
+sync(store, router)
 i18n.locale = 'vn'
 Vue.component('button-form', ButtonFrom)
 
 window.app = new Vue({
-  router,
   store,
+  router,
   i18n,
   render: h => h(App)
 }).$mount('#app')

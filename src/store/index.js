@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import bcrypt from 'bcryptjs'
 
 Vue.use(Vuex)
 
@@ -22,14 +23,14 @@ const DebtReminder = {
 const Login = {
   namespace: true,
   state: {
-    isLogin: false,
+    isLogin: bcrypt.compareSync('isLogin', (sessionStorage.getItem('currentUser') ? sessionStorage.getItem('currentUser') : '')),
     currentUser: {}
   },
   mutations: {
     updateCurrentUser (state, data) {
       state.currentUser = data
     },
-    updateIsLogin (state, data) {
+    updateLogin (state, data) {
       state.isLogin = data
     }
   }
