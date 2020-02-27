@@ -48,5 +48,10 @@
   "changePass": "Đổi mật khẩu",
   "oldPass": "Nhập mật khẩu cũ",
   "newPass": "Nhập mật khẩu mới",
-  "confirmPass": "Nhập mật khẩu mới lần nữa"
+  "confirmPass": "Nhập mật khẩu mới lần nữa",
+  "inputEmail": "Nhập email",
+  "submit": "Gửi",
+  "next": "Tiếp tục",
+  "changePassword": "Đổi mật khẩu",
+  "forgetPassword": "Quên mật khẩu"
 }

@@ -44,9 +44,9 @@
           </div>
         </form>
       </div>
-      <!-- <div class="margin-top-30">
-        <router-link to="register">{{ $t('signup') }}</router-link>
-      </div> -->
+      <div class="margin-top-30">
+        <router-link :to="{name: 'forgetpassword'}">{{ $t('forgetPassword') }}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -183,5 +183,8 @@ export default {
   transition: all 0.4s;
   position: relative;
   z-index: 1;
+}
+.margin-top-30 {
+  margin-top: 30px;
 }
 </style>
