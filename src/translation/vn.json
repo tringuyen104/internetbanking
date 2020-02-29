@@ -53,5 +53,6 @@
   "submit": "Gửi",
   "next": "Tiếp tục",
   "changePassword": "Đổi mật khẩu",
-  "forgetPassword": "Quên mật khẩu"
+  "forgetPassword": "Quên mật khẩu",
+  "accNumber":  "Số tài khoản"
 }

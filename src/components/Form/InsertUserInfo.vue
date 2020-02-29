@@ -5,7 +5,7 @@
         <div class="form-group col-md-6">
           <label for="inputEmail4">{{ $t('userName') }}</label>
           <input
-            type="email"
+            type="text"
             class="form-control"
             id="userName"
             :placeholder="$t('userName')"
