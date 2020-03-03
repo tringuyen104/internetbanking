@@ -66,18 +66,15 @@ export default {
       // })
     },
     searchUser (value) {
-      this.$set(this, 'timer', null)
-      let timeOut = setTimeout(() => { console.log(value) }, 1000)
-      this.$set(this, 'timer', timeOut)
+      var call = () => {
+        console.log(value)
+      }
+      this.$helper.callOneTimes(call, 1000)
     }
   },
   watch: {
     search (val, oldVal) {
       this.searchUser(val)
-      // handler: (val, oldvalue) => {
-      //   this.searchUser()
-      // },
-      // deep: true
     }
   }
 }

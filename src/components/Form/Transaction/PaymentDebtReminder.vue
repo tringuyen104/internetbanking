@@ -4,7 +4,7 @@ export default {
   extends: Transaction,
   data () {
     return {
-      fields: this.$table.fields.transaction.forward,
+      fields: this.$table.fields.transaction.payment,
       idTable: 'table-payment-debt-reminder',
       items: [{
         isActive: true,

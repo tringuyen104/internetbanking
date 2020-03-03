@@ -1,6 +1,7 @@
 export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
+      timeout: null,
       sortAsc (data, field) {
         let obj = Object.assign([], data)
         if (!obj || !Array.isArray(obj)) { return }
@@ -46,6 +47,10 @@ export const helper = {
             noCloseButton: true
           })
         }
+      },
+      callOneTimes (callBack, time) {
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => { callBack() }, time)
       }
     }
   }

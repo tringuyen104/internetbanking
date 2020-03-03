@@ -44,7 +44,7 @@ export const table = {
             },
             {
               key: 'created',
-              label: 'Ngày chuyển',
+              label: 'Ngày nhận',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             }
@@ -65,6 +65,26 @@ export const table = {
             {
               key: 'created',
               label: 'Ngày chuyển',
+              thClass: 'alert alert-info',
+              tdClass: 'alert alert-warning'
+            }
+          ],
+          payment: [
+            {
+              key: 'creator',
+              label: 'Người nhận',
+              thClass: 'alert alert-info',
+              tdClass: 'alert alert-warning'
+            },
+            {
+              key: 'money',
+              label: 'Số tiền',
+              thClass: 'alert alert-info',
+              tdClass: 'alert alert-warning'
+            },
+            {
+              key: 'created',
+              label: 'Ngày thanh toán',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             }

@@ -2,13 +2,14 @@
   <div class="nav-position border-bottom">
     <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand :to="{ name: 'home' }">TienMo</b-navbar-brand>
-
+      <b-navbar><b-button type="button" @click.prevent="change">Change {{  ( !staff ? 'Employee' : 'Admin' )  }}</b-button>
+      </b-navbar>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <div v-if="true">
+          <div v-if="staff">
             <HeaderEmployee></HeaderEmployee>
           </div>
           <div v-else>
@@ -30,14 +31,20 @@ import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
 import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
 // const isAdmin = false
 export default {
-  data () {
-    return {
-      role: ''
-    }
-  },
   components: {
     HeaderEmployee,
     HeaderAdmin
+  },
+  data () {
+    return {
+      role: '',
+      staff: false
+    }
+  },
+  methods: {
+    change () {
+      this.$set(this, 'staff', !this.staff)
+    }
   }
 }
 </script>
