@@ -21,6 +21,10 @@ import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
 import TransactionManagement from '../components/Form/Transaction/TransactionManagement.vue'
 import CrossCheck from '../components/Admin/CrossCheck.vue'
 import ChangePass from '../components/Form/ChangePass.vue'
+import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
+import ChangePassword from '../components/Form/ForgetPassword/ChangePassword.vue'
+import NotFound from '../components/Errors/NotFound.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -191,6 +195,27 @@ const routes = [
       headerbar: HeaderBar,
       default: ChangePass
     }
+  },
+  {
+    path: '*',
+    name: 'notFound',
+    components: {
+      headerbar: HeaderBar,
+      default: NotFound
+    }
+  },
+  {
+    path: '/quen-mat-khau',
+    name: 'forgetpassword',
+    components: {
+      headerbar: HeaderBar,
+      default: ForgetPassword
+    }
+  },
+  {
+    path: '/doi-mat-khau/:email',
+    name: 'changePassword',
+    component: ChangePassword
   }
 ]
 

@@ -53,5 +53,11 @@
   "accountId": "Số tài khoản",
   "securityCode": "Mã bảo mật",
   "errorOccurred": "a",
-  "conntactToAdmin": ""
+  "conntactToAdmin": "",
+  "inputEmail": "Nhập email",
+  "submit": "Gửi",
+  "next": "Tiếp tục",
+  "changePassword": "Đổi mật khẩu",
+  "forgetPassword": "Quên mật khẩu",
+  "accNumber":  "Số tài khoản"
 }
