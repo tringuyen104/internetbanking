@@ -11,7 +11,7 @@
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
-            <b-input id="userName" v-model="login.userName" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
+            <b-input id="userName" v-model="user.username" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
             <form-field-errors :validation-errors="errors" :field="'userName'" />
             <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
@@ -19,7 +19,7 @@
             <span class="text-style-1">{{ $t('password') }}</span>
           </div>
           <div>
-            <b-input type="password" id="password" v-model="login.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
+            <b-input type="password" id="password" v-model="user.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
             <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30 capCha-Block">
@@ -53,10 +53,14 @@
 <script>
 import FormFieldErrors from '../Errors/FormFieldError.vue'
 import VueRecaptcha from 'vue-recaptcha'
+import UserApi from '../../mixins/User/UserApi'
+import BrowserStorage from '../../mixins/BrowserStorage'
+import bcrypt from 'bcryptjs'
 export default {
+  mixins: [UserApi, BrowserStorage],
   data () {
     return {
-      login: {},
+      user: {},
       reCapchaToken: ''
     }
   },
@@ -68,10 +72,28 @@ export default {
           console.log('true')
           if (this.reCapchaToken === '') {
             alert('Please include recapcha')
+            return
           }
-        } else { console.log('false') }
+          this.loginUser()
+        }
       })
       // return !this.errors.any()
+    },
+    hashLogin () {
+      var salt = bcrypt.genSaltSync(10)
+      var hash = bcrypt.hashSync('isLogin', salt)
+      return hash
+    },
+    loginUser () {
+      this.user['reCAPTCHA'] = this.reCapchaToken
+      this.login(this.user).then(res => {
+        this.setItemInSessionStorage('token', res.data.token)
+        this.setItemInSessionStorage('currentUser', this.hashLogin())
+        console.log(res)
+        this.$router.replace({ name: 'home' })
+      }, err => {
+        console.log(err)
+      })
     },
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)

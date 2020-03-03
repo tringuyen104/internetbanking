@@ -7,7 +7,7 @@
         <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
       </div>
     </div>
-    <DisplayUserInfo></DisplayUserInfo>
+    <BaseUserInfo/>
     <div class="float-right handle-btn">
       <button type="submit" class="btn btn-primary">{{ $t('cancel') }}</button>
       <button type="submit" class="btn btn-primary">{{ $t('delete') }}</button>
@@ -16,8 +16,8 @@
   </form>
 </template>
 <script>
-import DisplayUserInfo from './../Form/DisplayUserInfo.vue'
-export default { components: { DisplayUserInfo } }
+import BaseUserInfo from './../Form/BaseUserInfo'
+export default { components: { BaseUserInfo } }
 </script>
 <style lang="scss">
 .padding-nav {

@@ -1,28 +1,86 @@
 <template>
-  <form class="form-label">
-    <h2 class="form-title">{{ $t('recharge') }}</h2>
-    <div class="input-group">
-      <input
-        type="email"
-        class="form-control"
-        id="InsertUserInfo"
-        :placeholder="$t('insertnameoraccnumber')"
-      />
-      <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
+  <form class="form-label" @submit.prevent="submit">
+    <h2 class="form-title">{{ $t("recharge") }}</h2>
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" :placeholder="$t('search')" name="search" v-model="search"
+      v-validate="'required'"/>
     </div>
+    <form-field-error :validation-errors="errors" :field="'search'" />
     <div class="form-group">
-      <label for="inputAddress"></label>
-      <input type="password" class="form-control" id="amountofmoney" :placeholder="$t('insertmoney')" />
+      <label for="amount"></label>
+      <input
+        type="number"
+        class="form-control"
+        id="amount"
+        :placeholder="$t('insertmoney')"
+        v-validate="'required'"
+        name="amount"
+        v-model="money"
+      />
     </div>
-    <DisplayUserInfo></DisplayUserInfo>
+    <form-field-error :validation-errors="errors" :field="'amount'" />
+    <BaseAccountInfo :accountInfo="accountInfo"/>
     <div class="float-right">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </template>
 <script>
-import DisplayUserInfo from './../Form/DisplayUserInfo.vue'
-export default { components: { DisplayUserInfo } }
+import BaseAccountInfo from './../Form/BaseAccountInfo'
+import UserApi from '../../mixins/User/UserApi'
+export default {
+  mixins: [UserApi],
+  components: { BaseAccountInfo },
+  data () {
+    return {
+      accountInfo: {
+        accountId: '',
+        fullName: ''
+      },
+      money: null,
+      search: '',
+      timer: null
+    }
+  },
+  methods: {
+    submit () {
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          this.userRecharge()
+        }
+      }, error => {
+        this.$helper.handlerError(error)
+      })
+    },
+    userRecharge () {
+      let obj = {
+        money: this.money,
+        accountId: this.accountInfo.accountId
+      }
+      this.$helper.toast.success(this, 'nap tien thanh cong' + obj.money)
+      // this.recharge(obj).then(res => {
+      //   this.$helper.toast.success(this, 'nap tien thanh cong')
+      // }, err => {
+      //   this.$helper.toast.error(this, 'nap tien that bai' + err.code)
+      // })
+    },
+    searchUser (value) {
+      this.$set(this, 'timer', null)
+      let timeOut = setTimeout(() => { console.log(value) }, 1000)
+      this.$set(this, 'timer', timeOut)
+    }
+  },
+  watch: {
+    search (val, oldVal) {
+      this.searchUser(val)
+      // handler: (val, oldvalue) => {
+      //   this.searchUser()
+      // },
+      // deep: true
+    }
+  }
+}
 </script>
 <style lang="scss">
 .padding-nav {
@@ -35,5 +93,21 @@ export default { components: { DisplayUserInfo } }
 .form-title {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
 }
 </style>

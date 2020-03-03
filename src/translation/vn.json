@@ -26,7 +26,7 @@
   "cancel": "Hủy",
   "delete": "Xóa",
   "edit": "Sửa",
-  "search": "Tìm",
+  "search": "Tìm kiếm",
   "examname": "Nguyễn Văn A",
   "examphone": "0388008800",
   "examaddress": "123 Nguyễn Văn Cừ, Q.5, Tp.HCM",
@@ -48,5 +48,10 @@
   "changePass": "Đổi mật khẩu",
   "oldPass": "Nhập mật khẩu cũ",
   "newPass": "Nhập mật khẩu mới",
-  "confirmPass": "Nhập mật khẩu mới lần nữa"
+  "confirmPass": "Nhập mật khẩu mới lần nữa",
+  "userInfo": "Thông tin người dùng",
+  "accountId": "Số tài khoản",
+  "securityCode": "Mã bảo mật",
+  "errorOccurred": "a",
+  "conntactToAdmin": ""
 }

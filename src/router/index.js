@@ -11,7 +11,7 @@ import ExchangeHistory from '../components/Employee/ExchangeHistory.vue'
 import CreateEmployee from '../components/Admin/CreateEmployee.vue'
 import DeleteOrEditEmployee from '../components/Admin/DeleteOrEditEmployee.vue'
 import InsertUserInfo from '../components/Form/InsertUserInfo.vue'
-import DisplayUserInfo from '../components/Form/DisplayUserInfo.vue'
+import BaseUserInfo from '../components/Form/BaseUserInfo'
 import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
 import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
 import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtReminder.vue'
@@ -117,7 +117,7 @@ const routes = [
     path: '/hien-thong-tin-tai-khoan',
     name: 'displayuserinfo',
     components: {
-      default: DisplayUserInfo
+      default: BaseUserInfo
     }
   },
   {

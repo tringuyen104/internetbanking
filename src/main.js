@@ -7,12 +7,14 @@ import './plugins/common'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
-import { table } from './common/table'
-import { helper } from './common/helper'
+import FormFieldError from './components/Errors/FormFieldError'
+// import { table } from './common/table'
+// import { helper } from './common/helper'
 
-Vue.use(table)
-Vue.use(helper)
+// Vue.use(table)
+// Vue.use(helper)
 
+Vue.component('form-field-error', FormFieldError)
 i18n.locale = 'vn'
 
 window.app = new Vue({
