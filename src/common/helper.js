@@ -2,6 +2,11 @@ export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
       timeout: null,
+      typeTransaction: {
+        recive: 'recive',
+        transfers: 'transfers',
+        payment: 'payment'
+      },
       sortAsc (data, field) {
         let obj = Object.assign([], data)
         if (!obj || !Array.isArray(obj)) { return }

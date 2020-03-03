@@ -18,6 +18,12 @@ export default {
   },
   created () {
     this.$set(this, 'items', this.$helper.sortAsc(this.items, 'created'))
+  },
+  methods: {
+    fetchDataPayment (searchText) {
+      console.log('payment')
+      this.getHistoryTransaction(searchText, this.$helper.typeTransaction.payment)
+    }
   }
 }
 </script>

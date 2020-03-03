@@ -15,7 +15,9 @@
 </template>
 
 <script>
+import UserApi from '../../../mixins/User/UserApi'
 export default {
+  mixins: [UserApi],
   data () {
     return {
       items: [],

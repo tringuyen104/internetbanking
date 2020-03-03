@@ -5,6 +5,11 @@ export default {
   login: callUrl + 'authenticate',
   listCard: callUrl + 'accounts/user',
   createUser: callUrl + 'users/create',
-  recharge: callUrl + 'accounts/recharge'
+  recharge: callUrl + 'accounts/recharge',
+  historyTransaction: {
+    recive: callUrl + '',
+    transfers: callUrl + '',
+    payment: callUrl + ''
+  }
 
 }

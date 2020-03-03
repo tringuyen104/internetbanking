@@ -19,12 +19,12 @@
             :placeholder="$t('accNumber')"
             name="search"
             v-model="search"
+            @keyup.enter.native="searchHistory"
           />
         </div>
       </div>
       <br />
-      <transaction-management />
-      <!-- <h6 class="red-color d-flex">{{ $t('last30DaysTransaction') }}</h6> -->
+      <transaction-management :searchValue="search"/>
     </div>
   </form>
 </template>
@@ -48,20 +48,6 @@ export default {
   components: {
     TransactionManagement // ,
     // datePicker
-  },
-  methods: {
-    exchangeHistory () {
-      return ''
-    },
-    searchText () {
-      this.$helper.callOneTimes(this.callAction, 1000)
-    },
-    callAction () {
-      console.log(this.search)
-    }
-  },
-  watch: {
-    search (val, oldValue) { this.searchText() }
   }
 }
 </script>
