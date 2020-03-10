@@ -53,9 +53,11 @@ export const helper = {
           })
         }
       },
-      callOneTimes (callBack, time) {
+      callOneTimes (callBack, time, params) {
         clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => { callBack() }, time)
+        this.timeout = setTimeout(() => {
+          if (!params) { callBack() } else { callBack(params) }
+        }, time)
       }
     }
   }

@@ -29,14 +29,15 @@
 <script>
 import BaseAccountInfo from './../Form/BaseAccountInfo'
 import UserApi from '../../mixins/User/UserApi'
+import AccountApi from '../../mixins/Account/AccountApi'
 export default {
-  mixins: [UserApi],
+  mixins: [UserApi, AccountApi],
   components: { BaseAccountInfo },
   data () {
     return {
       accountInfo: {
         accountId: '',
-        fullName: ''
+        ownerName: ''
       },
       money: null,
       search: '',
@@ -66,10 +67,15 @@ export default {
       // })
     },
     searchUser (value) {
-      var call = () => {
-        console.log(value)
-      }
-      this.$helper.callOneTimes(call, 1000)
+      this.$helper.callOneTimes(this.findAccount, 1000, value)
+    },
+    findAccount (value) {
+      this.findAccountByAccountId(value).then(res => {
+        if (!res.data) { return }
+        this.$set(this, 'accountInfo', res.data)
+      }, err => {
+        console.log(err)
+      })
     }
   },
   watch: {

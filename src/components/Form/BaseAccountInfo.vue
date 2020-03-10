@@ -2,7 +2,7 @@
   <div>
     <div class="form-group">
       <label for="realname">{{ $t('realname') }}</label>
-      <input type="text" class="form-control" id="realname" :value="accountInfo.fullName" readonly />
+      <input type="text" class="form-control" id="realname" :value="accountInfo.ownerName" readonly />
     </div>
     <div class="form-group">
       <label >{{ $t('accountId') }}</label>

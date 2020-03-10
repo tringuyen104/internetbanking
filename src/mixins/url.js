@@ -7,6 +7,9 @@ export default {
   listCard: callUrl + 'accounts/user',
   createUser: callUrl + 'users/create',
   recharge: callUrl + 'accounts/recharge',
+  account: {
+    findAccount: callUrl + 'accounts/account/'
+  },
   historyTransaction: {
     recive: callUrl + '',
     transfers: callUrl + '',
