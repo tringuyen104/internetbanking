@@ -9,7 +9,7 @@
           <div class="card-number">
             <h5>{{ $t("cardType") }}</h5>
           </div>
-          <div class="card-amount">{{ type }}</div>
+          <div class="card-amount">{{ cardType }}</div>
         </div>
         <div class="p-2">
           <div class="card-number">
@@ -34,7 +34,12 @@ export default {
     },
     amount: {
       required: true,
-      type: String
+      type: Number
+    }
+  },
+  computed: {
+    cardType () {
+      return this.$store.state.account.type[this.type]
     }
   }
 }

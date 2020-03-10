@@ -36,10 +36,21 @@ const Login = {
   }
 }
 
+const Account = {
+  namespace: true,
+  state: {
+    type: {
+      'SAVING': 'Tiết kiệm',
+      'Payment': 'Thanh toán'
+    }
+  }
+}
+
 export const store = new Vuex.Store({
   modules: {
     'debtReminder': DebtReminder,
-    'login': Login
+    'login': Login,
+    'account': Account
   }
   // state: {
   // },

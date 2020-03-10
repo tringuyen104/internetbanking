@@ -1,5 +1,8 @@
-var callUrl = 'http://t2trc-ebanking-test.3r3bs2qhs3.us-east-2.elasticbeanstalk.com:8080/'
+var callUrl = 'http://backoffice-env.uweekdg2rb.us-east-2.elasticbeanstalk.com:8080/'
 export default {
-  login: callUrl + 'authenticate'
+  basicUrl: callUrl,
+  socketUrl: 'socket/',
+  login: callUrl + 'authenticate',
+  listCard: callUrl + 'accounts/user'
 
 }

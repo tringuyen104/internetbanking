@@ -12,15 +12,13 @@ export default {
       })
       return deferred
     },
-    test (url) {
+    getListCard () {
       var deferred = this.$Jquery.Deferred()
+      this.$api.config.Authentication = this.$api.token
       // if (!user) { deferred.resolve('Check username and password') }
-
-      this.$api.getNoneHeader(url).then(reponse => {
-        console.log(reponse)
+      this.$api.get(urlApi.listCard).then(reponse => {
         deferred.resolve(reponse)
       }, error => {
-        console.log(error)
         deferred.reject(error)
       })
       return deferred

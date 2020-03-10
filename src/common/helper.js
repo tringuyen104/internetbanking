@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
@@ -5,6 +7,9 @@ export const helper = {
         let obj = Object.assign([], data)
         if (!obj || !Array.isArray(obj)) { return }
         return obj.sort((a, b) => { return a[field] > b[field] })
+      },
+      createDate () {
+        return moment(new Date()).utc()
       }
     }
   }

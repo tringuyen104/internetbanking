@@ -6,7 +6,7 @@ export const restFullAPi = {
     Vue.prototype.$api = {
       token: 'Bearer ',
       config: {
-        'Authentication': this.token
+        'Authorization': ''
       },
       // configHeader: {
       //   'Access-Control-Allow-Origin': '*',
@@ -14,23 +14,24 @@ export const restFullAPi = {
       // },
       get (url) {
         return axios.get(url, {
-          headers: this.config
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          }
         })
       },
       getNoneHeader (url) {
         return axios.get(url)
       },
-      post (url, data, headers) {
-        if (!headers) { return this.postNoneHeader(url, data) } else { return this.postWithHeader(url, data, headers) }
+      post (url, data) {
+        return axios.post(url, data, {
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          }
+        })
       },
       postNoneHeader (url, data) {
         return axios.post(url, data, {
           headers: this.config
-        })
-      },
-      postWithHeader (url, data, headers) {
-        return axios.post(url, data, {
-          headers: headers
         })
       },
       postWithFromData (url, data) {

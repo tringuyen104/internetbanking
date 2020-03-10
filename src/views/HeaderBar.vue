@@ -35,7 +35,7 @@
           <b-nav-item :to="{ name: 'login' }" v-show="!isLogin">{{
             $t("signin")
           }}</b-nav-item>
-          <b-nav-item @click="signOut" v-show="isLogin">{{
+          <b-nav-item @click.prevent="signOut" v-show="isLogin">{{
             $t("signOut")
           }}</b-nav-item>
         </b-navbar-nav>
@@ -57,7 +57,7 @@ export default {
       this.removeItemInSessionStorage('token')
       this.removeItemInSessionStorage('currentUser')
       this.$store.commit('updateLogin', false)
-      this.$router.replace({ name: 'home' })
+      this.$router.replace('/dang-nhap')
     }
   }
 }

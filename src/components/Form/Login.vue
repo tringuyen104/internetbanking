@@ -23,7 +23,9 @@
             <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30">
-            <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div> -->
+            <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" 
+            capcha="6LfFLdwUAAAAAAO12GIa9mtvM8CgmfuzKIECHDLE"
+            id="reCapcha"></div> -->
             <vue-recaptcha
                 id="reCapcha"
                 ref="recaptcha"
@@ -63,7 +65,9 @@ export default {
   mixins: [UserApi, BrowserStorage],
   data () {
     return {
-      user: {},
+      user: {
+        reCAPTCHA: ''
+      },
       reCapchaToken: ''
     }
   },
@@ -98,6 +102,7 @@ export default {
     },
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)
+      this.user.reCAPTCHA = recaptchaToken
       // const self = this
       // self.status = 'submitting'
       // self.$refs.recaptcha.reset()
