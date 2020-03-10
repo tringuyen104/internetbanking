@@ -18,10 +18,7 @@ import TransfersMoney from './TransfersMoney.vue'
 
 export default {
   props: {
-    searchValue: {
-      type: String,
-      required: true
-    }
+    searchValue: null
   },
   components: {
     ReciveMoney,

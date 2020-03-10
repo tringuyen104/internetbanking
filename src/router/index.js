@@ -11,19 +11,22 @@ import ExchangeHistory from '../components/Employee/ExchangeHistory.vue'
 import CreateEmployee from '../components/Admin/CreateEmployee.vue'
 import DeleteOrEditEmployee from '../components/Admin/DeleteOrEditEmployee.vue'
 import InsertUserInfo from '../components/Form/InsertUserInfo.vue'
-import BaseUserInfo from '../components/Form/BaseUserInfo'
+// import BaseUserInfo from '../components/Form/BaseUserInfo'
 import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
 import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
-import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtReminder.vue'
-import ReciveMoney from '../components/Form/Transaction/ReciveMoney.vue'
-import Transaction from '../components/Form/Transaction/Transaction.vue'
-import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
-import TransactionManagement from '../components/Form/Transaction/TransactionManagement.vue'
+// import PaymentDebtReminder from '../components/Form/Transaction/PaymentDebtReminder.vue'
+// import ReciveMoney from '../components/Form/Transaction/ReciveMoney.vue'
+// import Transaction from '../components/Form/Transaction/Transaction.vue'
+// import TransfersMoney from '../components/Form/Transaction/TransfersMoney.vue'
+// import TransactionManagement from '../components/Form/Transaction/TransactionManagement.vue'
 import CrossCheck from '../components/Admin/CrossCheck.vue'
 import ChangePass from '../components/Form/ChangePass.vue'
 import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
 import ChangePassword from '../components/Form/ForgetPassword/ChangePassword.vue'
 import NotFound from '../components/Errors/NotFound.vue'
+import Forbiden from '../components/Errors/Forbiden'
+import bcrypt from 'bcryptjs'
+import { define } from '../common/define'
 
 Vue.use(VueRouter)
 
@@ -76,6 +79,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: CreateUser
+    },
+    meta: {
+      role: [define.role.employee]
     }
   },
   {
@@ -84,6 +90,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: Recharge
+    },
+    meta: {
+      role: [define.role.employee]
     }
   },
   {
@@ -92,6 +101,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ExchangeHistory
+    },
+    meta: {
+      role: [define.role.employee]
     }
   },
   {
@@ -100,6 +112,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: CreateEmployee
+    },
+    meta: {
+      role: [define.role.ad]
     }
   },
   {
@@ -108,6 +123,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: DeleteOrEditEmployee
+    },
+    meta: {
+      role: [define.role.ad]
     }
   },
   {
@@ -115,21 +133,27 @@ const routes = [
     name: 'insertuserinfo',
     components: {
       default: InsertUserInfo
+    },
+    meta: {
+      role: [define.role.employee]
     }
   },
-  {
-    path: '/hien-thong-tin-tai-khoan',
-    name: 'displayuserinfo',
-    components: {
-      default: BaseUserInfo
-    }
-  },
+  // {
+  //   path: '/hien-thong-tin-tai-khoan',
+  //   name: 'displayuserinfo',
+  //   components: {
+  //     default: BaseUserInfo
+  //   }
+  // },
   {
     path: '/header-employee',
     name: 'headeremployee',
     components: {
       headerbar: HeaderBar,
       default: HeaderEmployee
+    },
+    meta: {
+      role: [define.role.employee]
     }
   },
   {
@@ -138,54 +162,60 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: HeaderAdmin
+    },
+    meta: {
+      role: [define.role.ad]
     }
   },
-  {
-    path: '/PaymentDebtReminder',
-    name: 'paymentDebtReminder',
-    components: {
-      headerbar: HeaderBar,
-      default: PaymentDebtReminder
-    }
-  },
-  {
-    path: '/ReciveMoney',
-    name: 'reciveMoney',
-    components: {
-      headerbar: HeaderBar,
-      default: ReciveMoney
-    }
-  },
-  {
-    path: '/Transaction',
-    name: 'transaction',
-    components: {
-      headerbar: HeaderBar,
-      default: Transaction
-    }
-  },
-  {
-    path: '/transfersMoney',
-    name: 'transfersMoney',
-    components: {
-      headerbar: HeaderBar,
-      default: TransfersMoney
-    }
-  },
-  {
-    path: '/transactionManagement',
-    name: 'transactionManagement',
-    components: {
-      headerbar: HeaderBar,
-      default: TransactionManagement
-    }
-  },
+  // {
+  //   path: '/PaymentDebtReminder',
+  //   name: 'paymentDebtReminder',
+  //   components: {
+  //     headerbar: HeaderBar,
+  //     default: PaymentDebtReminder
+  //   }
+  // },
+  // {
+  //   path: '/ReciveMoney',
+  //   name: 'reciveMoney',
+  //   components: {
+  //     headerbar: HeaderBar,
+  //     default: ReciveMoney
+  //   }
+  // },
+  // {
+  //   path: '/Transaction',
+  //   name: 'transaction',
+  //   components: {
+  //     headerbar: HeaderBar,
+  //     default: Transaction
+  //   }
+  // },
+  // {
+  //   path: '/transfersMoney',
+  //   name: 'transfersMoney',
+  //   components: {
+  //     headerbar: HeaderBar,
+  //     default: TransfersMoney
+  //   }
+  // },
+  // {
+  //   path: '/transactionManagement',
+  //   name: 'transactionManagement',
+  //   components: {
+  //     headerbar: HeaderBar,
+  //     default: TransactionManagement
+  //   }
+  // },
   {
     path: '/crossCheck',
     name: 'crossCheck',
     components: {
       headerbar: HeaderBar,
       default: CrossCheck
+    },
+    meta: {
+      role: [define.role.ad]
     }
   },
   {
@@ -194,6 +224,9 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ChangePass
+    },
+    meta: {
+      role: [define.role.ad, define.role.employee]
     }
   },
   {
@@ -202,6 +235,14 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: NotFound
+    }
+  },
+  {
+    path: '/403',
+    name: 'forbiden',
+    components: {
+      headerbar: HeaderBar,
+      default: Forbiden
     }
   },
   {
@@ -223,6 +264,31 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const authorize = to.meta
+  const role = sessionStorage.getItem('r')
+  const isLogin = bcrypt.compareSync('isLogin', (sessionStorage.getItem('currentUser') ? sessionStorage.getItem('currentUser') : ''))
+
+  if (Object.entries(authorize).length > 0 && authorize.constructor === Object) {
+    if (!role) {
+      return next({ name: 'login' })
+    }
+    // check role employee
+    if (!authorize.role.toString().includes(atob(role).toLowerCase())) {
+      return next({ name: 'forbiden' })
+    }
+    // if (authorize.length && !authorize.includes(currentUser.role)) {
+    //   // role not authorised so redirect to home page
+    //   return next({ path: '/' })
+    // }
+  }
+
+  if (isLogin && to.name === 'login') { return next({ name: 'home' }) }
+
+  next()
 })
 
 export default router
