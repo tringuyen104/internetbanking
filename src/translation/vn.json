@@ -41,7 +41,7 @@
   "transfersMoney": "Chuyển Tiền",
   "paymentDebtReminder": "Thanh toán nhắc nợ",
   "transaction": "Lịch sử giao dịch",
-  "bank":"Ngân hàng",
+  "bank": "Ngân hàng",
   "allbank": "Tất cả",
   "bank1": "Ngân hàng 1",
   "bank2": "Ngân hàng 2",
@@ -53,12 +53,23 @@
   "userInfo": "Thông tin người dùng",
   "accountId": "Số tài khoản",
   "securityCode": "Mã bảo mật",
-  "errorOccurred": "a",
-  "conntactToAdmin": "",
   "inputEmail": "Nhập email",
   "submit": "Gửi",
   "next": "Tiếp tục",
   "changePassword": "Đổi mật khẩu",
   "forgetPassword": "Quên mật khẩu",
-  "accNumber":  "Số tài khoản"
+  "accNumber": "Số tài khoản",
+  "content": "Nội dung",
+  "confirmTransfersMoney": "Xác nhận chuyển tiền",
+  "notification": {
+    "account": {
+      "rechargeFail": "Nạp tiền thất bại",
+      "rechargeSuccess": "Nạp tiền thành công",
+      "notFound": "Không tìm thấy tài khoản"
+    },
+    "inputEmpty": "Bạn chưa nhập dữ liệu",
+    "errorOccurred": "a",
+    "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
+    "notFound": "Không tìm thấy dữ liệu"
+  }
 }

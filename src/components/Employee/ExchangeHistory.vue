@@ -19,7 +19,6 @@
             :placeholder="$t('accNumber')"
             name="search"
             v-model="search"
-            @keyup.enter.native="searchHistory"
           />
         </div>
       </div>

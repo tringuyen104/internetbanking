@@ -23,7 +23,14 @@ export const restFullAPi = {
         return axios.get(url)
       },
       post (url, data) {
-        return axios.post(url, data, {
+        return axios.post(url, JSON.stringify(data), {
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          }
+        })
+      },
+      put (url, data) {
+        return axios.put(url, data, {
           headers: {
             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
           }

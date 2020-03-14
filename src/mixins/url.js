@@ -8,7 +8,9 @@ export default {
   createUser: callUrl + 'users/create',
   recharge: callUrl + 'accounts/recharge',
   account: {
-    findAccount: callUrl + 'accounts/account/'
+    findAccountByAccountId: callUrl + 'accounts/account/',
+    findAccountByUserName: callUrl + 'accounts/accounts/',
+    deposit: callUrl + 'accounts/deposit'
   },
   historyTransaction: {
     recive: callUrl + '',

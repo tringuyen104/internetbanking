@@ -26,7 +26,7 @@ export default {
     },
     recharge (recharge) {
       var deferred = this.$Jquery.Deferred()
-      this.$api.post(urlApi.recharge, recharge).then(reponse => {
+      this.$api.put(urlApi.account.deposit, recharge).then(reponse => {
         deferred.resolve(reponse)
       }, error => {
         deferred.reject(error)
