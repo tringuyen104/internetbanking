@@ -60,6 +60,10 @@
   "forgetPassword": "Quên mật khẩu",
   "accNumber": "Số tài khoản",
   "content": "Nội dung",
+  "firstName": "Họ",
+  "lastName": "Tên",
+  "createUserName": "Tạo tên đăng nhập",
+  "pleaseInputLastName": "Hãy nhập tên trước.",
   "confirmTransfersMoney": "Xác nhận chuyển tiền",
   "notification": {
     "account": {

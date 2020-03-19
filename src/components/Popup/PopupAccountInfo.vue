@@ -4,18 +4,18 @@
       <div class="d-block">
         <div>
           <label class="label-info">
-            {{ $t("accountId") }} </label
+            {{ $t("userName") }} </label
           ><br />
           <i class="far fa-user fa-lg">
           </i>
-            &emsp;<span>{{ userInfo.accountId }}</span>
+            &emsp;<span>{{ userInfo.username }}</span>
         </div>
         <div class="margin-top-20">
           <label class="label-info">
-            {{ $t("securityCode") }} </label
+            {{ $t("email") }} </label
           ><br />
-          <i class="fas fa-fingerprint fa-lg"></i>
-          &emsp;<span>{{ userInfo.securityCode }}</span>
+          <i class="fas fa-envelope fa-lg"></i>
+          &emsp;<span>{{ userInfo.email }}</span>
         </div>
       </div>
       <div class="d-flex margin-top-20">

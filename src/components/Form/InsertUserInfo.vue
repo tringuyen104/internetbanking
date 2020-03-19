@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="submit">
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="userName">{{ $t("userName") }}</label>
         <input
           type="input"
@@ -11,23 +11,60 @@
           :placeholder="$t('userName')"
           v-validate="'required'"
         />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">
+            Button
+          </button>
+        </div>
+      </div> -->
+      <div class=" form-group">
+        <label for="userName">{{ $t("userName") }}</label>
+        <div class="input-group">
+          <input
+            type="input"
+            class="form-control"
+            id="userName"
+            name="userName"
+            :placeholder="$t('userName')"
+            v-validate="'required'"
+            v-model="user.userName"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" @click="createUserName">
+              {{ $t('createUserName') }}
+            </button>
+          </div>
+        </div>
       </div>
       <form-field-error :validation-errors="errors" :field="'userName'" />
       <div class="form-group">
-        <label for="inputAddress">{{ $t("realname") }}</label>
+        <label for="firstName">{{ $t("firstName") }}</label>
         <input
           type="text"
           class="form-control"
-          id="realname"
+          id="firstName"
           :placeholder="$t('examname')"
-          name="realname"
-          v-model="user.realName"
+          name="firstName"
+          v-model="user.firstName"
           v-validate="'required'"
         />
       </div>
-      <form-field-error :validation-errors="errors" :field="'realname'" />
+      <form-field-error :validation-errors="errors" :field="'firstName'" />
       <div class="form-group">
-        <label for="inputAddress2">{{ $t("email") }}</label>
+        <label for="lastName">{{ $t("lastName") }}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          :placeholder="$t('examname')"
+          name="lastName"
+          v-model="user.lastName"
+          v-validate="'required'"
+        />
+      </div>
+      <form-field-error :validation-errors="errors" :field="'lastName'" />
+      <div class="form-group">
+        <label for="email">{{ $t("email") }}</label>
         <input
           type="text"
           class="form-control"
@@ -40,7 +77,7 @@
       </div>
       <form-field-error :validation-errors="errors" :field="'email'" />
       <div class="form-group">
-        <label for="inputAddress2">{{ $t("phone") }}</label>
+        <label for="phone">{{ $t("phone") }}</label>
         <input
           type="text"
           class="form-control"
@@ -82,7 +119,10 @@ export default {
   data () {
     return {
       accountInfo: {},
-      user: {},
+      user: {
+        userName: '',
+        lastName: ''
+      },
       idPopup: 'display-account-info'
     }
   },
@@ -90,22 +130,38 @@ export default {
     submit () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.createAccount()
+          this.createUserAccount()
         }
       })
     },
-    createAccount () {
-      // this.createUser(this.user).then(response => {
-      //   this.$set(this, 'accountInfo', response.data)
-      // }, error => {
-      //   this.$helper.handerError(error)
-      // }) // when complete api
-      this.$set(this, 'accountInfo', {
-        accountId: 123123123123123,
-        securityCode: '3449940'
-
-      })
-      this.$bvModal.show(this.idPopup)
+    createUserAccount () {
+      let obj = {
+        'email': this.user.email,
+        'firstName': this.user.firstName,
+        'lastName': this.user.lastName,
+        'phone': this.user.phone,
+        'username': this.user.userName
+      }
+      this.createUser(obj).then(
+        response => {
+          console.log(response)
+          this.$set(this, 'accountInfo', response.data)
+          this.$bvModal.show(this.idPopup)
+        },
+        error => {
+          this.$helper.handerError(error)
+        }
+      )
+    },
+    createUserName () {
+      let name = this.user.lastName
+      if (!name || name === '') {
+        this.$helper.toast.error(this, this.$t('pleaseInputLastName'))
+        return
+      }
+      let timeStamp = this.$moment().unix()
+      this.user.userName = timeStamp + name
+      // this.$set(this, 'user.userName', timeStamp)
     }
   }
 }

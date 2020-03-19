@@ -17,7 +17,7 @@ export default {
     },
     createUser (user) {
       var deferred = this.$Jquery.Deferred()
-      this.$api.post(urlApi.createUser, user).then(reponse => {
+      this.$api.post(urlApi.user.create, user).then(reponse => {
         deferred.resolve(reponse)
       }, error => {
         deferred.reject(error)

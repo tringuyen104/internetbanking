@@ -4,8 +4,6 @@ export default {
   basicUrl: callUrl,
   socketUrl: 'socket/',
   login: callUrl + 'authenticate',
-  listCard: callUrl + 'accounts/user',
-  createUser: callUrl + 'users/create',
   recharge: callUrl + 'accounts/recharge',
   account: {
     findAccountByAccountId: callUrl + 'accounts/account/',
@@ -16,5 +14,8 @@ export default {
     recive: callUrl + '',
     transfers: callUrl + '',
     payment: callUrl + ''
+  },
+  user: {
+    create: callUrl + 'users/create'
   }
 }
