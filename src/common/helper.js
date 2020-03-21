@@ -1,3 +1,5 @@
+import { define } from '../common/define'
+import moment from 'moment';
 export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
@@ -58,6 +60,22 @@ export const helper = {
         this.timeout = setTimeout(() => {
           if (!params) { callBack() } else { callBack(params) }
         }, time)
+      },
+      formatTimeZone (dateTime) {
+        let arrData = dateTime.split(':')
+        let last = arrData[3]
+        arrData.length = 3
+        let newTime = arrData.join(':')
+        return newTime + last
+      },
+      formatDatetime (dateTime) {
+        console.log(moment)
+        if (!dateTime) { return '' }
+        return moment(dateTime).format(define.formatDateTime)
+      },
+      formatCurrency (currency) {
+        if (!currency) { return '' }
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(currency)
       }
     }
   }

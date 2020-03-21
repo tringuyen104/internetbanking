@@ -32,25 +32,6 @@ export default {
         deferred.reject(error)
       })
       return deferred
-    },
-    getHistoryTransaction (search, type) {
-      var deferred = this.$Jquery.Deferred()
-      var url = ''
-
-      if (type === this.$helper.typeTransaction.recive) { url = urlApi.historyTransaction.recive }
-
-      if (type === this.$helper.typeTransaction.transfers) { url = urlApi.historyTransaction.transfers }
-
-      if (type === this.$helper.typeTransaction.payment) { url = urlApi.historyTransaction.transfers }
-
-      url += `/${search}`
-
-      this.$api.get(url).then(reponse => {
-        deferred.resolve(reponse)
-      }, error => {
-        deferred.reject(error)
-      })
-      return deferred
     }
 
   }
