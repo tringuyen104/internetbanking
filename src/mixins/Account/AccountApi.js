@@ -1,5 +1,5 @@
 import urlApi from '../url'
-import { define } from '../../common/define'
+// import { define } from '../../common/define'
 export default {
   methods: {
     fetchAccountByAccountId (value) {

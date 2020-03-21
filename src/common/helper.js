@@ -1,5 +1,5 @@
 import { define } from '../common/define'
-import moment from 'moment';
+import moment from 'moment'
 export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
