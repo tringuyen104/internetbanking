@@ -6,23 +6,24 @@ export default {
     return {
       fields: this.$table.fields.transaction.payment,
       idTable: 'table-payment-debt-reminder',
-      items: [{
-        isActive: true,
-        age: 40,
-        id: 1,
-        creator: 'Dickerson',
-        created: new Date(),
-        money: '12.000.000'
-      }]
+      items: [{}]
     }
   },
   created () {
     this.$set(this, 'items', this.$helper.sortAsc(this.items, 'created'))
   },
   methods: {
-    fetchDataPayment (searchText) {
+    fetchDataPayment (searchText, page, size) {
       console.log('payment')
-      this.getHistoryTransaction(searchText, this.$helper.typeTransaction.payment)
+      return this.getHistoryTransaction(searchText, this.paymentMethod.payment, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+        .then(res => {
+          let data = res.data.content
+          if (data.length === 0) { data = [{}] }
+          this.$set(this, 'items', data)
+        // eslint-disable-next-line handle-callback-err
+        }, err => {
+          this.$set(this, 'items', [{}])
+        })
     }
   }
 }

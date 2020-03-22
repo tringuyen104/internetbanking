@@ -1,8 +1,11 @@
 <template>
   <div>
     <b-table :id="idTable" :items="items" :fields="fields" striped responsive="sm" :perPage="perPage" :current-page="currentPage">
-      <template v-slot:cell(created)="data">
-        <span>{{ $moment(data.item.created).format("MM/DD/YYYY") }}</span>
+      <template v-slot:cell(createdDate)="data">
+        <span>{{ $helper.formatDatetime(data.item.createdDate) }}</span>
+      </template>
+      <template v-slot:cell(amount)="data">
+        <span>{{ $helper.formatCurrency(data.item.amount) }}</span>
       </template>
     </b-table>
      <b-pagination
@@ -15,16 +18,23 @@
 </template>
 
 <script>
-import UserApi from '../../../mixins/User/UserApi'
+import AccountApi from '../../../mixins/Account/AccountApi'
+import { define } from '../../../common/define'
 export default {
-  mixins: [UserApi],
+  mixins: [AccountApi],
   data () {
     return {
       items: [],
       fields: [],
       perPage: 10,
       currentPage: 1,
-      idTable: 'transaction-table'
+      idTable: 'transaction-table',
+      filter30Days: {
+        startDate: this.$moment(new Date()).add(-30, 'days').format(define.formatTimeZoneLocal), // this.$moment(new Date(), define.formatDate, true).add(-30, 'days').format(),
+        endDate: this.$moment(new Date()).format(define.formatTimeZoneLocal)// this.$moment(new Date(), define.formatDate, true).format()
+      },
+      paymentMethod: define.method
+
     }
   },
   computed: {

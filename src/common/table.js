@@ -10,7 +10,7 @@ export const table = {
             tdClass: 'alert alert-warning'
           },
           {
-            key: 'money',
+            key: 'amount',
             label: 'Số tiền',
             thClass: 'alert alert-info',
             tdClass: 'alert alert-warning'
@@ -31,60 +31,78 @@ export const table = {
         transaction: {
           recive: [
             {
-              key: 'creator',
-              label: 'Người chuyển',
+              key: 'source',
+              label: 'Tài khoản nhận tiền',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'money',
+              key: 'amount',
               label: 'Số tiền',
+              thClass: 'alert alert-info text-right',
+              tdClass: 'alert alert-warning text-right'
+            },
+            {
+              key: 'createdDate',
+              label: 'Ngày nhận',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'created',
-              label: 'Ngày nhận',
+              key: 'content',
+              label: 'Nội dung',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             }
           ],
           forward: [
             {
-              key: 'creator',
-              label: 'Người nhận',
+              key: 'source',
+              label: 'Tài khoản trích tiền',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'money',
+              key: 'amount',
               label: 'Số tiền',
+              thClass: 'alert alert-info text-right',
+              tdClass: 'alert alert-warning text-right'
+            },
+            {
+              key: 'createdDate',
+              label: 'Ngày chuyển',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'created',
-              label: 'Ngày chuyển',
+              key: 'content',
+              label: 'Nội dung',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             }
           ],
           payment: [
             {
-              key: 'creator',
-              label: 'Người nhận',
+              key: 'source',
+              label: 'Tài khoản trích tiền',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'money',
+              key: 'amount',
               label: 'Số tiền',
+              thClass: 'alert alert-info text-right',
+              tdClass: 'alert alert-warning text-right'
+            },
+            {
+              key: 'createdDate',
+              label: 'Ngày thanh toán',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             },
             {
-              key: 'created',
-              label: 'Ngày thanh toán',
+              key: 'content',
+              label: 'Nội dung',
               thClass: 'alert alert-info',
               tdClass: 'alert alert-warning'
             }

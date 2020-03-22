@@ -10,10 +10,10 @@ export default {
     findAccountByUserName: callUrl + 'accounts/accounts/',
     deposit: callUrl + 'accounts/deposit'
   },
-  historyTransaction: {
-    recive: callUrl + '',
-    transfers: callUrl + '',
-    payment: callUrl + ''
+  transaction: {
+    getHistory (startDate, endDate, page, size, accountId, type) {
+      return callUrl + `transactions/account?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}&sort=date,desc&accountId=${accountId}&type=${type}`
+    }
   },
   user: {
     create: callUrl + 'users/create',

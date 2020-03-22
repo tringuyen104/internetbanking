@@ -23,7 +23,7 @@
           class="mt-3 col-md-6"
           variant="primary"
           block
-          @click="comfirm"
+          @click="confirm"
           >{{ $t("transfersMoney") }}</b-button
         >
         <b-button
