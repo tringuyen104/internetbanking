@@ -1,5 +1,5 @@
 <template>
-  <form class="form-label" @submit.prevent="changePassword">
+  <form class="form-label" @submit.prevent="submit">
     <h2 class="form-title">{{ $t('changePass') }}</h2>
       <div class="form-row">
         <div class="form-group col-md-12">
@@ -59,7 +59,12 @@
 </style>
 <script>
 import FormFieldError from '../Errors/FormFieldError.vue'
+import UserApi from '../../mixins/User/UserApi'
+import BrowserStorage from '../../mixins/BrowserStorage'
 export default {
+  mixins: [
+    UserApi,
+    BrowserStorage ],
   data () {
     return {
       model: {
@@ -71,12 +76,50 @@ export default {
   },
   components: { FormFieldError },
   methods: {
-    changePassword () {
+    submit () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          alert('success')
+          if (!this.checkPassword(this.model.newPass, this.model.confirmPass)) {
+            this.$helper.toast.warning(this, this.$t('notification.passwordNotMacth'))
+            return
+          }
+          this.changePasswordUser()
         }
       })
+    },
+
+    convertUItoPostModel () {
+      return {
+        newPassword: this.model.newPass,
+        oldPassword: this.model.oldPass
+      }
+    },
+
+    checkPassword (newPassword, confirmPassword) {
+      if (newPassword === confirmPassword) {
+        return true
+      }
+      return false
+    },
+
+    changePasswordUser () {
+      let obj = this.convertUItoPostModel()
+      console.log(obj)
+      this.changePassword(this.convertUItoPostModel()).then(res => {
+        this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
+        this.clearDataAndNavigateToHomePage()
+      }, err => {
+        this.$helper.toast.error(this, err.message)
+      })
+    },
+
+    clearDataAndNavigateToHomePage () {
+      this.removeItemInSessionStorage('token')
+      this.removeItemInSessionStorage('currentUser')
+      this.removeItemInSessionStorage('r')
+      this.$store.commit('updateLogin', false)
+      this.$store.commit('updateR', '')
+      this.$router.replace({ name: 'home' })
     }
   }
 }

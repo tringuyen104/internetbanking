@@ -67,13 +67,16 @@
   "confirmTransfersMoney": "Xác nhận chuyển tiền",
   "notification": {
     "account": {
-      "rechargeFail": "Nạp tiền thất bại",
-      "rechargeSuccess": "Nạp tiền thành công",
-      "notFound": "Không tìm thấy tài khoản"
+      "rechargeFail": "Nạp tiền thất bại.",
+      "rechargeSuccess": "Nạp tiền thành công.",
+      "notFound": "Không tìm thấy tài khoản."
     },
-    "inputEmpty": "Bạn chưa nhập dữ liệu",
-    "errorOccurred": "a",
-    "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
-    "notFound": "Không tìm thấy dữ liệu"
+    "inputEmpty": "Bạn chưa nhập dữ liệu.",
+    "errorOccurred": "a.",
+    "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị.",
+    "notFound": "Không tìm thấy dữ liệu.",
+    "passwordNotMacth": "Mật khẩu mới nhập không giống nhau.",
+    "changePasswordSuccess": "Đổi mật khẩu thành công.",
+    "sendOTPtoEmailSuccess": "Mã OTP đã được gửi đến email của bạn. Vui lòng nhấn nút 'Tiếp tục' để nhập mật khẩu."
   }
 }

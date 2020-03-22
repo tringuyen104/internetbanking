@@ -15,6 +15,7 @@ export default {
       })
       return deferred
     },
+
     createUser (user) {
       var deferred = this.$Jquery.Deferred()
       this.$api.post(urlApi.user.create, user).then(reponse => {
@@ -24,6 +25,7 @@ export default {
       })
       return deferred
     },
+
     recharge (recharge) {
       var deferred = this.$Jquery.Deferred()
       this.$api.put(urlApi.account.deposit, recharge).then(reponse => {
@@ -33,6 +35,7 @@ export default {
       })
       return deferred
     },
+
     getHistoryTransaction (search, type) {
       var deferred = this.$Jquery.Deferred()
       var url = ''
@@ -50,6 +53,29 @@ export default {
       }, error => {
         deferred.reject(error)
       })
+      return deferred
+    },
+
+    changePassword (data) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.post(urlApi.user.changePassword, data).then(res => {
+        deferred.resolve(res)
+      }, err => {
+        deferred.reject(err)
+      })
+
+      return deferred
+    },
+
+    recoverPasswordByEmail (data, email) {
+      var deferred = this.$Jquery.Deferred()
+      var url = urlApi.user.recoverPasswordByEmail + email
+      this.$api.post(url, data).then(res => {
+        deferred.resolve(res)
+      }, err => {
+        deferred.reject(err)
+      })
+
       return deferred
     }
 

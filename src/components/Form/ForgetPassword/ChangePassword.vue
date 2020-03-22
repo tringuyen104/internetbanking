@@ -4,6 +4,7 @@
       <div id="title">
         <h1>{{ $t("changePassword") }}</h1>
       </div>
+      <br/>
       <div class="form-login">
         <form @submit.prevent="changePassword">
           <div class="form-group input-group">

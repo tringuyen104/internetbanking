@@ -4,6 +4,7 @@
       <div id="title">
         <h1>{{ $t("forgetPassword") }}</h1>
       </div>
+      <br/>
       <div class="form-login">
         <form>
           <div class="form-group input-group">
@@ -27,7 +28,9 @@
 </template>
 <script>
 import FormFieldErrors from '../../Errors/FormFieldError.vue'
+import UserApi from '../../../mixins/User/UserApi'
 export default {
+  mixins: [UserApi],
   components: { FormFieldErrors },
   data () {
     return {
@@ -46,10 +49,21 @@ export default {
     sendEmail () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.showNext = true
+          this.showNext = true // will delete
+          this.recoverPasswordByEmail(this.convertUItoPostModel(), this.email).then(res => {
+            this.showNext = true
+            this.$helper.toast.success(this, this.$t('notification.sendOTPtoEmailSuccess'))
+          }, err => {
+            this.$helper.toast.error(this, err.message)
+          })
         }
       })
     },
+
+    convertUItoPostModel () {
+      return { email: this.email }
+    },
+
     redirectToChangePassword () {
       this.$router.push({ name: 'changePassword', params: { email: this.email } })
     }

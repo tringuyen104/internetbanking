@@ -16,6 +16,8 @@ export default {
     payment: callUrl + ''
   },
   user: {
-    create: callUrl + 'users/create'
+    create: callUrl + 'users/create',
+    changePassword: callUrl + 'users/password',
+    recoverPasswordByEmail: callUrl + 'users/recover'
   }
 }
