@@ -34,10 +34,6 @@
 import FormFieldErrors from '../Errors/FormFieldError.vue'
 export default {
   props: {
-    transfersData: {
-      type: Object,
-      required: true
-    },
     idPopup: {
       type: String,
       required: true
@@ -57,34 +53,12 @@ export default {
         .validateAll()
         .then(valid => {
           if (valid) {
-            if (this.transfersData.unPay) {
-              let data = Object.assign(
-                [],
-                this.$store.state.debtReminder.unPayData
-              )
-              data.pop()
-              this.$store.commit('updateUnpayData', data)
-            }
+            this.$emit('submitOtp', this.OTP)
             this.OTP = ''
             this.$refs['modal-otp'].hide()
-          } else {
-            console.log('None error')
           }
         })
         .catch(errors => {})
-      // if (!this.errors.any()) {
-      //   console.log(this.errors.any())
-      //   if (this.transfersData.unPay) {
-      //     let data = Object.assign([], this.$store.state.debtReminder.unPayData)
-      //     data.pop()
-      //     this.$store.commit('updateUnpayData', data)
-      //   }
-      //   this.OTP = ''
-      //   this.$refs['modal-otp'].hide()
-      // } else {
-      //   console.log('None error')
-      //   // this.$refs['modal-otp'].hide()
-      // }
     },
     toggleModal () {
       // We pass the ID of the button that we want to return focus to

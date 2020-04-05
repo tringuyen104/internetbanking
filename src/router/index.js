@@ -8,7 +8,6 @@ import Login from '../components/User/Login.vue'
 import ChangePassword from '../components/Form/ChangePassword.vue'
 import ListCard from '../components/User/ListCard.vue'
 import BankingTransfers from '../components/Banking/BankingTransfers.vue'
-import BankingTransfersOutside from '../components/Banking/BankingTransfersOutside.vue'
 import CreateDebtReminder from '../components/DebtReminder/DebtReminderCreate.vue'
 import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
 import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
@@ -73,15 +72,6 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: BankingTransfers
-    },
-    meta: { requiredLogin: true }
-  },
-  {
-    path: '/chuyen-tien-khac-ngan-hang',
-    name: 'bankingTransfersOutside',
-    components: {
-      headerbar: HeaderBar,
-      default: BankingTransfersOutside
     },
     meta: { requiredLogin: true }
   },

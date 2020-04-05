@@ -26,7 +26,6 @@ export default {
   created () {
     this.getListCard().then(response => {
       this.$set(this, 'data', response.data)
-      console.log(response.data)
     })
   }
 }

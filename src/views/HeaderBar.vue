@@ -10,20 +10,15 @@
             <b-nav-item :to="{ name: 'transactionManagement' }">{{
               $t("lstTransaction")
             }}</b-nav-item>
+            <b-nav-item :to="{ name: 'bankingTransfers' }">{{
+              $t("transfers")
+            }}</b-nav-item>
             <b-nav-item-dropdown :text="$t('debtReminder')" right>
               <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{
                 $t("createDebtReminder")
               }}</b-dropdown-item>
               <b-dropdown-item :to="{ name: 'debtReminderManagement' }">{{
                 $t("debtReminderManagement")
-              }}</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown :text="$t('transfers')" right>
-              <b-dropdown-item :to="{ name: 'bankingTransfers' }">{{
-                $t("inSide")
-              }}</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'bankingTransfersOutside' }">{{
-                $t("outSide")
               }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item-dropdown :text="$t('payment')" right>

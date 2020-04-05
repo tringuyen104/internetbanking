@@ -23,7 +23,7 @@
             <form-field-errors :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30">
-            <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" 
+            <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs"
             capcha="6LfFLdwUAAAAAAO12GIa9mtvM8CgmfuzKIECHDLE"
             id="reCapcha"></div> -->
             <vue-recaptcha
