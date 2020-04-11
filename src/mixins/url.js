@@ -5,7 +5,15 @@ export default {
   login: callUrl + 'authenticate',
   listCard: callUrl + 'accounts/user',
   debt: {
-    create: callUrl + 'debt/create'
+    create: callUrl + 'debt/create',
+    unpay: callUrl + 'debt/debtor',
+    playlistDebt: callUrl + 'debt/holderanddebtor/0',
+    payment (id) {
+      return `${callUrl}debt/pay/${id}`
+    },
+    delete (id) {
+      return `${callUrl}debt/delete/${id}`
+    }
   },
   account: {
     urlFindByAccountId: callUrl + 'accounts/account/',
@@ -23,5 +31,10 @@ export default {
   },
   bank: {
     associated: callUrl + 'banks'
+  },
+  recipient: {
+    create: callUrl + 'receivers/create',
+    delete (id) { return `${callUrl}receivers/${id}` },
+    update (id) { return `${callUrl}receivers/update/${id}` }
   }
 }

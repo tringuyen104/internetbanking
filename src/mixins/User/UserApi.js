@@ -50,6 +50,33 @@ export default {
         deferred.reject(error)
       })
       return deferred
+    },
+    addRecipient (obj) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.post(urlApi.recipient.create, obj).then(response => {
+        deferred.resolve(response)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
+    },
+    updateRecipient (id, obj) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.put(urlApi.recipient.update(id), obj).then(response => {
+        deferred.resolve(response)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
+    },
+    deleteRecipient (id) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.delete(urlApi.recipient.delete(id)).then(response => {
+        deferred.resolve(response)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
     }
   }
 }

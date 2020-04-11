@@ -18,6 +18,9 @@ export default {
       console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
     }
   },
+  created () {
+    document.addEventListener('beforeunload', () => { window.localStorage.clear(); console.log('con') })
+  },
   methods: {
     clickButton: function (data) {
       // $socket is socket.io-client instance

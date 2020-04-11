@@ -8,14 +8,10 @@ export const restFullAPi = {
       config: {
         'Authorization': ''
       },
-      // configHeader: {
-      //   'Access-Control-Allow-Origin': '*',
-      //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-      // },
       get (url) {
         return axios.get(url, {
           headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
         })
       },
@@ -25,17 +21,26 @@ export const restFullAPi = {
       post (url, data) {
         return axios.post(url, data, {
           headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
-        })
-      },
-      postNoneHeader (url, data) {
-        return axios.post(url, data, {
-          headers: this.config
         })
       },
       postWithFromData (url, data) {
         return axios.post(url, querystring.stringify(data))
+      },
+      delete (url) {
+        return axios.delete(url, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+      },
+      put (url, data) {
+        return axios.put(url, data, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        })
       }
     }
   }

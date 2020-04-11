@@ -21,9 +21,12 @@
                 $t("debtReminderManagement")
               }}</b-dropdown-item>
             </b-nav-item-dropdown>
-            <b-nav-item-dropdown :text="$t('payment')" right>
+            <b-nav-item-dropdown :text="$t('account')" right>
               <b-dropdown-item :to="{ name: 'cards' }">{{
                 $t("lstCard")
+              }}</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'recipientList' }">{{
+                $t("recipientList")
               }}</b-dropdown-item>
             </b-nav-item-dropdown>
           </template>
@@ -49,8 +52,8 @@ export default {
   },
   methods: {
     signOut () {
-      this.removeItemInSessionStorage('token')
-      this.removeItemInSessionStorage('currentUser')
+      this.removeItemInLocalStorage('token')
+      this.removeItemInLocalStorage('currentUser')
       this.$store.commit('updateLogin', false)
       this.$router.replace('/dang-nhap')
     }

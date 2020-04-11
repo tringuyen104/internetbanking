@@ -36,6 +36,9 @@ export default {
       required: true
     }
   },
+  created () {
+    if (this.updateSearch && this.updateSearch !== '') { this.$set(this, 'search', this.updateSearch) }
+  },
   watch: {
     search (val, oldVal) {
       this.$emit('searchValue', val)

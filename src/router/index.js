@@ -14,6 +14,7 @@ import DebtReminderManagement from '../components/DebtReminder/DebtReminderManag
 import TransactionManagement from '../components/User/TransactionManagement.vue'
 import NotFound from '../components/Errors/NotFound.vue'
 import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
+import RecipientList from '../components/User/RecipientList.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -62,6 +63,15 @@ const routes = [
     components: {
       headerbar: HeaderBar,
       default: ListCard
+    },
+    meta: { requiredLogin: true }
+  },
+  {
+    path: '/danh-sach-nguoi-nhan',
+    name: 'recipientList',
+    components: {
+      headerbar: HeaderBar,
+      default: RecipientList
     },
     meta: { requiredLogin: true }
   },

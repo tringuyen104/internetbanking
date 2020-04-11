@@ -41,7 +41,7 @@
         />
       </div>
       <form-field-error :validation-errors="errors" :field="'recipientAccount'" />
-      <div class="form-group" v-if="isOutside">
+      <div class="form-group" v-if="isOutside"  :key="'96568A72-6D11-4D14-9EF0-6503C98D2B47'">
         <label for="bank">{{$t("bank")}}</label>
         <v-select
           :name="'bank'"
@@ -51,7 +51,7 @@
           @input="(value) => { transactionInfo.bankId = value }"
           :reduce="bank => bank.id"
           label="bankName"
-          v-validate="!isOutside ? '' : 'required'"
+          v-validate="'required'"
         ></v-select>
       </div>
       <form-field-error :validation-errors="errors" :field="'bank'" />
@@ -237,6 +237,12 @@ export default {
     },
     getAccountBySaving (account) {
       this.transactionInfo.accountTarget = account
+      if (account.bankId && account.bankId !== '') {
+        this.$set(this, 'isOutside', true)
+      } else {
+        this.$set(this, 'isOutside', false)
+      }
+      this.transactionInfo.bankId = account.bankId
     },
     getBanks () {
       this.fetchBankAssociated().then(res => {
@@ -244,6 +250,15 @@ export default {
       // eslint-disable-next-line handle-callback-err
       }, err => {
         this.$set(this, 'banks', [])
+      })
+    },
+    submitOtp (otpCode) {
+      let obj = this.parseDataConfirm(otpCode)
+      this.confirmRequestTransaction(obj).then(res => {
+        this.$helper.toast.success(this, this.$t('transfersSuccess'))
+      // eslint-disable-next-line handle-callback-err
+      }, err => {
+        this.$helper.notification.error(this, err)
       })
     }
   },
@@ -253,6 +268,13 @@ export default {
       if (!checkAmount) {
         this.transactionInfo.amount = ''
       }
+    },
+    isOutside () {
+      this.$validator.pause()
+      this.$nextTick(() => {
+        // this.$validator.reset()
+        this.$validator.resume()
+      })
     }
   }
 }

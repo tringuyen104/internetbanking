@@ -87,8 +87,8 @@ export default {
     },
     loginUser () {
       this.login(this.user).then(res => {
-        this.setItemInSessionStorage('token', res.data.token)
-        this.setItemInSessionStorage('currentUser', this.hashLogin())
+        this.setItemInLocalStorage('token', res.data.token)
+        this.setItemInLocalStorage('currentUser', this.hashLogin())
         this.$store.commit('updateLogin', true)
         this.$router.replace({ name: 'home' })
       }, err => {
@@ -103,32 +103,6 @@ export default {
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)
       this.user.reCAPTCHA = recaptchaToken
-      // const self = this
-      // self.status = 'submitting'
-      // self.$refs.recaptcha.reset()
-      // axios.post('https://vue-recaptcha-demo.herokuapp.com/signup', {
-      //   email: self.email,
-      //   password: self.password,
-      //   recaptchaToken: recaptchaToken
-      // }).then((response) => {
-      //   self.sucessfulServerResponse = response.data.message
-      // }).catch((err) => {
-      //   self.serverError = getErrorMessage(err)
-
-      //   // helper to get a displayable message to the user
-      //   function getErrorMessage (err) {
-      //     let responseBody
-      //     responseBody = err.response
-      //     if (!responseBody) {
-      //       responseBody = err
-      //     } else {
-      //       responseBody = err.response.data || responseBody
-      //     }
-      //     return responseBody.message || JSON.stringify(responseBody)
-      //   }
-      // }).then(() => {
-      //   self.status = ''
-      // })
     },
     onCaptchaExpired () {
       this.$set(this, 'reCapchaToken', '')

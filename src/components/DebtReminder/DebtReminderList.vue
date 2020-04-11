@@ -1,34 +1,45 @@
 <template>
   <div>
-    <confirm ref="modalConfirm" :id="debtId" />
-    <OTP :transfersData="infoModal" :idPopup="idOTPPopup" />
-    <b-table :items="data" :fields="fields" striped responsive="sm">
+    <!-- <OTP :transfersData="infoModal" :idPopup="idOTPPopup"  @submitOtp="submit"/> -->
+    <b-table :items="items" :fields="fields" striped responsive="sm">
       <template v-slot:cell(action)="row">
-        <i
-          class="fas fa-check fa-lg green-color"
-          @click="transfers(row.item, row.index, $event.target)"
-          :title="$t('payment')"
-        ></i>
-        <i
-          class="fas fa-times fa-lg red-color margin-left-05em"
-          @click="remove(row.item, row.index, $event.target)"
-          :title="$t('removeDebt')"
-        ></i>
+        <template v-if="row.item.id">
+          <!-- <i
+            class="fas fa-check fa-lg green-color"
+            @click="transfers(row.item, row.index, $event.target)"
+            :title="$t('payment')"
+          ></i> -->
+          <i
+            class="fas fa-times fa-lg red-color margin-left-05em"
+            @click="remove(row.item, row.index, $event.target)"
+            :title="$t('removeDebt')"
+          ></i>
+        </template>
       </template>
-      <template v-slot:cell(created)="data">
-          <span>{{ $moment(data.item.created).format('MM/DD/YYYY') }}</span>
+      <template  v-slot:cell(userHolder)="row">
+        <template v-if="row.item.userHolder">
+          <label>{{`${row.item.userHolder.firstName} ${row.item.userHolder.lastName}`}}</label>
+        </template>
+      </template>
+      <template v-slot:cell(createDate)="data">
+        <label>{{ $helper.formatDatetime(data.item.createDate) }}</label>
+      </template>
+      <template v-slot:cell(amount)="data">
+        <label>{{ $helper.formatCurrency(data.item.amount) }}</label>
       </template>
     </b-table>
+    <confirm ref="modalConfirm" :id="debtId" :idPopup="idRemovePopup" />
   </div>
 </template>
 
 <script>
 import Confirm from '../Popup/ConfirmRemoveDebt.vue'
-import OTP from '../Popup/OTP.vue'
+import DebtApi from '../../mixins/Debt/DebtApi'
+
 export default {
+  mixins: [DebtApi],
   components: {
-    Confirm,
-    OTP: OTP
+    Confirm
   },
   // extends: Confirm,
   data () {
@@ -36,56 +47,41 @@ export default {
       infoModal: {},
       context: '',
       debtId: 0,
-      idOTPPopup: 'modal-otp-lst',
+      idRemovePopup: 'removeDebtReminder',
       fields: this.$table.fields.debtReminder,
-      items: [
-        {
-          isActive: true,
-          age: 40,
-          id: 1,
-          creator: 'Dickerson',
-          money: '12.000.000',
-          created: new Date()
-        },
-        {
-          isActive: false,
-          age: 21,
-          creator: 'Larsen',
-          money: '123123',
-          created: new Date()
-        },
-        {
-          isActive: false,
-          age: 89,
-          creator: 'Geneva',
-          money: '12,000,000.00',
-          created: new Date(),
-          _showDetails: true
-        },
-        {
-          isActive: true,
-          age: 38,
-          creator: 'Jami',
-          money: '12,224,444.00',
-          created: new Date()
-        }
-      ]
+      items: [{}]
     }
+  },
+  created () {
+    this.getPlaylistDebt()
   },
   methods: {
     remove (item, index, button) {
-      this.infoModal.title = `Row index: ${index}`
-      this.infoModal.content = JSON.stringify(item, null, 2)
-      // this.$refs.modalConfirm.show()
-      this.$bvModal.show('modal-confirm')
-      console.log('run')
+      this.$set(this, 'debtId', item.id)
+      this.$bvModal.show(this.idRemovePopup)
     },
-    transfers (item, index, button) {
-      this.infoModal.title = `Row index: ${index}`
-      this.infoModal.content = item
-      // this.$refs.modalConfirm.show()
-      this.$bvModal.show(this.idOTPPopup)
-      console.log('run')
+    submit (value) {
+      return value
+    },
+    getPlaylistDebt () {
+      return this.fetchPlaylistDebt().then(res => {
+        let data = this.mapData(res.data)
+        console.log(data)
+        this.$set(this, 'items', data)
+      })
+    },
+    mapData (data) {
+      if (!data || data.length === 0) { return [{}] }
+      let copyData = Object.assign([], data)
+      return copyData.map(item => {
+        if (!item.userHolder.firstName) {
+          item.userHolder.firstName = ''
+        }
+        if (!item.userHolder.lastName) {
+          item.userHolder.lastName = ''
+        }
+        return item
+      })
     },
     resetInfoModal () {
       return ''

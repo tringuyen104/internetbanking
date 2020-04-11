@@ -22,15 +22,6 @@ export default {
           )
         }
       })
-    },
-    submitOtp (otpCode) {
-      let obj = this.parseDataConfirm(otpCode)
-      this.confirmRequestTransaction(obj).then(res => {
-        this.$helper.toast.success(this, this.$t('transfersSuccess'))
-      // eslint-disable-next-line handle-callback-err
-      }, err => {
-        this.$helper.notification.error(this, err)
-      })
     }
 
   }

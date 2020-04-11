@@ -4,7 +4,7 @@ export const table = {
       fields: {
         debtReminder: [
           {
-            key: 'creator',
+            key: 'userHolder',
             label: 'Người tạo',
             thClass: 'alert alert-info',
             tdClass: 'alert alert-warning'
@@ -16,7 +16,7 @@ export const table = {
             tdClass: 'alert alert-warning'
           },
           {
-            key: 'created',
+            key: 'createDate',
             label: 'Ngày tạo',
             thClass: 'alert alert-info',
             tdClass: 'alert alert-warning'
@@ -107,7 +107,33 @@ export const table = {
               tdClass: 'alert alert-warning'
             }
           ]
-        }
+        },
+        recipient: [
+          {
+            key: 'index',
+            label: 'STT',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          },
+          {
+            key: 'accountId',
+            label: 'Số tài khoản',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          },
+          {
+            key: 'nameSuggestion',
+            label: 'Tên gợi nhớ',
+            thClass: 'alert alert-info  text-left',
+            tdClass: 'alert alert-warning  text-left'
+          },
+          {
+            key: 'action',
+            label: '',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          }
+        ]
       }
     }
   }

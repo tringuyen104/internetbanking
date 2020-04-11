@@ -12,6 +12,10 @@ $em05: 0.5em;
     margin-left: auto;
 }
 
+.remove-icon {
+    cursor: pointer;
+}
+
 .flex-start {
     margin-right: auto;
 }
@@ -40,6 +44,10 @@ $em05: 0.5em;
 
 .red-color {
     color: $red;
+}
+
+.blue-color {
+    color: $blue;
 }
 
 .border-table {

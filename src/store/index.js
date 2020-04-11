@@ -23,7 +23,7 @@ const DebtReminder = {
 const Login = {
   namespace: true,
   state: {
-    isLogin: bcrypt.compareSync('isLogin', (sessionStorage.getItem('currentUser') ? sessionStorage.getItem('currentUser') : '')),
+    isLogin: bcrypt.compareSync('isLogin', (localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : '')),
     currentUser: {}
   },
   mutations: {
