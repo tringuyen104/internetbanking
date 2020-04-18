@@ -19,16 +19,20 @@ export const restFullAPi = {
           }
         })
       },
+
       getNoneHeader (url) {
         return axios.get(url)
       },
+
       post (url, data) {
+        console.log(3333)
         return axios.post(url, data, {
           headers: {
             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
           }
         })
       },
+
       put (url, data) {
         return axios.put(url, data, {
           headers: {
@@ -36,13 +40,27 @@ export const restFullAPi = {
           }
         })
       },
+
       postNoneHeader (url, data) {
         return axios.post(url, data, {
           headers: this.config
         })
       },
+
       postWithFromData (url, data) {
         return axios.post(url, querystring.stringify(data))
+      },
+
+      postNoneBody (url) {
+        return axios.post(url)
+      },
+
+      delete (url) {
+        return axios.delete(url, {
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          }
+        })
       }
     }
   }

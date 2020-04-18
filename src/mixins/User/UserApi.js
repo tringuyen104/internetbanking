@@ -18,7 +18,17 @@ export default {
 
     createUser (user) {
       var deferred = this.$Jquery.Deferred()
-      this.$api.post(urlApi.user.create, user).then(reponse => {
+      this.$api.post(urlApi.user.createUser, user).then(reponse => {
+        deferred.resolve(reponse)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
+    },
+
+    createEmployee (data) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.post(urlApi.user.createEmployee, data).then(reponse => {
         deferred.resolve(reponse)
       }, error => {
         deferred.reject(error)
@@ -70,14 +80,47 @@ export default {
     recoverPasswordByEmail (data, email) {
       var deferred = this.$Jquery.Deferred()
       var url = urlApi.user.recoverPasswordByEmail + email
-      this.$api.post(url, data).then(res => {
+      this.$api.postWithFromData(url, data).then(res => {
         deferred.resolve(res)
       }, err => {
         deferred.reject(err)
       })
 
       return deferred
-    }
+    },
 
+    getUserInfoByUsername (username) {
+      var deferred = this.$Jquery.Deferred()
+      var url = urlApi.user.getUserInfo + username
+      this.$api.get(url).then(res => {
+        deferred.resolve(res)
+      }, err => {
+        deferred.reject(err)
+      })
+
+      return deferred
+    },
+
+    editEmployeeInfo (data, id) {
+      var deferred = this.$Jquery.Deferred()
+      var url = urlApi.user.editEmployeeInfor + id
+      this.$api.put(url, data).then(reponse => {
+        deferred.resolve(reponse)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
+    },
+
+    removeEmployee (id) {
+      var deferred = this.$Jquery.Deferred()
+      var url = urlApi.user.removeEmployee + id
+      this.$api.delete(url).then(reponse => {
+        deferred.resolve(reponse)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
+    }
   }
 }

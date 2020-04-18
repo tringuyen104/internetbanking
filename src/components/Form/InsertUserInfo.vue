@@ -43,7 +43,7 @@
           type="text"
           class="form-control"
           id="firstName"
-          :placeholder="$t('examname')"
+          :placeholder="$t('exfirstname')"
           name="firstName"
           v-model="user.firstName"
           v-validate="'required'"
@@ -56,7 +56,7 @@
           type="text"
           class="form-control"
           id="lastName"
-          :placeholder="$t('examname')"
+          :placeholder="$t('exlastname')"
           name="lastName"
           v-model="user.lastName"
           v-validate="'required'"
@@ -130,19 +130,41 @@ export default {
     submit () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.createUserAccount()
+          if (this.role === 'staff' && this.role !== 'user') {
+            this.createUserAccount()
+          }
+          if (this.role !== 'staff' && this.role !== 'user') {
+            this.createEmployeeAccount()
+          }
         }
       })
     },
-    createUserAccount () {
-      let obj = {
+
+    createEmployeeAccount () {
+      this.createEmployee(this.convertUIToObject()).then(
+        response => {
+          console.log(response)
+          this.$set(this, 'accountInfo', response.data)
+          this.$bvModal.show(this.idPopup)
+        },
+        error => {
+          this.$helper.handerError(error)
+        }
+      )
+    },
+
+    convertUIToObject () {
+      return {
         'email': this.user.email,
         'firstName': this.user.firstName,
         'lastName': this.user.lastName,
         'phone': this.user.phone,
         'username': this.user.userName
       }
-      this.createUser(obj).then(
+    },
+
+    createUserAccount () {
+      this.createUser(this.convertUIToObject()).then(
         response => {
           console.log(response)
           this.$set(this, 'accountInfo', response.data)
@@ -162,6 +184,11 @@ export default {
       let timeStamp = this.$moment().unix()
       this.user.userName = timeStamp + name
       // this.$set(this, 'user.userName', timeStamp)
+    }
+  },
+  computed: {
+    role () {
+      return atob(this.$store.state.user.r).toLowerCase()
     }
   }
 }

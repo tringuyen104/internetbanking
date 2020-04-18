@@ -16,8 +16,12 @@ export default {
     }
   },
   user: {
-    create: callUrl + 'users/create',
+    createUser: callUrl + 'users/create',
+    createEmployee: callUrl + 'users/employee/create',
     changePassword: callUrl + 'users/password',
-    recoverPasswordByEmail: callUrl + 'users/recover'
+    recoverPasswordByEmail: callUrl + 'users/recover/',
+    getUserInfo: callUrl + 'users/employee/',
+    editEmployeeInfor: callUrl + 'users/employee/',
+    removeEmployee: callUrl + 'users/'
   }
 }

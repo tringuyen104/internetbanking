@@ -167,46 +167,6 @@ const routes = [
       role: [define.role.ad]
     }
   },
-  // {
-  //   path: '/PaymentDebtReminder',
-  //   name: 'paymentDebtReminder',
-  //   components: {
-  //     headerbar: HeaderBar,
-  //     default: PaymentDebtReminder
-  //   }
-  // },
-  // {
-  //   path: '/ReciveMoney',
-  //   name: 'reciveMoney',
-  //   components: {
-  //     headerbar: HeaderBar,
-  //     default: ReciveMoney
-  //   }
-  // },
-  // {
-  //   path: '/Transaction',
-  //   name: 'transaction',
-  //   components: {
-  //     headerbar: HeaderBar,
-  //     default: Transaction
-  //   }
-  // },
-  // {
-  //   path: '/transfersMoney',
-  //   name: 'transfersMoney',
-  //   components: {
-  //     headerbar: HeaderBar,
-  //     default: TransfersMoney
-  //   }
-  // },
-  // {
-  //   path: '/transactionManagement',
-  //   name: 'transactionManagement',
-  //   components: {
-  //     headerbar: HeaderBar,
-  //     default: TransactionManagement
-  //   }
-  // },
   {
     path: '/crossCheck',
     name: 'crossCheck',

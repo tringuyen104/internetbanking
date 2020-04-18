@@ -1,24 +1,67 @@
 <template>
-  <form class="form-label">
+  <form class="form-label" @submit.prevent="search">
     <h2 class="form-title">{{ $t('deltoreditemployee') }}</h2>
     <div class="form-row">
       <div class="input-group mb-3">
-        <input type="email" class="form-control" id="userName" placeholder="Tên đăng nhập" />
+        <input type="text" class="form-control" name="username" placeholder="Tên đăng nhập" v-validate="'required'" v-model="username"/>
         <button type="submit" class="btn btn-primary">{{ $t('search') }}</button>
       </div>
+      <form-field-error :validation-errors="errors" :field="'username'"></form-field-error>
     </div>
-    <BaseUserInfo/>
-    <div class="float-right handle-btn">
-      <button type="submit" class="btn btn-primary">{{ $t('cancel') }}</button>
-      <button type="submit" class="btn btn-primary">{{ $t('delete') }}</button>
-      <button type="submit" class="btn btn-primary">{{ $t('edit') }}</button>
-    </div>
+    <BaseUserInfo v-if="showUserInfo" :userInfo="userInfo" @cancel='hideEmployeeInfor' />
   </form>
 </template>
+
 <script>
 import BaseUserInfo from './../Form/BaseUserInfo'
-export default { components: { BaseUserInfo } }
+import FormFieldError from '../Errors/FormFieldError.vue'
+import UserApi from '../../mixins/User/UserApi'
+export default {
+  mixins: [UserApi],
+  components: {
+    BaseUserInfo,
+    FormFieldError
+  },
+  data () {
+    return {
+      showUserInfo: false,
+      username: '',
+      userInfo: {
+        username: '',
+        id: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        phone: ''
+      }
+    }
+  },
+  methods: {
+    search () {
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          this.getUserInfoByUsername(this.username).then(res => {
+            this.showUserInfo = true
+            this.userInfo.id = res.data.id
+            this.userInfo.email = res.data.email
+            this.userInfo.firstName = res.data.firstName
+            this.userInfo.lastName = res.data.lastName
+            this.userInfo.phone = res.data.phone
+            this.userInfo.username = this.username
+          }, err => {
+            this.$helper.toast.error(this, err.message)
+          })
+        }
+      })
+    },
+
+    hideEmployeeInfor () {
+      this.showUserInfo = false
+    }
+  }
+}
 </script>
+
 <style lang="scss">
 .padding-nav {
   padding-left: 25%;

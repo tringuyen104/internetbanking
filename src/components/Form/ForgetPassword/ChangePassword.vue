@@ -47,14 +47,18 @@
 </template>
 <script>
 import FormFieldError from '../../Errors/FormFieldError.vue'
+import UserApi from '../../../mixins/User/UserApi'
+import urlApi from '../../../mixins/url'
 export default {
+  mixins: [UserApi],
   data () {
     return {
       model: {
         otp: '',
         password: '',
         rePassword: ''
-      }
+      },
+      email: ''
     }
   },
   components: { FormFieldError },
@@ -69,9 +73,22 @@ export default {
     changePassword () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          alert('success')
+          this.recoverPasswordByEmail(this.convertUIModelToPostModel(), this.$router.history.current.params.email).then(res => {
+            this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
+            this.$router.replace({ name: 'home' })
+          }, err => {
+            this.$helper.toast.error(this, err.message)
+          })
         }
       })
+    },
+
+    convertUIModelToPostModel () {
+      return { email: this.$router.history.current.params.email,
+        password: this.model.password,
+        redirect: urlApi.user.recoverPasswordByEmail + this.$router.history.current.params.email,
+        token: this.model.otp
+      }
     }
   }
 }

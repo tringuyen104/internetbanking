@@ -29,6 +29,7 @@
 <script>
 import FormFieldErrors from '../../Errors/FormFieldError.vue'
 import UserApi from '../../../mixins/User/UserApi'
+import urlApi from '../../../mixins/url'
 export default {
   mixins: [UserApi],
   components: { FormFieldErrors },
@@ -49,8 +50,7 @@ export default {
     sendEmail () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.showNext = true // will delete
-          this.recoverPasswordByEmail(this.convertUItoPostModel(), this.email).then(res => {
+          this.recoverPasswordByEmail(this.convertUIModeltoPostModel(), this.email).then(res => {
             this.showNext = true
             this.$helper.toast.success(this, this.$t('notification.sendOTPtoEmailSuccess'))
           }, err => {
@@ -60,8 +60,8 @@ export default {
       })
     },
 
-    convertUItoPostModel () {
-      return { email: this.email }
+    convertUIModeltoPostModel () {
+      return { redirect: urlApi.user.recoverPasswordByEmail + this.email }
     },
 
     redirectToChangePassword () {

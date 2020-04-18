@@ -28,7 +28,8 @@
   "delete": "Xóa",
   "edit": "Sửa",
   "search": "Tìm kiếm",
-  "examname": "Nguyễn Văn A",
+  "exfirstname": "Hoa",
+  "exlastname": "Nguyễn",
   "examphone": "0388008800",
   "examaddress": "123 Nguyễn Văn Cừ, Q.5, Tp.HCM",
   "exammail": "a@gmail.com",
@@ -60,8 +61,8 @@
   "forgetPassword": "Quên mật khẩu",
   "accNumber": "Số tài khoản",
   "content": "Nội dung",
-  "firstName": "Họ",
-  "lastName": "Tên",
+  "firstName": "Tên",
+  "lastName": "Họ",
   "createUserName": "Tạo tên đăng nhập",
   "pleaseInputLastName": "Hãy nhập tên trước.",
   "confirmTransfersMoney": "Xác nhận chuyển tiền",
@@ -69,7 +70,9 @@
     "account": {
       "rechargeFail": "Nạp tiền thất bại.",
       "rechargeSuccess": "Nạp tiền thành công.",
-      "notFound": "Không tìm thấy tài khoản."
+      "notFound": "Không tìm thấy tài khoản.",
+      "editEmployeeInfoSuccess": "Sửa thông tin thành công.",
+      "removeEmployeeSuccess": "Xóa thông tin thành công."
     },
     "inputEmpty": "Bạn chưa nhập dữ liệu.",
     "errorOccurred": "a.",
