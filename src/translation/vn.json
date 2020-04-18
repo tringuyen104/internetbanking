@@ -84,8 +84,9 @@
         "errorOccurred": "a",
         "inputEmpty": "Bạn chưa nhập dữ liệu",
         "notFound": "Không tìm thấy dữ liệu",
-        "pleaseChoiceBank": "Vui lòng chọn ngân hàng",
         "pleaseCheckAccountId": "Vui lòng kiểm tra lại số tài khoản",
+        "pleaseChoiceBank": "Vui lòng chọn ngân hàng",
+        "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không chính xác",
         "account": {
             "notFound": "Không tìm thấy tài khoản",
             "rechargeFail": "Nạp tiền thất bại",

@@ -4,10 +4,12 @@
       <div id="title">
         <h1>{{ $t("signin") }}</h1>
       </div>
+      <br>
       <div class="form-login">
         <form action id="loginForm" @submit.prevent="validateForm">
 
-          <div class="margin-top-30">
+          <form-error :condition="loginFail" :message="$t('notification.userNameOrPasswordWrong')"/>
+          <div class="">
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
@@ -56,7 +58,7 @@
   </div>
 </template>
 <script>
-import FormFieldErrors from '../Errors/FormFieldError.vue'
+import FormError from '../Errors/FormError'
 import VueRecaptcha from 'vue-recaptcha'
 import UserApi from '../../mixins/User/UserApi'
 import BrowserStorage from '../../mixins/BrowserStorage'
@@ -68,10 +70,11 @@ export default {
       user: {
         reCAPTCHA: ''
       },
-      reCapchaToken: ''
+      reCapchaToken: '',
+      loginFail: false
     }
   },
-  components: { FormFieldErrors, VueRecaptcha },
+  components: { FormError, VueRecaptcha },
   methods: {
     validateForm () {
       this.$validator.validateAll().then(valid => {
@@ -94,8 +97,9 @@ export default {
         this.$store.commit('updateLogin', true)
         this.$store.commit('updateUser', currentUser)
         this.$router.replace({ name: 'home' })
+      // eslint-disable-next-line handle-callback-err
       }, err => {
-        console.log(err)
+        this.loginFail = true
       })
     },
     hashLogin () {
