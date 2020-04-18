@@ -4,15 +4,17 @@
       <div id="title">
         <h1>{{ $t("signin") }}</h1>
       </div>
+      <br>
       <div class="form-login">
         <form action id="loginForm" @submit.prevent="validateForm">
 
+          <form-error :condition="loginFail" :message="$t('notification.userNameOrPasswordWrong')"/>
           <div class="margin-top-30">
             <span class="text-style-1">{{ $t('userName') }}</span>
           </div>
           <div>
             <b-input id="userName" v-model="user.username" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
-            <form-field-errors :validation-errors="errors" :field="'userName'" />
+            <form-field-error :validation-errors="errors" :field="'userName'" />
             <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
           <div class="margin-top-30">
@@ -20,7 +22,7 @@
           </div>
           <div>
             <b-input type="password" id="password" v-model="user.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
-            <form-field-errors :validation-errors="errors" :field="'password'" />
+            <form-field-error :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30 capCha-Block">
             <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs" id="reCapcha"></div> -->
@@ -51,7 +53,7 @@
   </div>
 </template>
 <script>
-import FormFieldErrors from '../Errors/FormFieldError.vue'
+import FormError from '../Errors/FormError'
 import VueRecaptcha from 'vue-recaptcha'
 import UserApi from '../../mixins/User/UserApi'
 import BrowserStorage from '../../mixins/BrowserStorage'
@@ -61,15 +63,15 @@ export default {
   data () {
     return {
       user: {},
-      reCapchaToken: ''
+      reCapchaToken: '',
+      loginFail: false
     }
   },
-  components: { FormFieldErrors, VueRecaptcha },
+  components: { FormError, VueRecaptcha },
   methods: {
     validateForm () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          console.log('true')
           if (this.reCapchaToken === '') {
             alert('Please include recapcha')
             return
@@ -90,11 +92,14 @@ export default {
         this.setItemInSessionStorage('token', res.data.token)
         this.setItemInSessionStorage('currentUser', this.hashLogin())
         this.setItemInSessionStorage('r', res.data.rl)
+        this.setItemInSessionStorage('user', res.data.userInfo.username)
         this.$store.commit('updateLogin', true)
+        this.$store.commit('updateUsername', res.data.userInfo.username)
         this.$store.commit('updateR', res.data.rl)
         this.$router.replace({ name: 'home' })
+      // eslint-disable-next-line handle-callback-err
       }, err => {
-        console.log(err)
+        this.loginFail = true
       })
     },
     onCaptchaVerified (recaptchaToken) {

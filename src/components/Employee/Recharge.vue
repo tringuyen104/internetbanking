@@ -185,6 +185,7 @@ export default {
       if (!accountId || accountId.trim() === '') {
         return
       }
+      accountId = accountId.trim()
       return this.fetchAccountByAccountId(accountId).then(
         res => {
           if (!res.data) {

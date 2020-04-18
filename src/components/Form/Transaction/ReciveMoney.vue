@@ -9,9 +9,6 @@ export default {
       items: [{}]
     }
   },
-  created () {
-    // this.$set(this, 'items', this.$helper.sortAsc(this.items, 'created'))
-  },
   methods: {
     fetchDataRecive (searchText, page, size) {
       console.log('recive')

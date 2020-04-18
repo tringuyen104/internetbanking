@@ -7,6 +7,9 @@ export default {
   recharge: callUrl + 'accounts/recharge',
   account: {
     findAccountByAccountId: callUrl + 'accounts/account/',
+    findByAccountIdAndBankId (accountId, bankId) {
+      return `${callUrl}accounts?accountId=${accountId}&bankId=${!bankId ? '' : bankId}`
+    },
     findAccountByUserName: callUrl + 'accounts/accounts/',
     deposit: callUrl + 'accounts/deposit'
   },

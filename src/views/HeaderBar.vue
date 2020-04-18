@@ -3,22 +3,24 @@
     <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand :to="{ name: 'home' }">TienMo</b-navbar-brand>
       <!-- <b-navbar><b-button type="button" @click.prevent="change">Change {{  ( !staff ? 'Employee' : 'Admin' )  }}</b-button>
-      </b-navbar>
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
+      </b-navbar>-->
 
+      <b-navbar-toggle target="nav-collapse"/>
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <div v-if="role === 'staff'">
+        <b-navbar-nav class="ml-auto nav-items-right">
+          <template v-if="role === 'staff'">
             <HeaderEmployee></HeaderEmployee>
-          </div>
-          <div v-if="role === 'admin'">
+          </template>
+          <template v-if="role === 'admin'">
             <HeaderAdmin></HeaderAdmin>
-          </div>
+          </template>
 
           <template v-if="isLogin">
-            <b-nav-item :to="{ name: 'changePass' }">{{ $t("changePass")}}</b-nav-item>
-            <b-nav-item @click.prevent="signOut">{{ $t("signOut") }}</b-nav-item>
+            <b-nav-item-dropdown :html="`<i class='far fa-user-circle fa-2x'/>`" right no-caret :title="userName">
+              <b-nav-item :to="{ name: 'changePass' }">{{ $t("changePass")}}</b-nav-item>
+              <b-nav-item @click.prevent="signOut">{{ $t("signOut") }}</b-nav-item>
+            </b-nav-item-dropdown>
           </template>
           <b-nav-item :to="{ name: 'login' }" v-show="!isLogin">{{ $t("signin") }}</b-nav-item>
         </b-navbar-nav>
@@ -40,9 +42,7 @@ export default {
   mixins: [BrowserStorage],
   methods: {
     signOut () {
-      this.removeItemInSessionStorage('token')
-      this.removeItemInSessionStorage('currentUser')
-      this.removeItemInSessionStorage('r')
+      window.sessionStorage.clear()
       this.$store.commit('updateLogin', false)
       this.$store.commit('updateR', '')
       this.$router.replace({ name: 'home' })
@@ -54,6 +54,10 @@ export default {
     },
     isLogin () {
       return this.$store.state.user.isLogin
+    },
+    userName () {
+      let userName = this.$store.state.user.userName
+      return userName || ''
     }
   }
 }
@@ -71,5 +75,11 @@ export default {
 
 .border-bottom {
   border-bottom: 0.5em;
+}
+
+.nav-items-right {
+  li {
+    margin: auto;
+  }
 }
 </style>

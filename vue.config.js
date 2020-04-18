@@ -11,7 +11,7 @@ module.exports = {
       registry: undefined,
       awsProfile: 'default',
       region: 'us-east-1',
-      bucket: 'hcmus-lthd-admin',
+      bucket: 'hcmus-lthd-19-admin-site',
       createBucket: true,
       staticHosting: true,
       staticIndexPage: 'index.html',
