@@ -42,10 +42,10 @@ export default {
       })
       return deferred
     },
-    deleteDebt (id) {
+    deleteDebt (id, data) {
       var deferred = this.$Jquery.Deferred()
 
-      this.$api.delete(urlApi.debt.delete(id)).then(reponse => {
+      this.$api.deleteWithModel(urlApi.debt.delete(id), data).then(reponse => {
         deferred.resolve(reponse)
       }, error => {
         deferred.reject(error)

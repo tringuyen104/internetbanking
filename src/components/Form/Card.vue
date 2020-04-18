@@ -39,6 +39,7 @@ export default {
   },
   computed: {
     cardType () {
+      console.log(this.type)
       return this.$store.state.account.type[this.type]
     }
   }

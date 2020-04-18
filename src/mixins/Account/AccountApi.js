@@ -2,7 +2,7 @@ import urlApi from '../url'
 // import { define } from '../../common/define'
 export default {
   methods: {
-    fetchAccountByAccountId (value) {
+    fetchAccountByAccountId (value, bankId) {
       var deferred = this.$Jquery.Deferred()
       if (!value) {
         deferred.resolve({
@@ -11,8 +11,7 @@ export default {
         })
         return deferred
       }
-      let url = urlApi.account.urlFindByAccountId + value
-      console.log(url)
+      let url = urlApi.account.urlFindByAccountIdAndBankId(value, bankId)
       this.$api.get(url).then(reponse => {
         deferred.resolve(reponse)
       }, error => {

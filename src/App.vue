@@ -19,9 +19,14 @@ export default {
     }
   },
   created () {
-    document.addEventListener('beforeunload', () => { window.localStorage.clear(); console.log('con') })
+    //  window.addEventListener('beforeunload', (e) => { this.handler(e) })
   },
   methods: {
+    handler (e) {
+      alert('test')
+      e.preventDefault()
+      e.returnValue = ''
+    },
     clickButton: function (data) {
       // $socket is socket.io-client instance
       this.$socket.emit('emit_method', data)

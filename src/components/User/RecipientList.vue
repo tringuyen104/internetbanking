@@ -99,7 +99,6 @@ export default {
       })
     },
     edit (item, index, event) {
-      console.log(item)
       this.$set(this, 'isEdit', true)
       this.$set(this, 'recipient', item)
       this.$bvModal.show(this.idRecipientPopup)
@@ -108,6 +107,12 @@ export default {
       this.$set(this, 'filter', value)
     },
     addRecipientUser () {
+      let accountInfo = {
+        id: '',
+        nameSuggestion: '',
+        bankId: ''
+      }
+      this.$set(this, 'recipient', accountInfo)
       this.$set(this, 'isEdit', false)
       this.$bvModal.show(this.idRecipientPopup)
     }

@@ -33,7 +33,7 @@
                 :clearable="false"
                 :options="banks"
                 v-model="accountInfo.bankId"
-                @input="(value) => { accountInfo.bankId = value }"
+                @input="changeBankId"
                 :reduce="bank => bank.id"
                 label="bankName"
                 v-validate="!isOutside ? '' : 'required'"
@@ -47,7 +47,7 @@
                 class="form-control"
                 name="suggestionName"
                 v-validate="'required'"
-                v-model="accountInfo.suggestionName"
+                v-model="accountInfo.nameSuggestion"
             />
         </div>
         <form-field-error :validation-errors="errors" :field="'suggestionName'" />
@@ -64,7 +64,7 @@
           class="mt-3 col-md-6"
           variant="light"
           block
-          @click="toggleModal"
+          @click="hide"
           >{{ $t("cancel") }}</b-button
         >
       </div>
@@ -98,7 +98,7 @@ export default {
       isSearch: true,
       accountInfo: {
         id: '',
-        suggestionName: '',
+        nameSuggestion: '',
         bankId: ''
       },
       seachUpdate: '',
@@ -110,10 +110,19 @@ export default {
   },
   methods: {
     resetData () {
-      this.accountInfo = {
-        id: '',
-        suggestionName: ''
+      // this.recipient = {
+      //   id: '',
+      //   suggestionName: ''
+      // }
+      this.seachUpdate = ''
+      this.isOutside = false
+    },
+    changeBankId (value) {
+      if (this.accountInfo.id.trim() === '') {
+        return
       }
+      this.accountInfo.bankId = value
+      this.findAcountByAccountId(this.accountInfo.id)
     },
     updateAccountId (value) {
       this.accountInfo.id = value
@@ -130,23 +139,23 @@ export default {
           .catch(errors => {})
       })
     },
-    toggleModal () {
-      this.$refs['modal-otp'].toggle('#toggle-btn')
-      this.resetData()
+    hide () {
+      // this.resetData()
+      this.$bvModal.hide(this.idPopup)
     },
     parseData () {
       return {
         'accountId': this.accountInfo.id,
         'bankId': this.isOutside ? this.accountInfo.bankId : null,
-        'nameSuggestion': this.accountInfo.suggestionName
+        'nameSuggestion': this.accountInfo.nameSuggestion
       }
     },
     editRecipient () {
       let obj = this.parseData()
       this.updateRecipient(this.recipient.id, obj).then(res => {
         this.$helper.toast.success(this, this.$t('updateRecipientSuccess'))
-        this.toggleModal()
         this.$emit('doneUpdate')
+        this.hide()
       }, err => {
         this.$helper.notification.error(this, err)
       })
@@ -157,8 +166,8 @@ export default {
       this.addRecipient(obj).then(res => {
         this.$helper.toast.success(this, this.$t('newRecipientSuccess'))
         this.isLoading = false
-        this.toggleModal()
         this.$emit('doneUpdate')
+        this.hide()
       }, err => {
         this.isLoading = false
         this.$helper.notification.error(this, err)
@@ -177,9 +186,22 @@ export default {
       if (!accountId || accountId.trim() === '') {
         return
       }
-      return this.fetchAccountByAccountId(accountId).then(
+
+      let bankId = this.accountInfo.bankId
+
+      if (this.isOutside && (!bankId || bankId.trim() === '')) {
+        this.$helper.toast.warning(this, this.$t('notification.pleaseChoiceBank'))
+        this.isLoading = false
+        return
+      }
+
+      if (!this.isOutside) {
+        bankId = null
+      }
+
+      return this.fetchAccountByAccountId(accountId, bankId).then(
         res => {
-          if (!res.data) {
+          if (!res.data || res.data.length === 0) {
             this.$helper.toast.warning(this, this.$t('notification.notFound'))
           }
           this.accountInfo.suggestionName = res.data.ownerName
@@ -206,28 +228,39 @@ export default {
   computed: {
     title () {
       return this.isEdit ? this.$t('editRecipient') : this.$t('createRecipient')
-    }
+    } // ,
+    // accountInfo () {
+    //   let account = {
+    //     id: this.recipient.accountId,
+    //     bankId: this.recipient.bankId,
+    //     suggestionName: this.recipient.nameSuggestion
+    //   }
+    //   this.$set(this, 'seachUpdate', account.id)
+    //   return account
+    // }
   },
   watch: {
     'accountInfo.id' (val, old) {
       this.findAccount(val)
     },
     recipient (val, old) {
-      if (val === old) {
-        this.resetData()
-        return
-      }
-
       if (val.bankId && val.bankId !== '') {
         this.isOutside = true
       } else {
         this.isOutside = false
       }
-
       this.isSearch = false
+
+      // let account = {
+      //   id: val.accountId,
+      //   bankId: val.bankId,
+      //   suggestionName: val.nameSuggestion
+      // }
+      console.log(val)
       this.$set(this, 'seachUpdate', val.accountId)
-      this.accountInfo.suggestionName = val.nameSuggestion
-      this.accountInfo.bankId = val.bankId
+      this.$set(this, 'accountInfo', val)
+      // this.accountInfo.suggestionName = val.nameSuggestion
+      // this.accountInfo.bankId = val.bankId
     },
     isOutside () {
       this.$validator.pause()

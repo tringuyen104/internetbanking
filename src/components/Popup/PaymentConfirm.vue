@@ -1,20 +1,31 @@
 <template>
-  <b-modal ref="modalConfirm" hide-footer :title="$t('confirmPayment')" :id="idPopup">
-    <div class="d-block text-center">
+  <b-modal ref="modalConfirm" hide-footer :title="$t('transactionConfirm')" :id="idPopup">
+    <div class="d-block text-center content-confirm-payment">
       <div class="confirm-content">
         <label class="form-label flex">
-          <strong>{{ $t("mortgagee") }}</strong>
+          <strong>{{ $t("transfersFor") }}</strong>
         </label>
         <label
           class="form-label flex"
-          v-if="item.userHolder"
-        >{{`${item.userHolder.firstName} ${item.userHolder.lastName}`}}</label>
+        ><i class="far fa-user fa-lg"></i>{{item.fullName}}</label>
       </div>
       <div class="confirm-content">
         <label class="form-label flex">
           <strong>{{ $t("money") }}</strong>
         </label>
-        <label class="form-label flex">{{$helper.formatCurrency(item.amount)}}</label>
+        <label class="form-label flex"><i class="fas fa-money-bill fa-lg"></i>{{$helper.formatCurrency(item.amount)}}</label>
+      </div>
+      <div class="confirm-content">
+        <label class="form-label flex">
+          <strong>{{ $t("transactionFee") }}</strong>
+        </label>
+        <label class="form-label flex"><i class="fas fa-shipping-fast fa-lg"></i>{{$helper.formatCurrency(item.fee)}}</label>
+      </div>
+      <div class="confirm-content">
+        <label class="form-label flex">
+          <strong>{{ $t("content") }}</strong>
+        </label>
+        <label class="form-label flex"><i class="fas fa-sticky-note fa-lg"></i>{{item.content}}</label>
       </div>
     </div>
     <div class="d-flex">
@@ -59,3 +70,12 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.content-confirm-payment {
+  i {
+    margin-top: 3px;
+    margin-right: 10px;
+    color: #797d81;
+  }
+}
+</style>

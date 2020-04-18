@@ -54,7 +54,7 @@ export default {
     comfirm () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.$emit('remove', this)
+          this.$emit('remove', { id: this.id, context: this.context })
           this.hide()
         }
       })

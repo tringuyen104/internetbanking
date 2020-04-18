@@ -1,6 +1,9 @@
 <template>
   <div class="col-lg-6" id="transfersForm">
-    <OTP :idPopup="idOTPopup" @submitOtp="submitOtp" />
+    <loading
+      :active.sync="isLoading"
+      :is-full-page="true"
+    />
     <div class="flex">
       <h2 class="transfer-title">{{$t('transfersMoney')}}</h2>
       <div class="flex-end flex status-transfers">
@@ -11,7 +14,7 @@
       </div>
     </div>
     <br />
-    <form @submit.prevent="transfers">
+    <form @submit.prevent="showConfirmationPopup">
       <div class="form-group">
         <label for="account">{{ $t("accountDestination") }}</label>
         <v-select
@@ -48,7 +51,7 @@
           :clearable="false"
           :options="banks"
           v-model="transactionInfo.bankId"
-          @input="(value) => { transactionInfo.bankId = value }"
+          @input="changeBankId"
           :reduce="bank => bank.id"
           label="bankName"
           v-validate="'required'"
@@ -114,6 +117,8 @@
         :idPopup="idSavingPopup"
         @get-account-saving="getAccountBySaving"
       />
+      <OTP :idPopup="idOTPopup" @submitOtp="submitOtp" />
+      <payment-confirm :item="infoPayment" :idPopup="idPaymentConfirmPopup" @payment="showOTPPopup"/>
     </form>
   </div>
 </template>
@@ -121,28 +126,36 @@
 import OTP from '../Popup/OTP.vue'
 import UserApi from '../.././mixins/User/UserApi'
 import BankApi from '../.././mixins/Bank/BankApi'
+import AccountApi from '../../mixins/Account/AccountApi'
 import SavingUsers from '../Popup/SavingUsers'
+import PaymentConfirm from '../Popup/PaymentConfirm'
 import { define } from '../../common/define'
 
 export default {
-  mixins: [UserApi, BankApi],
+  mixins: [UserApi, BankApi, AccountApi],
   components: {
     OTP: OTP,
-    SavingUsers
+    SavingUsers,
+    PaymentConfirm
   },
   data () {
     return {
       isOutside: false,
+      isLoading: false,
+      isSearch: true,
+      currency: define.currency,
       idOTPopup: 'transfers',
       idSavingPopup: 'savingPopup',
-      currency: define.currency,
+      idPaymentConfirmPopup: 'transfers-payment-popup-id',
+      infoPayment: {},
       cards: [],
       banks: [],
       accountsTransactions: [],
       confirmationId: '',
       transactionInfo: {
         accountTarget: {
-          accountId: null
+          accountId: null,
+          fullName: ''
         },
         amount: '',
         content: '',
@@ -188,6 +201,27 @@ export default {
         target: this.transactionInfo.accountTarget.accountId,
         type: define.method.transfers
       }
+    },
+    showOTPPopup () {
+      this.$bvModal.show(this.idOTPopup)
+    },
+    showConfirmationPopup () {
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          let obj = this.parseData()
+          this.createRequestTransaction(obj).then(
+            res => {
+              let sendItem = Object.assign({}, res.data)
+              sendItem.fullName = this.transactionInfo.accountTarget.fullName
+              this.$set(this, 'infoPayment', sendItem)
+              this.$set(this, 'confirmationId', res.data.id)
+              this.$bvModal.show(this.idPaymentConfirmPopup)
+            }, err => {
+              this.$helper.notification.error(this, err)
+            }
+          )
+        }
+      })
     },
     parseDataOutside () {
       return {
@@ -242,6 +276,7 @@ export default {
       } else {
         this.$set(this, 'isOutside', false)
       }
+      this.isSearch = false
       this.transactionInfo.bankId = account.bankId
     },
     getBanks () {
@@ -260,6 +295,57 @@ export default {
       }, err => {
         this.$helper.notification.error(this, err)
       })
+    },
+    changeBankId (value) {
+      let accountId = this.transactionInfo.accountTarget.accountId
+      if (accountId.trim() === '') {
+        return
+      }
+      this.transactionInfo.bankId = value
+      this.findAcountByAccountId(accountId)
+    },
+    findAccount (value) {
+      value = value.trim()
+      if (!value || value === '' || !this.isSearch) {
+        this.isSearch = true
+        return
+      }
+      this.$helper.callOneTimes(this.findAcountByAccountId, 1000, value)
+    },
+    findAcountByAccountId (accountId) {
+      this.isLoading = true
+      if (!accountId || accountId.trim() === '' || isNaN(accountId)) {
+        this.isLoading = false
+        this.$helper.toast.warning(this, this.$t('notification.pleaseCheckAccountId'))
+        return
+      }
+      let bankId = this.transactionInfo.bankId
+      if (this.isOutside && (!bankId || bankId.trim() === '')) {
+        this.isLoading = false
+        this.$helper.toast.warning(this, this.$t('notification.pleaseChoiceBank'))
+        return
+      }
+
+      if (!this.isOutside) {
+        bankId = null
+      }
+
+      return this.fetchAccountByAccountId(accountId, bankId).then(
+        res => {
+          if (!res.data || res.data.length === 0 || Object.entries(res.data).length === 0) {
+            this.$helper.toast.warning(this, this.$t('notification.notFound'))
+          }
+          this.transactionInfo.accountTarget.fullName = res.data.ownerName
+          this.isLoading = false
+          // eslint-disable-next-line handle-callback-err
+        }, err => {
+          this.isLoading = false
+          this.$helper.toast.error(
+            this,
+            this.$t('notification.contactToAdmin')
+          )
+        }
+      )
     }
   },
   watch: {
@@ -269,12 +355,17 @@ export default {
         this.transactionInfo.amount = ''
       }
     },
+
     isOutside () {
       this.$validator.pause()
       this.$nextTick(() => {
         // this.$validator.reset()
         this.$validator.resume()
       })
+    },
+
+    'transactionInfo.accountTarget.accountId' (val, oldVal) {
+      this.findAccount(val)
     }
   }
 }

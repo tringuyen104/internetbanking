@@ -23,15 +23,15 @@ const DebtReminder = {
 const Login = {
   namespace: true,
   state: {
-    isLogin: bcrypt.compareSync('isLogin', (localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : '')),
-    currentUser: {}
+    isLogin: bcrypt.compareSync('isLogin', (localStorage.getItem('login') ? localStorage.getItem('login') : '')),
+    user: localStorage.getItem('user') ? localStorage.getItem('user') : ''
   },
   mutations: {
-    updateCurrentUser (state, data) {
-      state.currentUser = data
-    },
     updateLogin (state, data) {
       state.isLogin = data
+    },
+    updateUser (state, data) {
+      state.user = data
     }
   }
 }
@@ -41,7 +41,7 @@ const Account = {
   state: {
     type: {
       'SAVING': 'Tiết kiệm',
-      'Payment': 'Thanh toán'
+      'PAYMENT': 'Thanh toán'
     }
   }
 }

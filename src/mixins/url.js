@@ -12,7 +12,7 @@ export default {
       return `${callUrl}debt/pay/${id}`
     },
     delete (id) {
-      return `${callUrl}debt/delete/${id}`
+      return `${callUrl}debt/cancel/${id}`
     }
   },
   account: {
@@ -20,7 +20,7 @@ export default {
     urlFindByUserName: callUrl + '/accounts/username/',
     deposit: callUrl + 'accounts/deposit',
     userListSaved: callUrl + 'receivers',
-    urlFindByBankId (bankId, accountId) { return `${callUrl}accounts/bank/${bankId}/${accountId}` }
+    urlFindByAccountIdAndBankId (bankId, accountId) { return `${callUrl}accounts?accountId=${bankId}&bankId=${!accountId ? '' : accountId}` }
   },
   transaction: {
     history (startDate, endDate, page, size, accountId, type) {

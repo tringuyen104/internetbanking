@@ -35,6 +35,14 @@ export const restFullAPi = {
           }
         })
       },
+      deleteWithModel (url, obj) {
+        return axios.delete(url, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          },
+          data: obj
+        })
+      },
       put (url, data) {
         return axios.put(url, data, {
           headers: {

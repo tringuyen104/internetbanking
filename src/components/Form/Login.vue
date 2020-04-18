@@ -87,9 +87,12 @@ export default {
     },
     loginUser () {
       this.login(this.user).then(res => {
+        let currentUser = this.hashUser(res.data.userInfo)
         this.setItemInLocalStorage('token', res.data.token)
-        this.setItemInLocalStorage('currentUser', this.hashLogin())
+        this.setItemInLocalStorage('login', this.hashLogin())
+        this.setItemInLocalStorage('user', currentUser)
         this.$store.commit('updateLogin', true)
+        this.$store.commit('updateUser', currentUser)
         this.$router.replace({ name: 'home' })
       }, err => {
         console.log(err)
@@ -98,6 +101,11 @@ export default {
     hashLogin () {
       var salt = bcrypt.genSaltSync(10)
       var hash = bcrypt.hashSync('isLogin', salt)
+      return hash
+    },
+    hashUser (data) {
+      let jsonData = JSON.stringify(data)
+      let hash = btoa(jsonData)
       return hash
     },
     onCaptchaVerified (recaptchaToken) {

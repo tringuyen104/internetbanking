@@ -1,11 +1,11 @@
 <template>
-  <div class="nav-position border-bottom">
+  <div class="nav-position border-bottom headerbar-custom">
     <b-navbar toggleable="lg" type="light" variant="light" id="nav-bar">
       <b-navbar-brand :to="{ name: 'home' }">TienMo</b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-navbar-toggle target="nav-collapse" ref="navbarToggle"/>
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto headerbar-custom_right">
           <template v-if="isLogin">
             <b-nav-item :to="{ name: 'transactionManagement' }">{{
               $t("lstTransaction")
@@ -13,29 +13,61 @@
             <b-nav-item :to="{ name: 'bankingTransfers' }">{{
               $t("transfers")
             }}</b-nav-item>
-            <b-nav-item-dropdown :text="$t('debtReminder')" right>
-              <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{
-                $t("createDebtReminder")
-              }}</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'debtReminderManagement' }">{{
-                $t("debtReminderManagement")
-              }}</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown :text="$t('account')" right>
-              <b-dropdown-item :to="{ name: 'cards' }">{{
-                $t("lstCard")
-              }}</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'recipientList' }">{{
-                $t("recipientList")
-              }}</b-dropdown-item>
-            </b-nav-item-dropdown>
+            <li id="header-popup-over-debt" class="nav-item b-nav-dropdown dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle nav-link-custom"
+              >{{$t('debtReminder')}}</a>
+              <b-popover
+                :target="'header-popup-over-debt'"
+                triggers="hover"
+                :placement="'bottom'"
+                class="dropdown-menu"
+              >
+                  <b-link class="dropdown-item" :to="{ name: 'createDebtReminder' }">{{$t("createDebtReminder")}}</b-link>
+                  <b-link class="dropdown-item" :to="{ name: 'debtReminderManagement' }">{{$t("debtReminderManagement")}}</b-link>
+              </b-popover>
+            </li>
+            <li id="header-popup-over-account" class="nav-item b-nav-dropdown dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle nav-link-custom"
+              >{{$t('account')}}</a>
+              <b-popover
+                :target="'header-popup-over-account'"
+                triggers="hover"
+                :placement="'bottom'"
+                class="dropdown-menu"
+              >
+                  <b-link class="dropdown-item" :to="{ name: 'cards' }">{{$t("lstCard")}}</b-link>
+                  <b-link class="dropdown-item" :to="{ name: 'recipientList'}">{{$t('recipientList')}}</b-link>
+              </b-popover>
+            </li>
           </template>
           <b-nav-item :to="{ name: 'login' }" v-show="!isLogin">{{
             $t("signin")
           }}</b-nav-item>
-          <b-nav-item @click.prevent="signOut" v-show="isLogin">{{
+          <!-- <b-nav-item @click.prevent="signOut" v-show="isLogin">{{
             $t("signOut")
-          }}</b-nav-item>
+          }}</b-nav-item> -->
+          <b-nav-item v-show="isLogin">
+            <div style="margin-top: 4px;cusor: pointer;" @click="showProfile = !showProfile; $Jquery('#__bv_popupover_47__')" id="popup-over-profile">
+               <a href="#" id="nav-popup-profile" >
+                 <i class="far fa-user-circle fa-2x"></i>
+              </a>
+            </div>
+              <b-popover
+                :target="'popup-over-profile'"
+                :placement="'bottomleft'"
+                triggers="hover"
+                :class="'dropdown-menu custom-dropdown-item'"
+              >
+                  <a class="dropdown-item" href="#">{{userName}}</a>
+                  <a class="dropdown-item" href="#">{{$t('changePassword')}}</a>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" @click.prevent="signOut">{{$t("signOut")}}</button>
+              </b-popover>
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -45,27 +77,36 @@
 import BrowserStorage from '../mixins/BrowserStorage'
 export default {
   mixins: [BrowserStorage],
+  data () {
+    return {
+      showProfile: false
+    }
+  },
   computed: {
     isLogin () {
       return this.$store.state.login.isLogin
+    },
+    userName () {
+      let json = atob(this.$store.state.login.user)
+      let userName = !json ? '' : JSON.parse(json).username
+      return userName
+    },
+    toggle () {
+      console.log(this.$refs.navbarToggle.toggleState)
+      return ''
     }
   },
   methods: {
     signOut () {
-      this.removeItemInLocalStorage('token')
-      this.removeItemInLocalStorage('currentUser')
+      window.localStorage.clear()
       this.$store.commit('updateLogin', false)
+      this.$store.commit('updateUser', '')
       this.$router.replace('/dang-nhap')
     }
   }
 }
 </script>
 <style lang="scss">
-// @import url("https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text&display=swap");
-// .logo-font {
-//   font-family: "Libre Barcode 39 Text", cursive;
-//   font-size: 1.5em;
-// }
 #nav-bar {
   padding: 0px;
   padding-left: 20px;
@@ -78,5 +119,19 @@ export default {
 
 .border-bottom {
   border-bottom: 0.5em;
+}
+
+.headerbar-custom {
+  .headerbar-custom_right {
+    li {
+      margin: auto;
+    }
+  }
+}
+
+.popover-body {
+  a, button {
+    font-size: 12.5pt;
+    }
 }
 </style>

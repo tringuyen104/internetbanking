@@ -4,14 +4,9 @@
     <b-table :items="items" :fields="fields" striped responsive="sm">
       <template v-slot:cell(action)="row">
         <template v-if="row.item.id">
-          <!-- <i
-            class="fas fa-check fa-lg green-color"
-            @click="transfers(row.item, row.index, $event.target)"
-            :title="$t('payment')"
-          ></i> -->
           <i
             class="fas fa-times fa-lg red-color margin-left-05em"
-            @click="remove(row.item, row.index, $event.target)"
+            @click="confirmRemove(row.item, row.index, $event.target)"
             :title="$t('removeDebt')"
           ></i>
         </template>
@@ -28,7 +23,7 @@
         <label>{{ $helper.formatCurrency(data.item.amount) }}</label>
       </template>
     </b-table>
-    <confirm ref="modalConfirm" :id="debtId" :idPopup="idRemovePopup" />
+    <confirm ref="modalConfirm" :id="debtId" :idPopup="idRemovePopup" @remove="remove"/>
   </div>
 </template>
 
@@ -52,22 +47,27 @@ export default {
       items: [{}]
     }
   },
-  created () {
-    this.getPlaylistDebt()
-  },
   methods: {
-    remove (item, index, button) {
+    confirmRemove (item, index, button) {
       this.$set(this, 'debtId', item.id)
       this.$bvModal.show(this.idRemovePopup)
     },
-    submit (value) {
-      return value
+    remove (value) {
+      let obj = {
+        content: value.context
+      }
+      this.deleteDebt(value.id, obj).then(res => {
+        this.$helper.toast.success(this, this.$t('removeDebtSuccess'))
+        this.getPlaylistDebt()
+      }, err => {
+        this.$helper.notification.error(this, err)
+      })
     },
     getPlaylistDebt () {
       return this.fetchPlaylistDebt().then(res => {
         let data = this.mapData(res.data)
-        console.log(data)
         this.$set(this, 'items', data)
+        console.log(data)
       })
     },
     mapData (data) {
@@ -91,15 +91,6 @@ export default {
     data () {
       return this.$store.state.debtReminder.lstDebtData
     }
-  },
-  created () {
-    this.$store.commit('updateLstDebtData', this.items)
   }
-//   ,
-//   watch: {
-//     data () {
-//       console.log(this.data)
-//     }
-//   }
 }
 </script>
