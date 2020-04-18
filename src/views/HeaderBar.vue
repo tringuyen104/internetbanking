@@ -63,7 +63,7 @@
                 :class="'dropdown-menu custom-dropdown-item'"
               >
                   <a class="dropdown-item" href="#">{{userName}}</a>
-                  <a class="dropdown-item" href="#">{{$t('changePassword')}}</a>
+                  <button class="dropdown-item" @click.prevent="changePassword">{{$t("changePassword")}}</button>
                   <div class="dropdown-divider"></div>
                   <button class="dropdown-item" @click.prevent="signOut">{{$t("signOut")}}</button>
               </b-popover>
@@ -102,6 +102,10 @@ export default {
       this.$store.commit('updateLogin', false)
       this.$store.commit('updateUser', '')
       this.$router.replace('/dang-nhap')
+    },
+
+    changePassword () {
+      this.$router.push({ name: 'changePassword' })
     }
   }
 }

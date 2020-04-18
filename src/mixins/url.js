@@ -38,6 +38,7 @@ export default {
     update (id) { return `${callUrl}receivers/update/${id}` }
   },
   user: {
-    recoverPasswordByEmail: callUrl + 'users/recover/'
+    recoverPasswordByEmail: callUrl + 'users/recover/',
+    changePassword: callUrl + 'users/password'
   }
 }

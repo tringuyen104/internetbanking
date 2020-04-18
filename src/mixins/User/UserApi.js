@@ -88,6 +88,16 @@ export default {
       })
 
       return deferred
+    },
+    changePassword (data) {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.post(urlApi.user.changePassword, data).then(res => {
+        deferred.resolve(res)
+      }, err => {
+        deferred.reject(err)
+      })
+
+      return deferred
     }
   }
 }

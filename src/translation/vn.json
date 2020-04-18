@@ -78,6 +78,10 @@
     "updateRecipientSuccess": "Cập nhật người nhận thành công",
     "userName": "Tên đăng nhập",
     "usernameOrAccountNumber": "Số tài khoản hoặc tên đăng nhập.",
+    "changePass": "Đổi mật khẩu",
+    "oldPass": "Nhập mật khẩu cũ",
+    "newPass": "Nhập mật khẩu mới",
+    "confirmPass": "Nhập lại mật khẩu mới",
     "notification": {
       "choiceAccountNumber": "Chọn số tài khoản",
       "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",

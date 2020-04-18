@@ -63,7 +63,7 @@ export default {
       return { redirect: urlApi.user.recoverPasswordByEmail + this.email }
     },
     redirectToChangePassword () {
-      this.$router.push({ name: 'changePassword', params: { email: this.email } })
+      this.$router.push({ name: 'recoverPassword', params: { email: this.email } })
     }
   }
 }
