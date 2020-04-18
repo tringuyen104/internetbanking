@@ -14,15 +14,16 @@
           </div>
           <div>
             <b-input id="userName" v-model="user.username" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="userName"></b-input>
-            <form-field-errors :validation-errors="errors" :field="'userName'" />
+            <form-field-error :validation-errors="errors" :field="'userName'" />
             <!-- <span v-show="errors.has('userName')" class="is-danger">{{ errors.first('userName') }}</span> -->
           </div>
           <div class="margin-top-30">
             <span class="text-style-1">{{ $t('password') }}</span>
           </div>
           <div>
-            <b-input type="password" id="password" v-model="user.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg" v-validate="'required'" name="password"></b-input>
-            <form-field-errors :validation-errors="errors" :field="'password'" />
+            <b-input type="password" id="password" v-model="user.password" class="mb-2 mr-sm-2 mb-sm-0" size="lg"
+            v-validate="'required'" name="password"/>
+            <form-field-error :validation-errors="errors" :field="'password'" />
           </div>
           <div class="margin-top-30">
             <!-- <div class="g-recaptcha" data-sitekey="6Ld0CdUUAAAAAENoFsqhyTyeaQEVHeJXKwdstfSs"

@@ -20,7 +20,7 @@ export default {
     urlFindByUserName: callUrl + '/accounts/username/',
     deposit: callUrl + 'accounts/deposit',
     userListSaved: callUrl + 'receivers',
-    urlFindByAccountIdAndBankId (bankId, accountId) { return `${callUrl}accounts?accountId=${bankId}&bankId=${!accountId ? '' : accountId}` }
+    urlFindByAccountIdAndBankId (accountId, bankId) { return `${callUrl}accounts?accountId=${accountId}&bankId=${!bankId ? '' : bankId}` }
   },
   transaction: {
     history (startDate, endDate, page, size, accountId, type) {

@@ -51,7 +51,7 @@
             $t("signOut")
           }}</b-nav-item> -->
           <b-nav-item v-show="isLogin">
-            <div style="margin-top: 4px;cusor: pointer;" @click="showProfile = !showProfile; $Jquery('#__bv_popupover_47__')" id="popup-over-profile">
+            <div style="margin-top: 4px;cusor: pointer;" @click="showProfile = !showProfile" id="popup-over-profile">
                <a href="#" id="nav-popup-profile" >
                  <i class="far fa-user-circle fa-2x"></i>
               </a>
@@ -90,10 +90,6 @@ export default {
       let json = atob(this.$store.state.login.user)
       let userName = !json ? '' : JSON.parse(json).username
       return userName
-    },
-    toggle () {
-      console.log(this.$refs.navbarToggle.toggleState)
-      return ''
     }
   },
   methods: {
