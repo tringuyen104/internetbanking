@@ -11,8 +11,19 @@ export default {
   },
   methods: {
     fetchDataRecive (searchText, page, size) {
-      console.log('recive')
-      return this.getHistoryTransaction(searchText, this.paymentMethod.deposit, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+      return this.getHistoryTransaction(searchText, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+        .then(res => {
+          let data = res.data.content
+          if (data.length === 0) { data = [{}] }
+          this.$set(this, 'items', data)
+          // eslint-disable-next-line handle-callback-err
+        }, err => {
+          this.$set(this, 'items', [])
+        })
+    },
+
+    fetchDataReciveForAdmin (searchText, page, size) {
+      return this.getCrossCheck(searchText, this.paymentMethod.deposit, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
         .then(res => {
           let data = res.data.content
           if (data.length === 0) { data = [{}] }

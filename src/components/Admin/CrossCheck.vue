@@ -24,8 +24,7 @@
       </div>
     </div>
     <br/>
-    <!-- khúc này làm bị sai rồi chưa nghĩ tới trường hợp admin sẽ call thêm dk để get data -->
-    <transaction-management :searchValue="searchModel" ref="crossCheckTransaction"/>
+    <transaction-management :searchValue="crossCheckModel"/>
   </div>
  </form>
 </template>
@@ -50,7 +49,8 @@ export default {
         bankId: '',
         startDate: '',
         endDate: ''
-      }
+      },
+      crossCheckModel: {}
     }
   },
   components: {
@@ -64,6 +64,7 @@ export default {
     exchangeHistory () {
       return ''
     },
+
     getBanksAssociated () {
       this.fetchBankAssociated().then(res => {
         let result = [{ id: 'all', bankName: this.$t('allbank') }]
@@ -75,8 +76,9 @@ export default {
         this.$set(this, 'banks', [])
       })
     },
-    search () {
 
+    search () {
+      this.$set(this, 'crossCheckModel', this.searchModel)
     }
   }
 }

@@ -16,6 +16,10 @@ export default {
   transaction: {
     getHistory (startDate, endDate, page, size, accountId, type) {
       return callUrl + `transactions/account?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}&sort=date,desc&accountId=${accountId}&type=${type}`
+    },
+
+    getCrossCheck (startDate, endDate, page, size, type) {
+      return callUrl + `transactions?startDate=${startDate}&endDate=${endDate}&page=${page}&size=${size}&sort=date&type=${type}`
     }
   },
   user: {

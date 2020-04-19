@@ -44,14 +44,20 @@ export default {
   },
   methods: {
     exchangeHistory () {
+      console.log(this.searchValue)
       if (!this.searchValue || this.searchValue === '') { return }
-      this.$helper.callOneTimes(this.fetchData, 1000)
+      // role employee
+      if (this.role === 'staff' && this.role !== 'user') {
+        this.$helper.callOneTimes(this.fetchDataForEmployee, 1000)
+      }
+      // role admin
+      if (this.role !== 'staff' && this.role !== 'user') {
+        this.isLoading = false
+        this.$helper.callOneTimes(this.fetchDataForAdmin, 1000)
+      }
     },
-    fetchData () {
-      // bên này phải được truyền dữ liệu từ 2 component mà nó đang sử dụng
-      // sau đó check xem nó là string hay object rồi check đk để gọi
-      // 1 là sài chung 1 hàm rồi check
-      // 2 là tạo thành 1 hàm khác rồi gọi
+
+    fetchDataForEmployee () {
       this.isLoading = true
       switch (this.tabIndex) {
         case 0: // recive money
@@ -67,11 +73,34 @@ export default {
           this.$refs[this.ref.payment].fetchDataPayment(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
       }
+    },
+
+    fetchDataForAdmin () {
+      this.isLoading = true
+      switch (this.tabIndex) {
+        case 0: // recive money
+          // eslint-disable-next-line handle-callback-err
+          this.$refs[this.ref.recive].fetchDataReciveForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          break
+        case 1: // transfer money
+          // eslint-disable-next-line handle-callback-err
+          this.$refs[this.ref.transfers].fetchDataTransferForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          break
+        case 2: // payment
+          // eslint-disable-next-line handle-callback-err
+          this.$refs[this.ref.payment].fetchDataPaymentForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          break
+      }
     }
   },
   watch: {
     searchValue (val, oldVal) { this.exchangeHistory() },
     tabIndex (val, oldVal) { this.exchangeHistory() }
+  },
+  computed: {
+    role () {
+      return atob(this.$store.state.user.r).toLowerCase()
+    }
   }
 }
 </script>
