@@ -21,7 +21,7 @@
 import PaymentDebtReminder from './PaymentDebtReminder.vue'
 import ReciveMoney from './ReciveMoney.vue'
 import TransfersMoney from './TransfersMoney.vue'
-
+// bên này phải hander trường hợp 2 component sẽ call chung cái component này
 export default {
   props: {
     searchValue: null
@@ -48,6 +48,10 @@ export default {
       this.$helper.callOneTimes(this.fetchData, 1000)
     },
     fetchData () {
+      // bên này phải được truyền dữ liệu từ 2 component mà nó đang sử dụng
+      // sau đó check xem nó là string hay object rồi check đk để gọi
+      // 1 là sài chung 1 hàm rồi check
+      // 2 là tạo thành 1 hàm khác rồi gọi
       this.isLoading = true
       switch (this.tabIndex) {
         case 0: // recive money

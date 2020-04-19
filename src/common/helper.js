@@ -69,7 +69,6 @@ export const helper = {
         return newTime + last
       },
       formatDatetime (dateTime) {
-        console.log(moment)
         if (!dateTime) { return '' }
         return moment(dateTime).format(define.formatDateTime)
       },
