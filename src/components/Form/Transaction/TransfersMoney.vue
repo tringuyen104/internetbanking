@@ -22,8 +22,8 @@ export default {
         })
     },
 
-    fetchDataTransferForAdmin (searchText, page, size) {
-      return this.getCrossCheck(searchText, this.paymentMethod.transfers, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+    fetchDataTransferForAdmin (search, page, size) {
+      return this.getCrossCheck(search.bankId, this.paymentMethod.transfers, search.startDate, search.endDate, page, size)
         .then(res => {
           let data = res.data.content
           if (data.length === 0) { data = [{}] }

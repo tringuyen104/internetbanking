@@ -5,11 +5,11 @@
     <div class="row">
       <div class="col-md-3">
         <label for="inputEmail4">{{ $t('fromdate') }}</label>
-        <date-picker v-model="fromDate" :config="options"></date-picker>
+        <date-picker v-model="searchModel.startDate" :config="options"></date-picker>
       </div>
       <div class="col-md-3">
         <label for="inputEmail4">{{ $t('todate') }}</label>
-        <date-picker v-model="toDate" :config="options"></date-picker>
+        <date-picker v-model="searchModel.endDate" :config="options"></date-picker>
       </div>
       <div class="col-md-4">
         <div class="form-group">
@@ -20,7 +20,7 @@
       </div>
       </div>
       <div class="col-md-2 submitbtn">
-        <button type="submit" class="btn btn-primary" @click="search">Submit</button>
+        <button type="submit" class="btn btn-primary" @click.prevent="search">Submit</button>
       </div>
     </div>
     <br/>
@@ -33,6 +33,7 @@ import TransactionManagement from '../Form/Transaction/TransactionManagement.vue
 import BankApi from '../../mixins/Bank/BankApi'
 import datePicker from 'vue-bootstrap-datetimepicker'
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css'
+import { define } from '../../common/define'
 
 export default {
   mixins: [BankApi],
@@ -42,13 +43,13 @@ export default {
       toDate: new Date(),
       banks: [],
       options: {
-        format: 'DD/MM/YYYY',
+        format: define.formatDate,
         useCurrent: false
       },
       searchModel: {
         bankId: '',
-        startDate: '',
-        endDate: ''
+        startDate: new Date(),
+        endDate: new Date()
       },
       crossCheckModel: {}
     }

@@ -57,7 +57,7 @@ export const helper = {
       },
       callOneTimes (callBack, time, params) {
         clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => { params ? callBack(params) : callBack() }, time)
+        this.timeout = setTimeout(params ? callBack(params) : callBack(), time)
       },
       formatTimeZone (dateTime) {
         let arrData = dateTime.split(':')

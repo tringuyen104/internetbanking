@@ -1,4 +1,5 @@
 import urlApi from '../url'
+import { define } from '../../common/define'
 // import { define } from '../../common/define'
 export default {
   methods: {
@@ -50,7 +51,6 @@ export default {
       startDate = encodeURIComponent(startDate)
       endDate = encodeURIComponent(endDate)
       url = urlApi.transaction.getHistory(startDate, endDate, page, size, search, type)
-      console.log(url)
       this.$api.get(url).then(response => {
         deferred.resolve(response)
       }, error => {
@@ -59,21 +59,20 @@ export default {
       return deferred
     },
 
-    getCrossCheck (search, type, startDate, endDate, page, size) {
+    getCrossCheck (bankId, type, startDate, endDate, page, size) {
       let deferred = this.$Jquery.Deferred()
       let url = ''
-      if (!search || search === '') {
+      if (!bankId || bankId === '') {
         deferred.reject('Please input data')
         return deferred
       }
       if (!page) page = 0
       if (!size) size = 10
-      startDate = this.$helper.formatTimeZone(startDate)
-      endDate = this.$helper.formatTimeZone(endDate)
+      startDate = this.$helper.formatTimeZone(this.$moment(startDate).format(define.formatTimeZoneLocal))
+      endDate = this.$helper.formatTimeZone(this.$moment(endDate).format(define.formatTimeZoneLocal))
       startDate = encodeURIComponent(startDate)
       endDate = encodeURIComponent(endDate)
-      url = urlApi.transaction.getCrossCheck(startDate, endDate, page, size, search, type)
-      console.log(url)
+      url = urlApi.transaction.getCrossCheck(bankId, startDate, endDate, page, size, type)
       this.$api.get(url).then(response => {
         deferred.resolve(response)
       }, error => {

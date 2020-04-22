@@ -43,9 +43,6 @@ export default {
       required: true
     }
   },
-  created () {
-    console.log(this.user)
-  },
   methods: {
     toggleModal () {
       this.$refs['my-modal'].hide()

@@ -104,8 +104,7 @@ export default {
 
     changePasswordUser () {
       let obj = this.convertUItoPostModel()
-      console.log(obj)
-      this.changePassword(this.convertUItoPostModel()).then(res => {
+      this.changePassword(obj).then(res => {
         this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
         this.clearDataAndNavigateToHomePage()
       }, err => {

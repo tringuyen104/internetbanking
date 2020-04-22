@@ -143,7 +143,6 @@ export default {
     createEmployeeAccount () {
       this.createEmployee(this.convertUIToObject()).then(
         response => {
-          console.log(response)
           this.$set(this, 'accountInfo', response.data)
           this.$bvModal.show(this.idPopup)
         },
@@ -166,7 +165,6 @@ export default {
     createUserAccount () {
       this.createUser(this.convertUIToObject()).then(
         response => {
-          console.log(response)
           this.$set(this, 'accountInfo', response.data)
           this.$bvModal.show(this.idPopup)
         },

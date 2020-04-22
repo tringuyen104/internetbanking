@@ -25,7 +25,6 @@ export const restFullAPi = {
       },
 
       post (url, data) {
-        console.log(3333)
         return axios.post(url, data, {
           headers: {
             'Authorization': 'Bearer ' + sessionStorage.getItem('token')

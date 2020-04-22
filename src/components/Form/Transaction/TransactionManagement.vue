@@ -34,6 +34,7 @@ export default {
   data () {
     return {
       tabIndex: 0,
+      timer: null,
       isLoading: false,
       ref: {
         recive: 'reciveRef',
@@ -44,16 +45,18 @@ export default {
   },
   methods: {
     exchangeHistory () {
-      console.log(this.searchValue)
       if (!this.searchValue || this.searchValue === '') { return }
+      this.$helper.callOneTimes(this.fetchData, 1000)
+    },
+
+    fetchData () {
       // role employee
       if (this.role === 'staff' && this.role !== 'user') {
-        this.$helper.callOneTimes(this.fetchDataForEmployee, 1000)
+        this.fetchDataForEmployee()
       }
       // role admin
       if (this.role !== 'staff' && this.role !== 'user') {
-        this.isLoading = false
-        this.$helper.callOneTimes(this.fetchDataForAdmin, 1000)
+        this.fetchDataForAdmin()
       }
     },
 
@@ -80,15 +83,15 @@ export default {
       switch (this.tabIndex) {
         case 0: // recive money
           // eslint-disable-next-line handle-callback-err
-          this.$refs[this.ref.recive].fetchDataReciveForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          this.$refs[this.ref.recive].fetchDataReciveForAdmin(this.searchValue, 0, 100).then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
         case 1: // transfer money
           // eslint-disable-next-line handle-callback-err
-          this.$refs[this.ref.transfers].fetchDataTransferForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          this.$refs[this.ref.transfers].fetchDataTransferForAdmin(this.searchValue, 0, 100).then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
         case 2: // payment
           // eslint-disable-next-line handle-callback-err
-          this.$refs[this.ref.payment].fetchDataPaymentForAdmin(this.searchValue).then(res => { this.isLoading = false }, err => { this.isLoading = false })
+          this.$refs[this.ref.payment].fetchDataPaymentForAdmin(this.searchValue, 0, 100).then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
       }
     }

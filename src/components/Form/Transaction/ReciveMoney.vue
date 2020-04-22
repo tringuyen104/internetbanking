@@ -22,8 +22,8 @@ export default {
         })
     },
 
-    fetchDataReciveForAdmin (searchText, page, size) {
-      return this.getCrossCheck(searchText, this.paymentMethod.deposit, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+    fetchDataReciveForAdmin (search, page, size) {
+      return this.getCrossCheck(search.bankId, this.paymentMethod.deposit, search.startDate, search.endDate, page, size)
         .then(res => {
           let data = res.data.content
           if (data.length === 0) { data = [{}] }

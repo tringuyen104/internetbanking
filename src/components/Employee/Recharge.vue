@@ -194,7 +194,6 @@ export default {
           this.$set(this, 'accountInfo', res.data)
           // eslint-disable-next-line handle-callback-err
         }, err => {
-          console.log(err)
           this.$helper.toast.error(
             this,
             this.$t('notification.contactToAdmin')
