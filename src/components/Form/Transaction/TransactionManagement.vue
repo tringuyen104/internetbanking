@@ -51,11 +51,11 @@ export default {
 
     fetchData () {
       // role employee
-      if (this.role === 'staff' && this.role !== 'user') {
+      if (this.role === 'staff' && this.role !== 'user' && this.searchValue && this.searchValue !== '') {
         this.fetchDataForEmployee()
       }
       // role admin
-      if (this.role !== 'staff' && this.role !== 'user') {
+      if (this.role !== 'staff' && this.role !== 'user' && this.searchValue) {
         this.fetchDataForAdmin()
       }
     },
