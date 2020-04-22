@@ -1,26 +1,38 @@
 <template>
-  <form class="form-label">
+  <form class="form-label cross-check">
     <h2 class="form-title">{{ $t('crossCheck') }}</h2>
     <div class="margin-auto">
     <div class="row">
       <div class="col-md-3">
         <label for="inputEmail4">{{ $t('fromdate') }}</label>
-        <date-picker v-model="searchModel.startDate" :config="options"></date-picker>
+        <date-picker v-model="searchModel.startDate" :config="options" v-validate="'required'" :name="'startDate'"></date-picker>
       </div>
       <div class="col-md-3">
         <label for="inputEmail4">{{ $t('todate') }}</label>
-        <date-picker v-model="searchModel.endDate" :config="options"></date-picker>
+        <date-picker v-model="searchModel.endDate" :config="options" v-validate="'required'" :name="'endDate'"></date-picker>
       </div>
       <div class="col-md-4">
         <div class="form-group">
         <label for="account">{{ $t('bank') }}</label>
-        <select class="form-control" id="bank" v-model="searchModel.bankId">
+        <select class="form-control" id="bank" v-model="searchModel.bankId" v-validate="'required'" name="bank">
            <option v-for="bank in banks" :key="bank.id" :value="bank.id"> {{bank.bankName}} </option>
         </select>
       </div>
       </div>
-      <div class="col-md-2 submitbtn">
-        <button type="submit" class="btn btn-primary" @click.prevent="search">Submit</button>
+      <div class="col-md-2 search-button">
+          <label for="search">{{$t('search')}}</label>
+          <button type="submit" class="btn btn-primary" id="search" @click.prevent="search">{{$t('search')}}</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <form-field-error :validation-errors="errors" :field="'startDate'" />
+      </div>
+      <div class="col-md-3">
+        <form-field-error :validation-errors="errors" :field="'endDate'" />
+      </div>
+      <div class="col-md-4">
+        <form-field-error :validation-errors="errors" :field="'bank'" />
       </div>
     </div>
     <br/>
@@ -62,9 +74,6 @@ export default {
     this.getBanksAssociated()
   },
   methods: {
-    exchangeHistory () {
-      return ''
-    },
 
     getBanksAssociated () {
       this.fetchBankAssociated().then(res => {
@@ -79,13 +88,25 @@ export default {
     },
 
     search () {
-      this.$set(this, 'crossCheckModel', this.searchModel)
+      this.$validator.validateAll().then(valid => {
+        if (valid) {
+          this.$set(this, 'crossCheckModel', this.searchModel)
+        }
+      })
     }
   }
 }
 </script>
 <style lang="scss">
-.submitbtn {
-  padding-top: 4%;
+.cross-check {
+  .search-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    label {
+      color: aliceblue;
+    }
+  }
 }
 </style>
