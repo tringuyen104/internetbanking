@@ -1,12 +1,20 @@
+import urlApi from '../url'
 let axios = require('axios')
-var querystring = require('querystring')
-
+let querystring = require('querystring')
 export const restFullAPi = {
   install (Vue, options) {
     Vue.prototype.$api = {
       token: 'Bearer ',
       config: {
         'Authorization': ''
+      },
+      refeshToken () {
+        this.get(urlApi.refeshToken).then(res => {
+          console.log(res.data)
+        // eslint-disable-next-line handle-callback-err
+        }, err => {
+          window.location = '/'
+        })
       },
       get (url) {
         return axios.get(url, {
