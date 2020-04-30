@@ -20,7 +20,7 @@
     "core-js": "^3.4.3",
     "font-awesome": "^4.7.0",
     "i": "^0.3.6",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "querystring": "^0.2.0",
     "register-service-worker": "^1.6.2",
