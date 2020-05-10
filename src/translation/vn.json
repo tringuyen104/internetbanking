@@ -79,19 +79,26 @@
     "updateRecipientSuccess": "Cập nhật người nhận thành công",
     "userName": "Tên đăng nhập",
     "usernameOrAccountNumber": "Số tài khoản hoặc tên đăng nhập.",
+    "changePass": "Đổi mật khẩu",
+    "oldPass": "Nhập mật khẩu cũ",
+    "newPass": "Nhập mật khẩu mới",
+    "confirmPass": "Nhập lại mật khẩu mới",
     "notification": {
-        "choiceAccountNumber": "Chọn số tài khoản",
-        "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
-        "errorOccurred": "a",
-        "inputEmpty": "Bạn chưa nhập dữ liệu",
-        "notFound": "Không tìm thấy dữ liệu",
-        "pleaseCheckAccountId": "Vui lòng kiểm tra lại số tài khoản",
-        "pleaseChoiceBank": "Vui lòng chọn ngân hàng",
-        "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không chính xác",
-        "account": {
-            "notFound": "Không tìm thấy tài khoản",
-            "rechargeFail": "Nạp tiền thất bại",
-            "rechargeSuccess": "Nạp tiền thành công"
-        }
+      "choiceAccountNumber": "Chọn số tài khoản",
+      "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
+      "errorOccurred": "a",
+      "inputEmpty": "Bạn chưa nhập dữ liệu",
+      "notFound": "Không tìm thấy dữ liệu",
+      "pleaseCheckAccountId": "Vui lòng kiểm tra lại số tài khoản",
+      "pleaseChoiceBank": "Vui lòng chọn ngân hàng",
+      "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không chính xác",
+      "account": {
+        "notFound": "Không tìm thấy tài khoản",
+        "rechargeFail": "Nạp tiền thất bại",
+        "rechargeSuccess": "Nạp tiền thành công"
+      },
+      "passwordNotMacth": "Mật khẩu mới nhập không giống nhau.",
+      "changePasswordSuccess": "Đổi mật khẩu thành công.",
+      "sendOTPtoEmailSuccess": "Mã OTP đã được gửi đến email của bạn. Vui lòng nhấn nút 'Tiếp tục' để nhập mật khẩu."
     }
 }

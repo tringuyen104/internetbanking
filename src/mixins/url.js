@@ -37,5 +37,9 @@ export default {
     create: callUrl + 'receivers/create',
     delete (id) { return `${callUrl}receivers/${id}` },
     update (id) { return `${callUrl}receivers/update/${id}` }
+  },
+  user: {
+    recoverPasswordByEmail: callUrl + 'users/recover/',
+    changePassword: callUrl + 'users/password'
   }
 }

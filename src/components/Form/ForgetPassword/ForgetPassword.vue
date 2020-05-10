@@ -27,7 +27,10 @@
 </template>
 <script>
 import FormFieldErrors from '../../Errors/FormFieldError.vue'
+import UserApi from '../../../mixins/User/UserApi'
+import urlApi from '../../../mixins/url'
 export default {
+  mixins: [UserApi],
   components: { FormFieldErrors },
   data () {
     return {
@@ -46,12 +49,21 @@ export default {
     sendEmail () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.showNext = true
+          this.recoverPasswordByEmail(this.convertUIModeltoPostModel(), this.email).then(res => {
+            this.showNext = true
+            this.$helper.toast.success(this, this.$t('notification.sendOTPtoEmailSuccess'))
+          }, err => {
+            this.$helper.toast.error(this, err.message)
+          })
         }
       })
     },
+
+    convertUIModeltoPostModel () {
+      return { redirect: urlApi.user.recoverPasswordByEmail + this.email }
+    },
     redirectToChangePassword () {
-      this.$router.push({ name: 'changePassword', params: { email: this.email } })
+      this.$router.push({ name: 'recoverPassword', params: { email: this.email } })
     }
   }
 }
