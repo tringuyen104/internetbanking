@@ -5,7 +5,7 @@
       <template v-slot:cell(action)="row">
         <template v-if="row.item.id">
           <i
-            class="fas fa-times fa-lg red-color margin-left-05em"
+            class="fas fa-times fa-lg red-color margin-icon point-action"
             @click="confirmRemove(row.item, row.index, $event.target)"
             :title="$t('removeDebt')"
           ></i>

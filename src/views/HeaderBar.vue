@@ -63,7 +63,7 @@
                 :class="'dropdown-menu custom-dropdown-item'"
               >
                   <a class="dropdown-item" href="#">{{userName}}</a>
-                  <a class="dropdown-item" href="#">{{$t('changePassword')}}</a>
+                  <b-link class="dropdown-item" :to="{ name: 'changePassword'}">{{$t('changePassword')}}</b-link>
                   <div class="dropdown-divider"></div>
                   <button class="dropdown-item" @click.prevent="signOut">{{$t("signOut")}}</button>
               </b-popover>
@@ -74,9 +74,8 @@
   </div>
 </template>
 <script>
-import BrowserStorage from '../mixins/BrowserStorage'
+import { loginHanlder } from '../mixins/LoginHandler'
 export default {
-  mixins: [BrowserStorage],
   data () {
     return {
       showProfile: false
@@ -88,16 +87,13 @@ export default {
     },
     userName () {
       let json = atob(this.$store.state.login.user)
-      let userName = !json ? '' : JSON.parse(json).username
+      let userName = !json ? '' : json// JSON.parse(json).username
       return userName
     }
   },
   methods: {
     signOut () {
-      window.localStorage.clear()
-      this.$store.commit('updateLogin', false)
-      this.$store.commit('updateUser', '')
-      this.$router.replace('/dang-nhap')
+      loginHanlder.signOutUser()
     }
   }
 }

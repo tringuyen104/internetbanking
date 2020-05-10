@@ -4,12 +4,12 @@
       <template v-slot:cell(action)="row">
         <template v-if="row.item.id">
           <i
-            class="fas fa-check fa-lg green-color"
+            class="fas fa-check fa-lg green-color point-action"
             @click="confirmPayment(row.item, row.index, $event.target)"
             :title="$t('payment')"
           ></i>
           <i
-            class="fas fa-times fa-lg red-color margin-left-05em"
+            class="fas fa-times fa-lg red-color margin-icon point-action"
             @click="confirmRemove(row.item, row.index, $event.target)"
             :title="$t('removeDebt')"
           ></i>

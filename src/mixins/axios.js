@@ -1,62 +1,35 @@
-import urlApi from '../url'
 let axios = require('axios')
 let querystring = require('querystring')
 export const restFullAPi = {
   install (Vue, options) {
     Vue.prototype.$api = {
-      token: 'Bearer ',
       config: {
-        'Authorization': ''
-      },
-      refeshToken () {
-        this.get(urlApi.refeshToken).then(res => {
-          console.log(res.data)
-        // eslint-disable-next-line handle-callback-err
-        }, err => {
-          window.location = '/'
-        })
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
       },
       get (url) {
-        return axios.get(url, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        })
+        return axios.get(url, this.config)
       },
       getNoneHeader (url) {
         return axios.get(url)
       },
       post (url, data) {
-        return axios.post(url, data, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        })
+        return axios.post(url, data, this.config)
       },
       postWithFromData (url, data) {
         return axios.post(url, querystring.stringify(data))
       },
       delete (url) {
-        return axios.delete(url, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        })
+        return axios.delete(url, this.config)
       },
       deleteWithModel (url, obj) {
-        return axios.delete(url, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          },
-          data: obj
-        })
+        let config = Object.assign({}, this.config)
+        config.data = obj
+        return axios.delete(url, config)
       },
       put (url, data) {
-        return axios.put(url, data, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        })
+        return axios.put(url, data, this.config)
       }
     }
   }

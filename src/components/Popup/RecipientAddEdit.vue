@@ -58,7 +58,7 @@
           variant="primary"
           block
           @click="comfirm"
-          >{{ $t("create") }}</b-button
+          >{{ action }}</b-button
         >
         <b-button
           class="mt-3 col-md-6"
@@ -118,7 +118,7 @@ export default {
       this.isOutside = false
     },
     changeBankId (value) {
-      if (this.accountInfo.id.trim() === '') {
+      if (!this.accountInfo.id) {
         return
       }
       this.accountInfo.bankId = value
@@ -204,7 +204,7 @@ export default {
           if (!res.data || res.data.length === 0) {
             this.$helper.toast.warning(this, this.$t('notification.notFound'))
           }
-          this.accountInfo.suggestionName = res.data.ownerName
+          this.accountInfo.nameSuggestion = res.data.ownerName
           this.isLoading = false
           // eslint-disable-next-line handle-callback-err
         }, err => {
@@ -217,7 +217,7 @@ export default {
       )
     },
     findAccount (value) {
-      value = value.trim()
+      value = value.toString().trim()
       if (!value || value === '' || !this.isSearch) {
         this.isSearch = true
         return
@@ -228,16 +228,10 @@ export default {
   computed: {
     title () {
       return this.isEdit ? this.$t('editRecipient') : this.$t('createRecipient')
-    } // ,
-    // accountInfo () {
-    //   let account = {
-    //     id: this.recipient.accountId,
-    //     bankId: this.recipient.bankId,
-    //     suggestionName: this.recipient.nameSuggestion
-    //   }
-    //   this.$set(this, 'seachUpdate', account.id)
-    //   return account
-    // }
+    },
+    action () {
+      return this.isEdit ? this.$t('update') : this.$t('create')
+    }
   },
   watch: {
     'accountInfo.id' (val, old) {
@@ -256,7 +250,6 @@ export default {
       //   bankId: val.bankId,
       //   suggestionName: val.nameSuggestion
       // }
-      console.log(val)
       this.$set(this, 'seachUpdate', val.accountId)
       this.$set(this, 'accountInfo', val)
       // this.accountInfo.suggestionName = val.nameSuggestion

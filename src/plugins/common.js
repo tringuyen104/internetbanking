@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { restFullAPi } from '../mixins/axios'
+import axiosHanderResponse from '../mixins/axiosHanderResponse'
 import { helper } from '../common/helper'
 import { table } from '../common/table'
 import { cookie } from '../mixins/BrowserCookie'
@@ -10,6 +11,7 @@ Vue.use({
   }
 })
 Vue.use(cookie)
+Vue.use(axiosHanderResponse)
 Vue.use(helper)
 Vue.use(table)
 Vue.use(restFullAPi)

@@ -62,10 +62,10 @@
 import FormError from '../Errors/FormError'
 import VueRecaptcha from 'vue-recaptcha'
 import UserApi from '../../mixins/User/UserApi'
-import BrowserStorage from '../../mixins/BrowserStorage'
-import bcrypt from 'bcryptjs'
+import { loginHanlder } from '../../mixins/LoginHandler'
 export default {
-  mixins: [UserApi, BrowserStorage],
+  name: 'Login',
+  mixins: [UserApi],
   data () {
     return {
       user: {
@@ -91,28 +91,29 @@ export default {
     },
     loginUser () {
       this.login(this.user).then(res => {
-        let currentUser = this.hashUser(res.data.userInfo)
-        this.setItemInLocalStorage('token', res.data.token)
-        this.setItemInLocalStorage('login', this.hashLogin())
-        this.setItemInLocalStorage('user', currentUser)
-        this.$store.commit('updateLogin', true)
-        this.$store.commit('updateUser', currentUser)
-        this.$router.replace({ name: 'home' })
+        loginHanlder.signInUser(res)
+        // let currentUser = this.hashUser(res.data.userInfo)
+        // this.setItemInLocalStorage('token', res.data.token)
+        // this.setItemInLocalStorage('login', this.hashLogin())
+        // this.setItemInLocalStorage('user', currentUser)
+        // this.$store.commit('updateLogin', true)
+        // this.$store.commit('updateUser', currentUser)
+        // this.$router.replace({ name: 'home' })
       // eslint-disable-next-line handle-callback-err
       }, err => {
         this.loginFail = true
       })
     },
-    hashLogin () {
-      var salt = bcrypt.genSaltSync(10)
-      var hash = bcrypt.hashSync('isLogin', salt)
-      return hash
-    },
-    hashUser (data) {
-      let jsonData = JSON.stringify(data)
-      let hash = btoa(jsonData)
-      return hash
-    },
+    // hashLogin () {
+    //   var salt = bcrypt.genSaltSync(10)
+    //   var hash = bcrypt.hashSync('isLogin', salt)
+    //   return hash
+    // },
+    // hashUser (data) {
+    //   let jsonData = JSON.stringify(data)
+    //   let hash = btoa(jsonData)
+    //   return hash
+    // },
     onCaptchaVerified (recaptchaToken) {
       this.$set(this, 'reCapchaToken', recaptchaToken)
       this.user.reCAPTCHA = recaptchaToken

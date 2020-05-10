@@ -2,7 +2,7 @@ var callUrl = 'http://backoffice-env.uweekdg2rb.us-east-2.elasticbeanstalk.com:8
 export default {
   basicUrl: callUrl,
   socketUrl: 'socket/',
-  refeshToken: callUrl + 'refesh',
+  refeshToken: callUrl + 'refresh',
   login: callUrl + 'authenticate',
   listCard: callUrl + 'accounts/user',
   debt: {
