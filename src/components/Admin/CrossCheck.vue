@@ -2,43 +2,64 @@
   <form class="form-label cross-check">
     <h2 class="form-title">{{ $t('crossCheck') }}</h2>
     <div class="margin-auto">
-    <div class="row">
-      <div class="col-md-3">
-        <label for="inputEmail4">{{ $t('fromdate') }}</label>
-        <date-picker v-model="searchModel.startDate" :config="options" v-validate="'required'" :name="'startDate'"></date-picker>
-      </div>
-      <div class="col-md-3">
-        <label for="inputEmail4">{{ $t('todate') }}</label>
-        <date-picker v-model="searchModel.endDate" :config="options" v-validate="'required'" :name="'endDate'"></date-picker>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-        <label for="account">{{ $t('bank') }}</label>
-        <select class="form-control" id="bank" v-model="searchModel.bankId" v-validate="'required'" name="bank">
-           <option v-for="bank in banks" :key="bank.id" :value="bank.id"> {{bank.bankName}} </option>
-        </select>
-      </div>
-      </div>
-      <div class="col-md-2 search-button">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="inputEmail4">{{ $t('fromdate') }}</label>
+          <date-picker
+            v-model="searchModel.startDate"
+            :config="options"
+            v-validate="'required'"
+            :name="'startDate'"
+          ></date-picker>
+        </div>
+        <div class="col-md-3">
+          <label for="inputEmail4">{{ $t('todate') }}</label>
+          <date-picker
+            v-model="searchModel.endDate"
+            :config="options"
+            v-validate="'required'"
+            :name="'endDate'"
+          ></date-picker>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="account">{{ $t('bank') }}</label>
+            <select
+              class="form-control"
+              id="bank"
+              v-model="searchModel.bankId"
+              v-validate="'required'"
+              name="bank"
+            >
+              <option v-for="bank in banks" :key="bank.id" :value="bank.id">{{bank.bankName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2 search-button">
           <label for="search">{{$t('search')}}</label>
-          <button type="submit" class="btn btn-primary" id="search" @click.prevent="search">{{$t('search')}}</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="search"
+            @click.prevent="search"
+          >{{$t('search')}}</button>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <form-field-error :validation-errors="errors" :field="'startDate'" />
+        </div>
+        <div class="col-md-3">
+          <form-field-error :validation-errors="errors" :field="'endDate'" />
+        </div>
+        <div class="col-md-4">
+          <form-field-error :validation-errors="errors" :field="'bank'" />
+        </div>
+      </div>
+      <br />
+      <transaction-management :searchValue="crossCheckModel" />
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <form-field-error :validation-errors="errors" :field="'startDate'" />
-      </div>
-      <div class="col-md-3">
-        <form-field-error :validation-errors="errors" :field="'endDate'" />
-      </div>
-      <div class="col-md-4">
-        <form-field-error :validation-errors="errors" :field="'bank'" />
-      </div>
-    </div>
-    <br/>
-    <transaction-management :searchValue="crossCheckModel"/>
-  </div>
- </form>
+  </form>
 </template>
 <script>
 import TransactionManagement from '../Form/Transaction/TransactionManagement.vue'
@@ -74,17 +95,19 @@ export default {
     this.getBanksAssociated()
   },
   methods: {
-
     getBanksAssociated () {
-      this.fetchBankAssociated().then(res => {
-        let result = [{ id: 'all', bankName: this.$t('allbank') }]
-        let data = Object.assign([], res.data)
-        result = result.concat(data)
-        this.$set(this, 'banks', result)
-      // eslint-disable-next-line handle-callback-err
-      }, err => {
-        this.$set(this, 'banks', [])
-      })
+      this.fetchBankAssociated().then(
+        res => {
+          let result = [{ id: 'all', bankName: this.$t('allbank') }]
+          let data = Object.assign([], res.data)
+          result = result.concat(data)
+          this.$set(this, 'banks', result)
+        },
+        // eslint-disable-next-line handle-callback-err
+        err => {
+          this.$set(this, 'banks', [])
+        }
+      )
     },
 
     search () {

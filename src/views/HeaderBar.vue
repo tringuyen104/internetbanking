@@ -33,6 +33,7 @@
 import HeaderEmployee from '../components/Employee/HeaderEmployee.vue'
 import HeaderAdmin from '../components/Admin/HeaderAdmin.vue'
 import BrowserStorage from '../mixins/BrowserStorage'
+import { loginHanlder } from '../mixins/LoginHandler'
 
 export default {
   components: {
@@ -42,10 +43,11 @@ export default {
   mixins: [BrowserStorage],
   methods: {
     signOut () {
-      window.sessionStorage.clear()
-      this.$store.commit('updateLogin', false)
-      this.$store.commit('updateR', '')
-      this.$router.replace({ name: 'home' })
+      loginHanlder.signOutUser()
+      // window.sessionStorage.clear()
+      // this.$store.commit('updateLogin', false)
+      // this.$store.commit('updateR', '')
+      // this.$router.replace({ name: 'home' })
     }
   },
   computed: {

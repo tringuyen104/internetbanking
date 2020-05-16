@@ -6,18 +6,12 @@ export const restFullAPi = {
     Vue.prototype.$api = {
       token: 'Bearer ',
       config: {
-        'Authorization': ''
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
       },
-      // configHeader: {
-      //   'Access-Control-Allow-Origin': '*',
-      //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-      // },
       get (url) {
-        return axios.get(url, {
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-          }
-        })
+        return axios.get(url, this.config)
       },
 
       getNoneHeader (url) {
@@ -25,19 +19,11 @@ export const restFullAPi = {
       },
 
       post (url, data) {
-        return axios.post(url, data, {
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-          }
-        })
+        return axios.post(url, data, this.config)
       },
 
       put (url, data) {
-        return axios.put(url, data, {
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-          }
-        })
+        return axios.put(url, data, this.config)
       },
 
       postNoneHeader (url, data) {
@@ -55,11 +41,7 @@ export const restFullAPi = {
       },
 
       delete (url) {
-        return axios.delete(url, {
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-          }
-        })
+        return axios.delete(url, this.config)
       }
     }
   }

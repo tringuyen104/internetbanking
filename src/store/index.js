@@ -6,9 +6,9 @@ Vue.use(Vuex)
 const user = {
   namespace: true,
   state: {
-    r: sessionStorage.getItem('r'),
-    isLogin: bcrypt.compareSync('isLogin', (sessionStorage.getItem('currentUser') ? sessionStorage.getItem('currentUser') : '')),
-    userName: sessionStorage.getItem('user')
+    r: localStorage.getItem('r'),
+    isLogin: bcrypt.compareSync('isLogin', (localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : '')),
+    userName: localStorage.getItem('user')
   },
   mutations: {
     updateLogin (state, value) {

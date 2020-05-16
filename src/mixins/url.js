@@ -5,6 +5,7 @@ export default {
   socketUrl: 'socket/',
   login: callUrl + 'authenticate',
   recharge: callUrl + 'accounts/recharge',
+  refeshToken: callUrl + 'refresh',
   account: {
     findAccountByAccountId: callUrl + 'accounts/account/',
     findByAccountIdAndBankId (accountId, bankId) {

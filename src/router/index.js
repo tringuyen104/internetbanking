@@ -229,9 +229,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const authorize = to.meta
-  const role = sessionStorage.getItem('r')
-  const isLogin = bcrypt.compareSync('isLogin', (sessionStorage.getItem('currentUser') ? sessionStorage.getItem('currentUser') : ''))
-
+  const role = localStorage.getItem('r')
+  const isLogin = bcrypt.compareSync('isLogin', (localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : ''))
+  console.log(role) 
   if (Object.entries(authorize).length > 0 && authorize.constructor === Object) {
     if (!role) {
       return next({ name: 'login' })

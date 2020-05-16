@@ -58,6 +58,7 @@ import VueRecaptcha from 'vue-recaptcha'
 import UserApi from '../../mixins/User/UserApi'
 import BrowserStorage from '../../mixins/BrowserStorage'
 import bcrypt from 'bcryptjs'
+import { loginHanlder } from '../../mixins/LoginHandler'
 export default {
   mixins: [UserApi, BrowserStorage],
   data () {
@@ -81,22 +82,18 @@ export default {
       })
       // return !this.errors.any()
     },
-    hashLogin () {
-      var salt = bcrypt.genSaltSync(10)
-      var hash = bcrypt.hashSync('isLogin', salt)
-      return hash
-    },
     loginUser () {
       this.user['reCAPTCHA'] = this.reCapchaToken
       this.login(this.user).then(res => {
-        this.setItemInSessionStorage('token', res.data.token)
-        this.setItemInSessionStorage('currentUser', this.hashLogin())
-        this.setItemInSessionStorage('r', res.data.rl)
-        this.setItemInSessionStorage('user', res.data.userInfo.username)
-        this.$store.commit('updateLogin', true)
-        this.$store.commit('updateUsername', res.data.userInfo.username)
-        this.$store.commit('updateR', res.data.rl)
-        this.$router.replace({ name: 'home' })
+        // this.setItemInSessionStorage('token', res.data.token)
+        // this.setItemInSessionStorage('currentUser', this.hashLogin())
+        // this.setItemInSessionStorage('r', res.data.rl)
+        // this.setItemInSessionStorage('user', res.data.userInfo.username)
+        // this.$store.commit('updateLogin', true)
+        // this.$store.commit('updateUsername', res.data.userInfo.username)
+        // this.$store.commit('updateR', res.data.rl)
+        // this.$router.replace({ name: 'home' })
+        loginHanlder.signInUser(res)
       // eslint-disable-next-line handle-callback-err
       }, err => {
         this.loginFail = true
