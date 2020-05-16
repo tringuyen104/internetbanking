@@ -131,7 +131,7 @@ export default {
     },
     parseData () {
       return {
-        'amount': this.debt.amount.replace(this.currency.suffix, '').replace(this.currency.groupSeparator, ''),
+        'amount': this.$helper.parseCurrency(this.debt.amount), // this.debt.amount.replace(this.currency.suffix, '').replace(this.currency.groupSeparator, ''),
         'content': this.debt.content,
         'createDate': this.$moment(new Date()).format(define.formatTimeZoneLocal),
         'debtor': this.search,

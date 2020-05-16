@@ -85,7 +85,7 @@
     "confirmPass": "Nhập lại mật khẩu mới",
     "notification": {
       "choiceAccountNumber": "Chọn số tài khoản",
-      "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
+      "contactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị",
       "errorOccurred": "a",
       "inputEmpty": "Bạn chưa nhập dữ liệu",
       "notFound": "Không tìm thấy dữ liệu",

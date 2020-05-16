@@ -189,12 +189,7 @@ export default {
     },
     parseDataInside () {
       return {
-        amount: parseInt(
-          this.transactionInfo.amount
-            .split(this.currency.groupSeparator)
-            .join('')
-            .replace(this.currency.suffix, '')
-        ),
+        amount: this.$helper.parseCurrency(this.transactionInfo.amount),
         content: this.transactionInfo.content,
         feeType: this.transactionInfo.feeType,
         source: this.transactionInfo.accountId,

@@ -69,6 +69,16 @@ export const helper = {
         if (!currency) { return '' }
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(currency)
       },
+      parseCurrency (currency) {
+        if (!currency) { return 0 }
+        return parseInt(
+          currency
+            .split(define.currency.groupSeparator)
+            .join('')
+            .replace(define.currency.suffix, '')
+            .replace(',', '')
+        )
+      },
       checkAmount (value) {
         if (!value || value === '' || value === '0.00 ₫') { return false }
         return true
