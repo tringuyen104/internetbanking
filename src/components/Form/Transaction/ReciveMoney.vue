@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     fetchDataRecive (searchText, page, size) {
-      return this.getHistoryTransaction(searchText, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
+      return this.getHistoryTransaction(searchText, this.paymentMethod.deposit, this.filter30Days.startDate, this.filter30Days.endDate, page, size)
         .then(res => {
           let data = res.data.content
           if (data.length === 0) { data = [{}] }

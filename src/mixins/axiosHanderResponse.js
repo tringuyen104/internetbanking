@@ -5,13 +5,14 @@ export default () => {
   axios.interceptors.response.use(response => {
     return response
   }, error => {
-    if (error.response.status === 401) {
+    let token = localStorage.getItem('token')
+    if (error.response.status === 401 && token) {
       // Do something with response error
       console.log('unauthorized, logging out ...')
       axios.get(urlApi.refeshToken,
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + token
           }
         })
         .then(res => {

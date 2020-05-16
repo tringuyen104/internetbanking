@@ -161,30 +161,36 @@ export default {
       }
 
       if (!value || value.trim() === '') { return }
-      this.$helper.callOneTimes(this.findAccount, 1000, value)
-    },
-    findAccount (value) {
-      this.isLoading = true
-      if (value.length === 16) {
-        this.findAcountByAccountId(value).then(() => {
-          this.isLoading = false
-        // eslint-disable-next-line handle-callback-err
-        }, err => {
-          this.isLoading = false
-        })
+
+      let accountId = +value
+      if (accountId) {
+        this.$helper.callOneTimes(this.findAcountByAccountId, 1000, value)
       } else {
-        this.finAcountsByUserName(value).then(() => {
-          this.isLoading = false
-        // eslint-disable-next-line handle-callback-err
-        }, err => {
-          this.isLoading = false
-        })
+        this.$helper.callOneTimes(this.finAcountsByUserName, 1000, value)
       }
     },
+    // findAccount (value) {
+    //   if (accountId) {
+    //     this.findAcountByAccountId(value).then(() => {
+    //       this.isLoading = false
+    //     // eslint-disable-next-line handle-callback-err
+    //     }, err => {
+    //       this.isLoading = false
+    //     })
+    //   } else {
+    //     this.finAcountsByUserName(value).then(() => {
+    //       this.isLoading = false
+    //     // eslint-disable-next-line handle-callback-err
+    //     }, err => {
+    //       this.isLoading = false
+    //     })
+    //   }
+    // },
     findAcountByAccountId (accountId) {
       if (!accountId || accountId.trim() === '') {
         return
       }
+      this.isLoading = true
       accountId = accountId.trim()
       return this.fetchAccountByAccountId(accountId).then(
         res => {
@@ -192,12 +198,14 @@ export default {
             this.$helper.toast.warning(this, this.$t('notification.notFound'))
           }
           this.$set(this, 'accountInfo', res.data)
+          this.isLoading = false
           // eslint-disable-next-line handle-callback-err
         }, err => {
           this.$helper.toast.error(
             this,
             this.$t('notification.contactToAdmin')
           )
+          this.isLoading = false
         }
       )
     },
@@ -216,12 +224,14 @@ export default {
             this.$set(this, 'results', res.data)
             this.showData = true
           }
+          this.isLoading = false
           // eslint-disable-next-line handle-callback-err
         }, err => {
           this.$helper.toast.error(
             this,
             this.$t('notification.contactToAdmin')
           )
+          this.isLoading = false
         }
       )
     },

@@ -3,7 +3,6 @@ import moment from 'moment'
 export const helper = {
   install (Vue, options) {
     Vue.prototype.$helper = {
-      timeout: null,
       typeTransaction: {
         recive: 'recive',
         transfers: 'transfers',
@@ -57,7 +56,9 @@ export const helper = {
       },
       callOneTimes (callBack, time, params) {
         clearTimeout(this.timeout)
-        this.timeout = setTimeout(params ? callBack(params) : callBack(), time)
+        this.timeout = setTimeout(() => {
+          if (!params) { callBack() } else { callBack(params) }
+        }, time)
       },
       formatTimeZone (dateTime) {
         let arrData = dateTime.split(':')
