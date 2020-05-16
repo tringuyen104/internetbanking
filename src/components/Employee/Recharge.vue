@@ -138,7 +138,7 @@ export default {
     },
     userRecharge () {
       let obj = {
-        amount: parseInt(this.money.split(this.currency.groupSeparator).join('').replace(this.currency.suffix, '')),
+        amount: parseInt(this.money.split(this.currency.groupSeparator).join('').replace(this.currency.suffix, '').replace(',', '')),
         accountId: this.accountInfo.accountId,
         content: this.content,
         feeType: 'SENDER'
