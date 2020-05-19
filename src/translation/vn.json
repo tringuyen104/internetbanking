@@ -70,13 +70,16 @@
   "userName": "Tên đăng nhập",
   "notification": {
     "changePasswordSuccess": "Đổi mật khẩu thành công.",
-    "conntactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị.",
-    "errorOccurred": "a.",
+    "contactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị.",
+    "errorOccurred": "Có lỗi xảy ra xin vui lòng liên hệ bộ phận IT.",
     "inputEmpty": "Bạn chưa nhập dữ liệu.",
     "notFound": "Không tìm thấy dữ liệu.",
     "passwordNotMacth": "Mật khẩu mới nhập không giống nhau.",
     "sendOTPtoEmailSuccess": "Mã OTP đã được gửi đến email của bạn. Vui lòng nhấn nút 'Tiếp tục' để nhập mật khẩu.",
     "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không đúng",
+    "existUsername": "Tên đăng nhập đã tồn tại, vui lòng đổi lại.",
+    "existEmail": "Email đã tồn tại, vui lòng đổi lại.",
+    "existUsernameAndEmail": "Tên đăng nhập và email đã tồn tại, vui lòng đổi lại.",
     "account": {
       "editEmployeeInfoSuccess": "Sửa thông tin thành công.",
       "notFound": "Không tìm thấy tài khoản.",

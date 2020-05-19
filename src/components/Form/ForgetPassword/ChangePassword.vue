@@ -76,8 +76,9 @@ export default {
           this.recoverPasswordByEmail(this.convertUIModelToPostModel(), this.$router.history.current.params.email).then(res => {
             this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
             this.$router.replace({ name: 'home' })
-          }, err => {
-            this.$helper.toast.error(this, err.message)
+          }, error => {
+            error = this.$t('notification.errorOccurred')
+            this.$helper.toast.error(this, error)
           })
         }
       })

@@ -48,8 +48,9 @@ export default {
             this.userInfo.lastName = res.data.lastName
             this.userInfo.phone = res.data.phone
             this.userInfo.username = this.username
-          }, err => {
-            this.$helper.toast.error(this, err.message)
+          }, error => {
+            error = this.$t('notification.errorOccurred')
+            this.$helper.toast.error(this, error)
           })
         }
       })

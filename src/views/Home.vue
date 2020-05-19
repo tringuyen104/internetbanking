@@ -1,16 +1,6 @@
 <template>
   <div class="home">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <carousel></carousel>
+    <br/>
+    <img src="./../assets/bank.jpg" height="100%" />
   </div>
 </template>
-
-<script>
-import Carousel from './Carousel.vue'
-
-export default {
-  components: {
-    Carousel
-  }
-}
-</script>

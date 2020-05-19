@@ -105,8 +105,9 @@ export default {
       this.changePassword(obj).then(res => {
         this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
         loginHanlder.signOutUser()
-      }, err => {
-        this.$helper.toast.error(this, err.message)
+      }, error => {
+        error = this.$t('notification.errorOccurred')
+        this.$helper.toast.error(this, error)
       })
     }
   }

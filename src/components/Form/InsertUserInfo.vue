@@ -89,19 +89,6 @@
         />
       </div>
       <form-field-error :validation-errors="errors" :field="'phone'" />
-      <!-- <div class="form-group">
-        <label for="inputAddress">{{ $t("address") }}</label>
-        <input
-          type="text"
-          class="form-control"
-          id="address"
-          :placeholder="$t('examaddress')"
-          v-model="user.address"
-          v-validate="'required'"
-          name="address"
-        />
-      </div>
-      <form-field-error :validation-errors="errors" :field="'address'" /> -->
       <div class="float-right">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
@@ -130,14 +117,40 @@ export default {
     submit () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          if (this.role === 'staff' && this.role !== 'user') {
-            this.createUserAccount()
-          }
-          if (this.role !== 'staff' && this.role !== 'user') {
-            this.createEmployeeAccount()
-          }
+          // check username, email is exist in DB
+          this.checkExitUserNameAndEmail(this.user.userName, this.user.email).then(
+            response => {
+              switch (response.data) {
+                // both username and email don't exist in DB
+                case 0:
+                  return this.handleCreateAccount()
+                // just username exist in DB
+                case 1:
+                  return this.$helper.toast.error(this, this.$t('notification.existUsername'))
+                // just email exist in DB
+                case 2:
+                  return this.$helper.toast.error(this, this.$t('notification.existEmail'))
+                // both username and email existes in DB
+                default:
+                  return this.$helper.toast.error(this, this.$t('notification.existUsernameAndEmail'))
+              }
+            },
+            error => {
+              error = this.$t('notification.errorOccurred')
+              this.$helper.toast.error(this, error)
+            }
+          )
         }
       })
+    },
+
+    handleCreateAccount () {
+      if (this.role === 'staff' && this.role !== 'user') {
+        this.createUserAccount()
+      }
+      if (this.role !== 'staff' && this.role !== 'user') {
+        this.createEmployeeAccount()
+      }
     },
 
     createEmployeeAccount () {
@@ -147,7 +160,8 @@ export default {
           this.$bvModal.show(this.idPopup)
         },
         error => {
-          this.$helper.handerError(error)
+          error = this.$t('notification.errorOccurred')
+          this.$helper.toast.error(this, error)
         }
       )
     },
@@ -169,7 +183,8 @@ export default {
           this.$bvModal.show(this.idPopup)
         },
         error => {
-          this.$helper.handerError(error)
+          error = this.$t('notification.errorOccurred')
+          this.$helper.toast.error(this, error)
         }
       )
     },

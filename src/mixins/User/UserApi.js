@@ -36,6 +36,18 @@ export default {
       return deferred
     },
 
+    checkExitUserNameAndEmail (username, email) {
+      var deferred = this.$Jquery.Deferred()
+      var url = urlApi.user.checkUsernameAndEmail + 'username=' + username + '&email=' + email
+      this.$api.get(url).then(res => {
+        deferred.resolve(res)
+      }, err => {
+        deferred.reject(err)
+      })
+
+      return deferred
+    },
+
     recharge (recharge) {
       var deferred = this.$Jquery.Deferred()
       this.$api.put(urlApi.account.deposit, recharge).then(reponse => {

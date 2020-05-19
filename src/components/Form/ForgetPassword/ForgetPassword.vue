@@ -53,8 +53,9 @@ export default {
           this.recoverPasswordByEmail(this.convertUIModeltoPostModel(), this.email).then(res => {
             this.showNext = true
             this.$helper.toast.success(this, this.$t('notification.sendOTPtoEmailSuccess'))
-          }, err => {
-            this.$helper.toast.error(this, err.message)
+          }, error => {
+            error = this.$t('notification.errorOccurred')
+            this.$helper.toast.error(this, error)
           })
         }
       })

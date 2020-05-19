@@ -3,14 +3,6 @@
     <h2 class="form-title">{{ $t("transaction") }}</h2>
     <div class="margin-auto">
       <div class="row">
-        <!-- <div class="col-md-3">
-          <label for="inputEmail4">{{ $t('fromdate') }}</label>
-          <date-picker v-model="fromDate" :config="options"></date-picker>
-        </div>
-        <div class="col-md-3">
-          <label for="inputEmail4">{{ $t('todate') }}</label>
-          <date-picker v-model="toDate" :config="options"></date-picker>
-        </div> -->
         <div class="form-group has-search col-sm-12">
           <span class="fa fa-search form-control-feedback"></span>
           <input
