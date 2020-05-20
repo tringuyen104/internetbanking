@@ -293,7 +293,7 @@ export default {
     },
     changeBankId (value) {
       let accountId = this.transactionInfo.accountTarget.accountId
-      if (accountId.trim() === '') {
+      if (!accountId || (accountId && accountId.trim() === '')) {
         return
       }
       this.transactionInfo.bankId = value
