@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="flex">
+      <h6 class="flex-start red-color">{{ $t('last30DaysTransaction') }}</h6>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        :aria-controls="idTable"
+        :class="'flex-end'"
+      />
+    </div>
     <b-table :id="idTable" :items="items" :fields="fields" striped responsive="sm" :perPage="perPage" :current-page="currentPage">
       <template v-slot:cell(createdDate)="data">
         <span>{{ $helper.formatDatetime(data.item.createdDate) }}</span>
@@ -8,12 +18,6 @@
         <span>{{ $helper.formatCurrency(data.item.amount) }}</span>
       </template>
     </b-table>
-     <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      :aria-controls="idTable"
-    ></b-pagination>
   </div>
 </template>
 
@@ -26,7 +30,7 @@ export default {
     return {
       items: [],
       fields: [],
-      perPage: 10,
+      perPage: 5,
       currentPage: 1,
       idTable: 'transaction-table',
       filter30Days: {
@@ -43,3 +47,6 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+
+</style>

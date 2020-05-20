@@ -30,7 +30,6 @@
         <payment-debt-reminder :ref="ref.payment"/>
       </b-tab>
     </b-tabs>
-    <h6 class="red-color d-flex">{{ $t('last30DaysTransaction') }}</h6>
   </div>
 </template>
 <script>

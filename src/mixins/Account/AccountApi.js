@@ -44,7 +44,7 @@ export default {
         return deferred
       }
       if (!page) page = 0
-      if (!size) size = 10
+      if (!size) size = 100
       startDate = this.$helper.formatTimeZone(startDate)
       endDate = this.$helper.formatTimeZone(endDate)
       startDate = encodeURIComponent(startDate)
