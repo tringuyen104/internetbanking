@@ -16,7 +16,6 @@ export default () => {
           }
         })
         .then(res => {
-          console.log(res)
           if (res.status === 200) {
             loginHanlder.updateToken(res)
             location.reload()

@@ -231,7 +231,6 @@ router.beforeEach((to, from, next) => {
   const authorize = to.meta
   const role = localStorage.getItem('r')
   const isLogin = bcrypt.compareSync('isLogin', (localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : ''))
-  console.log(role) 
   if (Object.entries(authorize).length > 0 && authorize.constructor === Object) {
     if (!role) {
       return next({ name: 'login' })
