@@ -113,10 +113,9 @@
       </div>
       <button-form :titleSubmit="$t('transfers')"></button-form>
       <saving-users
-        :accounts="accountsTransactions"
         :idPopup="idSavingPopup"
         @get-account-saving="getAccountBySaving"
-      />
+      /> <!--  :accounts="accountsTransactions" -->
       <OTP :idPopup="idOTPopup" @submitOtp="submitOtp" />
       <payment-confirm :item="infoPayment" :idPopup="idPaymentConfirmPopup" @payment="showOTPPopup"/>
     </form>
@@ -150,7 +149,7 @@ export default {
       infoPayment: {},
       cards: [],
       banks: [],
-      accountsTransactions: [],
+      // accountsTransactions: [],
       confirmationId: '',
       transactionInfo: {
         accountTarget: {
@@ -175,7 +174,7 @@ export default {
     }
   },
   created () {
-    this.getAccountTransactionsList()
+    // this.getAccountTransactionsList()
     this.getCards()
     this.getBanks()
     this.transactionInfo.feeType = this.feeType[0].feeType
@@ -246,24 +245,24 @@ export default {
         this.transactionInfo.accountId = response.data[0].accountId
       })
     },
-    getAccountTransactionsList () {
-      this.fetchAccountTransactionsList().then(res => {
-        let resData = this.mapAccounts(res.data)
-        this.$set(this, 'accountsTransactions', resData)
-      })
-    },
+    // getAccountTransactionsList () {
+    //   this.fetchAccountTransactionsList().then(res => {
+    //     let resData = this.mapAccounts(res.data)
+    //     this.$set(this, 'accountsTransactions', resData)
+    //   })
+    // },
     showSavingUsers () {
       this.$bvModal.show(this.idSavingPopup)
     },
-    mapAccounts (accounts) {
-      if (!accounts || accounts.length === 0) {
-        return []
-      }
-      return accounts.map(item => {
-        item.fullName = item.lastName + ' ' + item.firstName
-        return item
-      })
-    },
+    // mapAccounts (accounts) {
+    //   if (!accounts || accounts.length === 0) {
+    //     return []
+    //   }
+    //   return accounts.map(item => {
+    //     item.fullName = item.nameSuggestion
+    //     return item
+    //   })
+    // },
     getAccountBySaving (account) {
       this.transactionInfo.accountTarget = account
       if (account.bankId && account.bankId !== '') {

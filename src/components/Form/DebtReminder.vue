@@ -50,7 +50,6 @@
       <button-form :titleSubmit="$t('debtReminder')"></button-form>
     </form>
     <saving-users
-        :accounts="accountsTransactions"
         :idPopup="idSavingPopup"
         @get-account-saving="getAccountSaved"
       />
@@ -78,7 +77,6 @@ export default {
       isLoading: false,
       isSearch: true,
       search: '',
-      accountsTransactions: [],
       idSavingPopup: 'popup-saving-user'
     }
   },
@@ -93,23 +91,6 @@ export default {
             this.createDebtReminderUser()
           }
         })
-      })
-    },
-    getAccountTransactionsList () {
-      this.fetchAccountTransactionsList().then(res => {
-        let resData = this.mapAccounts(res.data)
-        console.log(resData)
-        this.$set(this, 'accountsTransactions', resData)
-      })
-    },
-    mapAccounts (accounts) {
-      if (!accounts || accounts.length === 0) {
-        return []
-      }
-      let filterAccounts = Object.assign([], accounts).filter(item => { return !item.bankId || item.bankId === '' })
-      return filterAccounts.map(item => {
-        item.fullName = item.lastName + ' ' + item.firstName
-        return item
       })
     },
     showSavingUsers () {

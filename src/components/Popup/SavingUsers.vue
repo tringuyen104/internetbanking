@@ -1,12 +1,19 @@
 <template>
-  <b-modal ref="modelSavingUsers" hide-footer :title="$t('inputOTP')" :id="idPopup">
+  <b-modal ref="modelSavingUsers" hide-footer :title="$t('lstAccountSaved')" :id="idPopup">
     <div class="d-block text-center saving-users">
-      <search-input :placeholder="$t('usernameOrAccountNumber')" @searchValue="searchValue"/>
+      <div class="add-saving-user flex">
+        <i class="fas fa-user-plus fa-lg flex-end"
+        @click="showRecipientPopup"
+        :title="$t('createRecipient')"/>
+      </div>
+      <search-input :placeholder="$t('usernameOrAccountNumber')" @searchValue="searchValue" />
       <template v-for="account in users">
         <div class="saving-users-content" @click="comfirm(account)" :key="account.accountId">
           <i class="far fa-user fa-2x saving-users-content__left_icon"></i>
           <div class="saving-users-content__right">
-            <label class="saving-user-name"><strong>{{account.fullName}}</strong></label>
+            <label class="saving-user-name">
+              <strong>{{account.fullName}}</strong>
+            </label>
             <div class="flex">
               <i class="fas fa-credit-card saving-account-number-icon"></i>
               <label class="saving-account-number">{{account.accountId}}</label>
@@ -18,15 +25,21 @@
     <div class="d-flex saving-button">
       <b-button class="col-xs-12" variant="primary" block @click="toggleModal">{{ $t("cancel") }}</b-button>
     </div>
+    <recipient-popup
+      :idPopup="idRecipientPopup"
+      :isEdit="false"
+      :recipient="recipient"
+      @doneUpdate="reloadData"
+    />
   </b-modal>
 </template>
 <script>
+import RecipientPopup from '../Popup/RecipientAddEdit'
+import UserApi from '../../mixins/User/UserApi'
 export default {
+  components: { RecipientPopup },
+  mixins: [ UserApi ],
   props: {
-    accounts: {
-      type: Array,
-      required: true
-    },
     idPopup: {
       type: String,
       required: true
@@ -34,8 +47,18 @@ export default {
   },
   data () {
     return {
-      users: []
+      idRecipientPopup: 'recipient-saving-popup',
+      users: [],
+      originalUsers: [],
+      recipient: {
+        id: '',
+        nameSuggestion: '',
+        bankId: ''
+      }
     }
+  },
+  created () {
+    this.getAccountTransactionsList()
   },
   methods: {
     comfirm (account) {
@@ -47,27 +70,47 @@ export default {
     },
     searchValue (val, oldVal) {
       if (val === '' || !val) {
-        this.$set(this, 'users', this.accounts)
+        this.$set(this, 'users', this.originalUsers)
         return
       }
       let result = this.filterAccounts(val)
       this.$set(this, 'users', result)
     },
     filterAccounts (value) {
-      return this.accounts.filter(item => {
-        return item.fullName.toLowerCase().includes(value.toLowerCase()) || item.accountId.includes(value)
+      return this.originalUsers.filter(item => {
+        return (
+          item.fullName.toLowerCase().includes(value.toLowerCase()) ||
+          item.accountId.includes(value)
+        )
       })
-    }
-  },
-  watch: {
-    accounts (val, oldVal) {
-      this.$set(this, 'users', val)
+    },
+    reloadData () {
+      this.getAccountTransactionsList()
+    },
+    showRecipientPopup () {
+      this.$bvModal.show(this.idRecipientPopup)
+    },
+    getAccountTransactionsList () {
+      this.fetchAccountTransactionsList().then(res => {
+        let resData = this.mapAccounts(res.data)
+        this.$set(this, 'users', resData)
+        this.$set(this, 'originalUsers', resData)
+      })
+    },
+    mapAccounts (accounts) {
+      if (!accounts || accounts.length === 0) {
+        return []
+      }
+      return accounts.map(item => {
+        item.fullName = item.nameSuggestion
+        return item
+      })
     }
   }
 }
 </script>
 <style lang="scss">
-@import 'src/scss/color.scss';
+@import "src/scss/color.scss";
 
 .saving-users {
   .saving-users-content {
@@ -75,7 +118,7 @@ export default {
     border: 1px solid #cacac9;
     padding: 0.5em 0.5em 0.5em 1em;
     border-radius: 25px;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     cursor: pointer;
 
     .saving-users-content__left_icon {
@@ -110,6 +153,11 @@ export default {
 }
 
 .saving-button {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+.add-saving-user {
+  padding-bottom: 10px;
+  cursor: pointer;
 }
 </style>
