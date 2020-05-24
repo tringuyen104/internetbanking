@@ -21,7 +21,7 @@
 import PaymentDebtReminder from './PaymentDebtReminder.vue'
 import ReciveMoney from './ReciveMoney.vue'
 import TransfersMoney from './TransfersMoney.vue'
-// bên này phải hander trường hợp 2 component sẽ call chung cái component này
+
 export default {
   props: {
     searchValue: null

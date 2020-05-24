@@ -38,10 +38,10 @@
         <div class="col-md-2 search-button">
           <label for="search">{{$t('search')}}</label>
           <button
-            type="submit"
+            type="button"
             class="btn btn-primary"
             id="search"
-            @click.prevent="search"
+            @click="search"
           >{{$t('search')}}</button>
         </div>
       </div>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <br />
-      <transaction-management :searchValue="crossCheckModel" />
+      <transaction-management :searchValue="crossCheckModel" ref="transactionManager"/>
     </div>
   </form>
 </template>
@@ -110,10 +110,17 @@ export default {
       )
     },
 
+    parseSearchModel () {
+      let obj = Object.assign({}, this.searchModel)
+      let bankId = obj.bankId
+      if (bankId === 'all') { obj.bankId = '' }
+      return obj
+    },
+
     search () {
       this.$validator.validateAll().then(valid => {
         if (valid) {
-          this.$set(this, 'crossCheckModel', this.searchModel)
+          this.$set(this, 'crossCheckModel', this.parseSearchModel())
         }
       })
     }

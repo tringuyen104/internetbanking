@@ -45,7 +45,7 @@ export default {
         return deferred
       }
       if (!page) page = 0
-      if (!size) size = 10
+      if (!size) size = 100
       startDate = this.$helper.formatTimeZone(startDate)
       endDate = this.$helper.formatTimeZone(endDate)
       startDate = encodeURIComponent(startDate)
@@ -62,12 +62,12 @@ export default {
     getCrossCheck (bankId, type, startDate, endDate, page, size) {
       let deferred = this.$Jquery.Deferred()
       let url = ''
-      if (!bankId || bankId === '') {
-        deferred.reject('Please input data')
-        return deferred
-      }
+      // if (!bankId || bankId === '') {
+      //   deferred.reject('Please input data')
+      //   return deferred
+      // }
       if (!page) page = 0
-      if (!size) size = 10
+      if (!size) size = 100
       startDate = this.$helper.formatTimeZone(this.$moment(startDate).format(define.formatTimeZoneLocal))
       endDate = this.$helper.formatTimeZone(this.$moment(endDate).format(define.formatTimeZoneLocal))
       startDate = encodeURIComponent(startDate)

@@ -26,7 +26,7 @@ export default {
     return {
       items: [],
       fields: [],
-      perPage: 10,
+      perPage: 5,
       currentPage: 1,
       idTable: 'transaction-table',
       filter30Days: {
