@@ -250,8 +250,9 @@ export default {
       //   bankId: val.bankId,
       //   suggestionName: val.nameSuggestion
       // }
-      this.$set(this, 'seachUpdate', val.accountId)
-      this.$set(this, 'accountInfo', val)
+      let cloneData = Object.assign({}, val)
+      this.$set(this, 'seachUpdate', cloneData.accountId)
+      this.$set(this, 'accountInfo', cloneData)
       // this.accountInfo.suggestionName = val.nameSuggestion
       // this.accountInfo.bankId = val.bankId
     },

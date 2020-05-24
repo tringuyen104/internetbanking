@@ -61,6 +61,7 @@
 import FormFieldError from '../Errors/FormFieldError.vue'
 import UserApi from '../../mixins/User/UserApi'
 import BrowserStorage from '../../mixins/BrowserStorage'
+import { loginHanlder } from '../../mixins/LoginHandler'
 export default {
   mixins: [
     UserApi,
@@ -107,20 +108,11 @@ export default {
       console.log(obj)
       this.changePassword(this.convertUItoPostModel()).then(res => {
         this.$helper.toast.success(this, this.$t('notification.changePasswordSuccess'))
-        this.clearDataAndNavigateToHomePage()
+        loginHanlder.signOutUser()
       }, err => {
         this.$helper.toast.error(this, err.message)
       })
     },
-
-    clearDataAndNavigateToHomePage () {
-      this.removeItemInSessionStorage('token')
-      this.removeItemInSessionStorage('currentUser')
-      this.removeItemInSessionStorage('r')
-      this.$store.commit('updateLogin', false)
-      this.$store.commit('updateR', '')
-      this.$router.replace({ name: 'home' })
-    }
   }
 }
 

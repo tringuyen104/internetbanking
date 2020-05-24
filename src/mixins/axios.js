@@ -5,7 +5,8 @@ export const restFullAPi = {
     Vue.prototype.$api = {
       config: {
         headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'content-type': 'application/json'
         }
       },
       get (url) {

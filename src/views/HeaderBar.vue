@@ -13,61 +13,23 @@
             <b-nav-item :to="{ name: 'bankingTransfers' }">{{
               $t("transfers")
             }}</b-nav-item>
-            <li id="header-popup-over-debt" class="nav-item b-nav-dropdown dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle nav-link-custom"
-              >{{$t('debtReminder')}}</a>
-              <b-popover
-                :target="'header-popup-over-debt'"
-                triggers="hover"
-                :placement="'bottom'"
-                class="dropdown-menu"
-              >
-                  <b-link class="dropdown-item" :to="{ name: 'createDebtReminder' }">{{$t("createDebtReminder")}}</b-link>
-                  <b-link class="dropdown-item" :to="{ name: 'debtReminderManagement' }">{{$t("debtReminderManagement")}}</b-link>
-              </b-popover>
-            </li>
-            <li id="header-popup-over-account" class="nav-item b-nav-dropdown dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle nav-link-custom"
-              >{{$t('account')}}</a>
-              <b-popover
-                :target="'header-popup-over-account'"
-                triggers="hover"
-                :placement="'bottom'"
-                class="dropdown-menu"
-              >
-                  <b-link class="dropdown-item" :to="{ name: 'cards' }">{{$t("lstCard")}}</b-link>
-                  <b-link class="dropdown-item" :to="{ name: 'recipientList'}">{{$t('recipientList')}}</b-link>
-              </b-popover>
-            </li>
+            <b-nav-item-dropdown :text="$t('debtReminder')" right>
+              <b-dropdown-item :to="{ name: 'createDebtReminder' }">{{$t("createDebtReminder")}}</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'debtReminderManagement' }">{{$t("debtReminderManagement")}}</b-dropdown-item>
+            </b-nav-item-dropdown>
+             <b-nav-item-dropdown :text="$t('account')" right>
+              <b-dropdown-item :to="{ name: 'cards' }">{{$t("lstCard")}}</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'recipientList'}">{{$t('recipientList')}}</b-dropdown-item>
+            </b-nav-item-dropdown>
+            <b-nav-item-dropdown :html="`<i class='far fa-user-circle fa-2x'/>`" right no-caret>
+              <b-dropdown-item href="#">{{ userName }}</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'changePassword' }">{{ $t("changePassword")}}</b-dropdown-item>
+              <b-dropdown-item @click.prevent="signOut">{{ $t("signOut") }}</b-dropdown-item>
+            </b-nav-item-dropdown>
           </template>
-          <b-nav-item :to="{ name: 'login' }" v-show="!isLogin">{{
-            $t("signin")
-          }}</b-nav-item>
-          <!-- <b-nav-item @click.prevent="signOut" v-show="isLogin">{{
-            $t("signOut")
-          }}</b-nav-item> -->
-          <b-nav-item v-show="isLogin">
-            <div style="margin-top: 4px;cusor: pointer;" @click="showProfile = !showProfile" id="popup-over-profile">
-               <a href="#" id="nav-popup-profile" >
-                 <i class="far fa-user-circle fa-2x"></i>
-              </a>
-            </div>
-              <b-popover
-                :target="'popup-over-profile'"
-                :placement="'bottomleft'"
-                triggers="hover"
-                :class="'dropdown-menu custom-dropdown-item'"
-              >
-                  <a class="dropdown-item" href="#">{{userName}}</a>
-                  <b-link class="dropdown-item" :to="{ name: 'changePassword'}">{{$t('changePassword')}}</b-link>
-                  <div class="dropdown-divider"></div>
-                  <button class="dropdown-item" @click.prevent="signOut">{{$t("signOut")}}</button>
-              </b-popover>
-          </b-nav-item>
+          <template v-if="!isLogin">
+             <b-nav-item :to="{ name: 'login' }" v-show="!isLogin">{{ $t("signin") }}</b-nav-item>
+          </template>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
