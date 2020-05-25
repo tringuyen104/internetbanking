@@ -10,8 +10,14 @@ export const restFullAPi = {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
       },
+      getConfig: {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'content-type': 'application/json'
+        }
+      },
       get (url) {
-        return axios.get(url, this.config)
+        return axios.get(url, this.getConfig)
       },
 
       getNoneHeader (url) {
