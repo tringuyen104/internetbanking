@@ -15,7 +15,7 @@
           <div class="card-number">
             <h5>{{ $t("overbalance") }}</h5>
           </div>
-          <div class="card-amount">{{ amount }}</div>
+          <div class="card-amount">{{ $helper.formatCurrency(amount) }}</div>
         </div>
       </div>
     </div>

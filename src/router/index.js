@@ -7,10 +7,10 @@ import SideBar from '../views/SideNav.vue'
 import Login from '../components/User/Login.vue'
 import RecoverPassword from '../components/Form/ForgetPassword/RecoverPassword.vue'
 import ListCard from '../components/User/ListCard.vue'
-import BankingTransfers from '../components/Banking/BankingTransfers.vue'
-import CreateDebtReminder from '../components/DebtReminder/DebtReminderCreate.vue'
-import DebtReminderUnPay from '../components/DebtReminder/DebtReminderUnPay.vue'
-import DebtReminderManagement from '../components/DebtReminder/DebtReminderManagement.vue'
+import BankingTransfers from '../components/Banking/Transfers.vue'
+import CreateDebt from '../components/DebtReminder/Create.vue'
+import UnPaidDebt from '../components/DebtReminder/UnPaid.vue'
+import ManagementDebt from '../components/DebtReminder/Management.vue'
 import TransactionManagement from '../components/User/TransactionManagement.vue'
 import NotFound from '../components/Errors/NotFound.vue'
 import ForgetPassword from '../components/Form/ForgetPassword/ForgetPassword.vue'
@@ -94,7 +94,7 @@ const routes = [
     name: 'createDebtReminder',
     components: {
       headerbar: HeaderBar,
-      default: CreateDebtReminder
+      default: CreateDebt
     },
     meta: { requiredLogin: true }
   },
@@ -103,7 +103,7 @@ const routes = [
     name: 'debtReminderUnPay',
     components: {
       headerbar: HeaderBar,
-      default: DebtReminderUnPay
+      default: UnPaidDebt
     },
     meta: { requiredLogin: true }
   },
@@ -112,7 +112,7 @@ const routes = [
     name: 'debtReminderManagement',
     components: {
       headerbar: HeaderBar,
-      default: DebtReminderManagement
+      default: ManagementDebt
     },
     meta: { requiredLogin: true }
   },

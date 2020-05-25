@@ -7,7 +7,9 @@ export const restFullAPi = {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
           'content-type': 'application/json'
-        }
+        },
+        crossDomain: true,
+        cache: false
       },
       get (url) {
         return axios.get(url, this.config)

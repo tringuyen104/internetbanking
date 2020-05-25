@@ -63,6 +63,7 @@ import { define } from '../../common/define'
 import SavingUsers from '../Popup/SavingUsers'
 
 export default {
+  name: 'debt-reminder',
   mixins: [ DebtApi, AccountApi, UserApi ],
   components: { SavingUsers },
   data () {
@@ -79,9 +80,6 @@ export default {
       search: '',
       idSavingPopup: 'popup-saving-user'
     }
-  },
-  created () {
-    this.getAccountTransactionsList()
   },
   methods: {
     submit () {

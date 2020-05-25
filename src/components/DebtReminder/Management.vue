@@ -15,8 +15,8 @@
   </div>
 </template>
 <script>
-import Unpay from './DebtReminderUnPay.vue'
-import DebtReminderList from './DebtReminderList.vue'
+import Unpay from './UnPaid.vue'
+import DebtReminderList from './PlayList.vue'
 
 export default {
   components: {
@@ -38,12 +38,10 @@ export default {
       this.isLoading = true
       switch (this.tabIndex) {
         case 0: // unpay debt
-          this.isLoading = false
           // eslint-disable-next-line handle-callback-err
           this.$refs[this.ref.unpay].getUnpayDebtReminder().then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
         case 1: // playlist debt
-          this.isLoading = false
           // eslint-disable-next-line handle-callback-err
           this.$refs[this.ref.debtReminderList].getPlaylistDebt(this.accountId).then(res => { this.isLoading = false }, err => { this.isLoading = false })
           break
