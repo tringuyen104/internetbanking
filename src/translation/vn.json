@@ -13,6 +13,7 @@
   "changePass": "Đổi mật khẩu",
   "changePassword": "Đổi mật khẩu",
   "confirmPass": "Nhập lại mật khẩu mới",
+  "confirm": "Xác nhận",
   "confirmTransfersMoney": "Xác nhận chuyển tiền",
   "content": "Nội dung",
   "createemployee": "Thêm nhân viên",
@@ -21,6 +22,9 @@
   "crossCheck": "Đối soát",
   "delete": "Xóa",
   "deltoreditemployee": "Xóa/ Sửa nhân viên",
+  "editEmployee": "Sửa nhân viên",
+  "deleteEmployee": "Xóa nhân viên",
+  "doYouWantToDeleteAccount": "Bạn có muốn xóa tài khoản này.",
   "edit": "Sửa",
   "email": "Email",
   "endDate": "Ngày két thúc",
@@ -45,6 +49,26 @@
   "message": "hello i18n !!",
   "newPass": "Nhập mật khẩu mới",
   "next": "Tiếp tục",
+  "notification": {
+    "account": {
+      "editEmployeeInfoSuccess": "Sửa thông tin thành công.",
+      "notFound": "Không tìm thấy tài khoản.",
+      "rechargeFail": "Nạp tiền thất bại.",
+      "rechargeSuccess": "Nạp tiền thành công.",
+      "removeEmployeeSuccess": "Xóa thông tin thành công."
+    },
+    "changePasswordSuccess": "Đổi mật khẩu thành công.",
+    "contactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị.",
+    "errorOccurred": "Có lỗi xảy ra xin vui lòng liên hệ bộ phận IT.",
+    "existEmail": "Email đã tồn tại, vui lòng đổi lại.",
+    "existUsername": "Tên đăng nhập đã tồn tại, vui lòng đổi lại.",
+    "existUsernameAndEmail": "Tên đăng nhập và email đã tồn tại, vui lòng đổi lại.",
+    "inputEmpty": "Bạn chưa nhập dữ liệu.",
+    "notFound": "Không tìm thấy dữ liệu.",
+    "passwordNotMacth": "Mật khẩu mới nhập không giống nhau.",
+    "sendOTPtoEmailSuccess": "Mã OTP đã được gửi đến email của bạn. Vui lòng nhấn nút 'Tiếp tục' để nhập mật khẩu.",
+    "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không đúng"
+  },
   "oldPass": "Nhập mật khẩu cũ",
   "password": "Mật khẩu",
   "payment": "Thanh toán",
@@ -67,25 +91,5 @@
   "transaction": "Lịch sử giao dịch",
   "transfersMoney": "Chuyển Tiền",
   "userInfo": "Thông tin người dùng",
-  "userName": "Tên đăng nhập",
-  "notification": {
-    "changePasswordSuccess": "Đổi mật khẩu thành công.",
-    "contactToAdmin": "Có lỗi xảy ra xin vui lòng liên hệ ban quản trị.",
-    "errorOccurred": "Có lỗi xảy ra xin vui lòng liên hệ bộ phận IT.",
-    "inputEmpty": "Bạn chưa nhập dữ liệu.",
-    "notFound": "Không tìm thấy dữ liệu.",
-    "passwordNotMacth": "Mật khẩu mới nhập không giống nhau.",
-    "sendOTPtoEmailSuccess": "Mã OTP đã được gửi đến email của bạn. Vui lòng nhấn nút 'Tiếp tục' để nhập mật khẩu.",
-    "userNameOrPasswordWrong": "Tên đăng nhập hoặc mật khẩu không đúng",
-    "existUsername": "Tên đăng nhập đã tồn tại, vui lòng đổi lại.",
-    "existEmail": "Email đã tồn tại, vui lòng đổi lại.",
-    "existUsernameAndEmail": "Tên đăng nhập và email đã tồn tại, vui lòng đổi lại.",
-    "account": {
-      "editEmployeeInfoSuccess": "Sửa thông tin thành công.",
-      "notFound": "Không tìm thấy tài khoản.",
-      "rechargeFail": "Nạp tiền thất bại.",
-      "rechargeSuccess": "Nạp tiền thành công.",
-      "removeEmployeeSuccess": "Xóa thông tin thành công."
-    }
-  }
+  "userName": "Tên đăng nhập"
 }

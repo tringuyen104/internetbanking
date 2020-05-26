@@ -133,6 +133,16 @@ export default {
         deferred.reject(error)
       })
       return deferred
+    },
+
+    fetchAllEmployee () {
+      var deferred = this.$Jquery.Deferred()
+      this.$api.get(urlApi.user.getAllEmployee).then(reponse => {
+        deferred.resolve(reponse)
+      }, error => {
+        deferred.reject(error)
+      })
+      return deferred
     }
   }
 }

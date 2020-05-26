@@ -107,7 +107,33 @@ export const table = {
               tdClass: 'alert alert-warning'
             }
           ]
-        }
+        },
+        employee: [
+          {
+            key: 'index',
+            label: 'STT',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          },
+          {
+            key: 'username',
+            label: 'Tên nhân viên',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          },
+          {
+            key: 'email',
+            label: 'Email',
+            thClass: 'alert alert-info  text-left',
+            tdClass: 'alert alert-warning  text-left'
+          },
+          {
+            key: 'action',
+            label: '',
+            thClass: 'alert alert-info',
+            tdClass: 'alert alert-warning'
+          }
+        ]
       }
     }
   }

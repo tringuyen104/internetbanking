@@ -7,6 +7,14 @@
     margin-top: 20px;
 }
 
+.red-color {
+    color: $red;
+}
+
+.remove-icon {
+    cursor: pointer;
+}
+
 .loading {    
     background-color: #ffffff;
     background-image: url("http://loadinggif.com/images/image-selection/3.gif");

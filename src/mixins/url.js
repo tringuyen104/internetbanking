@@ -31,7 +31,8 @@ export default {
     getUserInfo: callUrl + 'users/employee/',
     editEmployeeInfor: callUrl + 'users/employee/',
     removeEmployee: callUrl + 'users/',
-    checkUsernameAndEmail: callUrl + 'users/checkUsernameAndEmail?'
+    checkUsernameAndEmail: callUrl + 'users/checkUsernameAndEmail?',
+    getAllEmployee: callUrl + 'users/employee'
   },
   bank: {
     associated: callUrl + 'banks'
