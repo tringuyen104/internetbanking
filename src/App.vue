@@ -7,7 +7,11 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  created () {
+    window.onunload = () => { debugger }
+  }
+}
 </script>
 <style lang="scss">
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";

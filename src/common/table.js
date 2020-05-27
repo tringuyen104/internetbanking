@@ -117,7 +117,25 @@ export const table = {
           },
           {
             key: 'username',
-            label: 'Tên nhân viên',
+            label: 'Tên đăng nhập',
+            thClass: 'alert alert-info text-left',
+            tdClass: 'alert alert-warning text-left'
+          },
+          {
+            key: 'firstName',
+            label: 'Tên',
+            thClass: 'alert alert-info text-left',
+            tdClass: 'alert alert-warning text-left'
+          },
+          {
+            key: 'lastName',
+            label: 'Họ',
+            thClass: 'alert alert-info text-left',
+            tdClass: 'alert alert-warning text-left'
+          },
+          {
+            key: 'phone',
+            label: 'SDT',
             thClass: 'alert alert-info',
             tdClass: 'alert alert-warning'
           },

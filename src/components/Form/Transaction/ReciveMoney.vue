@@ -30,7 +30,7 @@ export default {
           this.$set(this, 'items', data)
           // eslint-disable-next-line handle-callback-err
         }, err => {
-          this.$set(this, 'items', [])
+          this.$set(this, 'items', [{}])
         })
     }
   }

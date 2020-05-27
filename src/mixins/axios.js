@@ -1,4 +1,5 @@
 let axios = require('axios')
+let jQuery = require('jquery')
 var querystring = require('querystring')
 
 export const restFullAPi = {
@@ -13,11 +14,27 @@ export const restFullAPi = {
       getConfig: {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
         }
       },
       get (url) {
         return axios.get(url, this.getConfig)
+        // let deferred = jQuery.Deferred()
+        // jQuery.ajax({
+        //   url: url,
+        //   type: 'GET',
+        //   // dataType: 'json',
+        //   headers: this.config.headers,
+        //   // contentType: 'application/json; charset=utf-8',
+        //   success: (response) => {
+        //     let result = { data: response }
+        //     deferred.resolve(result)
+        //   },
+        //   error: (error) => {
+        //     deferred.reject(error)
+        //   }
+        // })
+        // return deferred
       },
 
       getNoneHeader (url) {

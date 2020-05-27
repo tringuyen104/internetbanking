@@ -2,29 +2,8 @@
   <div>
     <b-modal ref="my-modal" hide-footer :title="$t('editEmployee')" :id="id">
       <div class="d-block">
-        <div>
-          <!-- <div class="form-group">
-            <label for="inputAddress">{{ $t('firstName') }}</label>
-            <input
-              type="text"
-              class="form-control"
-              id="firstName"
-              :placeholder="$t('exlastname')"
-              v-model="userInfo.firstName"
-            />
-          </div>
-          <div class="form-group">
-            <label for="inputAddress">{{ $t('lastName') }}</label>
-            <input
-              type="text"
-              class="form-control"
-              id="lastName"
-              :placeholder="$t('exfirstname')"
-              v-model="userInfo.lastName"
-            />
-          </div> -->
-          <div class="form-group">
-            <label for="inputAddress2">{{ $t('username') }}</label>
+         <div class="form-group">
+            <label for="inputAddress2">{{ $t('userName') }}</label>
             <input
               type="text"
               class="form-control"
@@ -33,6 +12,31 @@
               disabled
             />
           </div>
+          <div class="form-group">
+            <label for="inputAddress">{{ $t('firstName') }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              :placeholder="$t('exlastname')"
+              v-model="userInfo.firstName"
+              v-validate="'required'"
+            />
+          </div>
+          <form-field-error :validation-errors="errors" :field="'lastName'" />
+          <div class="form-group">
+            <label for="inputAddress">{{ $t('lastName') }}</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              :placeholder="$t('exfirstname')"
+              v-model="userInfo.lastName"
+              v-validate="'required'"
+            />
+          </div>
+            <form-field-error :validation-errors="errors" :field="'lastName'" />
           <div class="form-group">
             <label for="inputAddress2">{{ $t('email') }}</label>
             <input
@@ -45,17 +49,19 @@
             />
           </div>
            <form-field-error :validation-errors="errors" :field="'email'" />
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="inputAddress2">{{ $t('phone') }}</label>
             <input
               type="text"
               class="form-control"
               id="phone"
+              name="phone"
               :placeholder="$t('examphone')"
               v-model="userInfo.phone"
+              v-validate="'required'"
             />
-          </div> -->
-        </div>
+          </div>
+          <form-field-error :validation-errors="errors" :field="'phone'" />
       </div>
       <div class="d-flex margin-top-20">
         <b-button class="mt-3 col-md-6" variant="primary" block @click="edit">{{ $t("edit") }}</b-button>
@@ -118,11 +124,11 @@ export default {
 
     convertUItoPutModel () {
       return {
-        email: this.userInfo.email
-        // firstName: this.userInfo.firstName,
+        email: this.userInfo.email,
+        firstName: this.userInfo.firstName,
         // id: this.userInfo.id,
-        // lastName: this.userInfo.lastName,
-        // phone: this.userInfo.phone,
+        lastName: this.userInfo.lastName,
+        phone: this.userInfo.phone
         // username: this.userInfo.username
       }
     },

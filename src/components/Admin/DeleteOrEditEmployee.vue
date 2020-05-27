@@ -10,7 +10,7 @@
     </div>
     <BaseUserInfo v-if="showUserInfo" :userInfo="userInfo" @cancel='hideEmployeeInfor' />
   </form>-->
-  <div>
+  <div class="col-lg-8 col-md-12 col-sm-12 margin-auto transaction-management">
     <h2 class="form-title d-flex">{{ $t('deltoreditemployee') }}</h2>
      <loading
       :active.sync="isLoading"
@@ -156,9 +156,8 @@ export default {
 </script>
 
 <style lang="scss">
-.padding-nav {
-  padding-left: 25%;
-  padding-right: 25%;
+.margin-auto {
+  margin: auto;
 }
 .form-label {
   text-align: left;

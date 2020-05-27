@@ -1,5 +1,5 @@
 <template>
-  <form class="form-label cross-check">
+  <form class="form-label cross-check col-lg-8 col-md-12 col-sm-12 margin-auto">
     <h2 class="form-title">{{ $t('crossCheck') }}</h2>
     <div class="margin-auto">
       <div class="row">

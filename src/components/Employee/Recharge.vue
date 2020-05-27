@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="col-lg-8 col-md-12 col-sm-12 form-label margin-auto">
     <loading
       :active.sync="isLoading"
       :is-full-page="fullPage"
@@ -259,10 +259,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.padding-nav {
-  padding-left: 25%;
-  padding-right: 25%;
-}
 .form-label {
   text-align: left;
 }
