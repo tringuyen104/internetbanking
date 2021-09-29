@@ -19,7 +19,7 @@
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.3",
     "font-awesome": "^4.7.0",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "querystring": "^0.2.0",
